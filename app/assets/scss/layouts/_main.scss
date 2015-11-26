@@ -1,0 +1,18 @@
+.content-wrap {
+	position: relative;
+	width: 100%;
+	max-width: 1180px;
+	margin: 0 auto;
+
+	&--960 {
+		max-width: 960px;
+	}
+
+	&--940 {
+		max-width: 940px;
+	}
+}
+
+main {
+	padding: 0 20px;
+}

@@ -1,0 +1,19 @@
+<header>
+	<h1 class="md-headline">First, create a login</h1>
+</header>
+<main class="layout-column layout-align-start-center">
+	<form class="layout-column layout-align-start-stretch" name="vm.registerForm" ng-submit="vm.register()">
+		<ul class="unstyled-list">
+			<li class="form-row">
+				<input class="md-whiteframe md-whiteframe-z1" type="email" ng-model="vm.email" placeholder="Enter your email address" required />
+			</li>
+			<li class="form-row">
+				<input class="md-whiteframe md-whiteframe-z1" type="password" ng-model="vm.password" placeholder="and a password" focus-placeholder="at least 6 characters" minlength="6" required />
+			</li>
+			<li class="form-row form-row--with-cta">
+				<md-button type="submit" class="md-primary md-raised">Continue</md-button>
+			</li>
+		</ul>
+	</form>
+	<a style="margin-top: 40px" href="sign-in/">Already joined? Sign in</a>
+</main>

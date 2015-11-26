@@ -1,0 +1,32 @@
+form {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.form-row {
+	display: flex;
+	flex-direction: column;
+
+	& + & {
+		margin-top: 10px;
+	}
+
+	&--with-cta {
+	}
+
+	.md-button {
+		margin: 0;
+	}
+}
+
+input {
+	height: 40px;
+	padding: 0 12px;
+	margin: 0;
+	border: 0 none;
+
+	&:focus {
+		outline: none;
+	}
+}

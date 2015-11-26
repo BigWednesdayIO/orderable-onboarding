@@ -1,0 +1,44 @@
+<header>
+	<h1 class="md-headline"><strong>Congratulations!</strong> You've joined Orderable</h1>
+</header>
+<main class="layout-column">
+	<md-content class="md-whiteframe-z1" style="padding: 12px;">
+		<h2 class="md-subhead">You are just <strong><span>3</span> steps</strong> away from selling to retailers in your area</h2>
+
+		<ol class="unstyled-list steps">
+			<li class="step">
+				<div class="layout-row layout-align-start-center">
+					<md-button class="md-fab md-mini md-primary md-raised step__icon">
+						<md-icon md-svg-src="assets/images/icons/tag-multiple.svg"></md-icon>
+					</md-button>	
+					<md-button class="md-primary step__action">
+						<span>Add some products</span>
+					</md-button>
+				</div>
+				<p class="step__description">To sell to retailers you'll need to add your supplies to Orderable</p>
+			</li>
+			<li class="step">
+				<div class="layout-row layout-align-start-center">
+					<md-button class="md-fab md-mini md-primary md-raised step__icon">
+						<md-icon md-svg-src="assets/images/icons/payment.svg"></md-icon>
+					</md-button>
+					<md-button class="md-primary step__action">
+						<span>Set up a payment method</span>
+					</md-button>
+				</div>
+				<p class="step__description">Orderable uses <a href="https://stripe.com/gb" target="_blank">Stripe</a> to securely handle payments for you. To get paid you'll need to set up an account</p>
+			</li>
+			<li class="step">
+				<div class="layout-row layout-align-start-center">
+					<md-button class="md-fab md-mini md-primary md-raised step__icon">
+						<md-icon md-svg-src="assets/images/icons/info.svg"></md-icon>
+					</md-button>
+					<md-button class="md-primary step__action">
+						<span>Enter more about <span ng-bind="vm.supplier.name"></span></span>
+					</md-button>
+				</div>
+				<p class="step__description">Paper invoices are a thing of the past! Orderable takes away the hastle and automatically generates invoices for retailers on purchase. To do that we need a few things like you</p>				
+			</li>
+		</ol>
+	</md-content>
+</main>

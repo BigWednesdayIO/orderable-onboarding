@@ -1,0 +1,61 @@
+.product-thumb {
+	display: flex;
+	flex-flow: column nowrap;
+
+	&__link {
+		display: flex;
+		flex-flow: column nowrap;
+		width: 100%;
+		padding: 24px 16px 16px;
+	}
+
+	&__link,
+	&__info {
+		flex-grow: 1;
+	}
+
+	&__image {
+		height: auto;
+		max-height: 180px;
+		max-width: 100%;
+		margin: 0 auto;
+	}
+
+	&__name {
+		margin: 16px 0 2px;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__name,
+	&__price {
+		line-height: 18px;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 48px;
+		margin-right: -16px;
+	}
+
+	&__price {
+		display: flex;
+		font-weight: 600;
+	}
+
+	&__quantity-wrapper {
+		margin-bottom: 4px;
+	}
+
+	&__quantity {
+		font-size: 18px;
+	}
+
+	&:hover .md-button md-icon {
+		color: $md-primary;
+	}
+}

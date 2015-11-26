@@ -1,0 +1,15 @@
+<header>
+	<h1 class="md-headline">Now, tell us the name of your business</h1>
+</header>
+<main class="layout-column layout-align-start-center">
+	<form name="vm.nameForm" class="layout-column layout-align-start-stretch" ng-submit="vm.saveName()">
+		<ul class="unstyled-list">
+			<li class="form-row">
+				<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.name" placeholder="Eg. Coffee Beans Direct" required />
+			</li>
+			<li class="form-row form-row--with-cta">
+				<md-button type="submit" class="md-primary md-raised">Continue</md-button>
+			</li>
+		</ul>
+	</form>
+</main>

@@ -1,0 +1,18 @@
+<form class="search-form" name="vm.searchForm" method="GET" action="/search/" ng-submit="vm.searchSubmit($event)">
+	<md-button type="button" class="md-icon-button search-icon hide-gt-md" ng-click="vm.searchIconClick()" aria-label="search">
+		<md-icon md-svg-src="assets/images/icons/search.svg"></md-icon>
+	</md-button>
+	<md-autocomplete
+		md-search-text="vm.query"
+		md-items="hit in vm.getSearchSuggestions(vm.query)"
+		md-item-text="hit.query"
+		md-min-length="1"
+		aria-label="Search for products or categories">
+		<md-item-template>
+			<span md-highlight-text="vm.query" md-highlight-flags="^i">{{ hit.query }}</span>
+		</md-item-template>
+	</md-autocomplete>
+	<md-button type="submit" class="md-primary md-raised search-button hide-sm hide-md" aria-label="Search">
+		<md-icon md-svg-src="assets/images/icons/search.svg"></md-icon>
+	</md-button>
+</form>

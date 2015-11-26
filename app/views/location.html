@@ -1,0 +1,28 @@
+<header>
+	<h1 class="md-headline">Finally, where do you deliver to?</h1>
+</header>
+<main class="layout-column layout-align-start-center">
+	<form class="layout-column layout-align-start-stretch" name="vm.locationForm" ng-submit="vm.saveLocation()">
+		<ul class="unstyled-list">
+			<li class="form-row">
+				<md-chips
+					class="md-whiteframe md-whiteframe-z1"
+					ng-model="vm.location"
+					md-autocomplete-snap>
+					<md-autocomplete
+						md-selected-item="vm.selectedItem"
+						md-search-text="vm.searchText"
+						md-items="item in vm.locationSearch(vm.searchText)"
+						placeholder="{{ vm.location.length ? 'Anywhere else?' : 'Eg. London or EC2' }}"
+						secondary-placeholder="">
+						<span md-highlight-text="vm.searchText">{{item}}</span>
+					</md-autocomplete>
+				</md-chips>
+				<p>You can modify or refine this at any time from your account</p>
+			</li>
+			<li class="form-row form-row--with-cta">
+				<md-button type="submit" class="md-primary md-raised">I'm done, lets go!</md-button>
+			</li>
+		</ul>
+	</form>
+</main>

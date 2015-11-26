@@ -1,0 +1,134 @@
+md-autocomplete {
+	md-autocomplete-wrap,
+	input:not(.md-input) {
+		height: inherit;
+	}
+
+	md-autocomplete-wrap {
+		box-shadow: none !important;
+	}
+
+	md-progress-linear {
+		display: none;
+	}
+}
+
+.search-form {
+	display: flex;
+	align-items: center;
+	flex: 1;
+
+	@media (min-width: $bp-large) {
+		margin: 0 8px 0 16px;
+
+		md-autocomplete {
+			flex: 1;
+			height: 30px;
+			border: 1px solid rgba(0,0,0,.15);
+			border-right-width: 0;
+			box-sizing: content-box;
+
+			input {
+				line-height: 30px;
+			}
+		}
+	}
+
+	.search-button {
+		margin: 0;
+		box-shadow: 0 0 1px rgba(0,0,0,.15) !important;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		height: 30px;
+		min-height: 30px;
+		line-height: 30px;
+		width: 60px;
+		min-width: 60px;
+
+		md-icon {
+			height: 20px;
+			width: 20px;
+		}
+	}
+}
+
+.material-search-wrapper {
+	flex: 1;
+	display: flex;
+	align-self: stretch;
+	align-items: stretch;
+	position: relative;
+	max-width: 800px;
+	margin: 8px 0;
+	color: white;
+
+	@media (min-width: $bp-medium) {
+		margin: 8px;
+	}
+
+	.search-icon {
+		position: absolute;
+		top: 0px;
+		left: 0;
+		width: 44px;
+		height: 44px;
+		line-height: 44px;
+		z-index: 2;
+		color: inherit !important;
+
+		@media (max-width: $bp-medium) {
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			margin: 0 4px;
+		}
+	}
+
+	md-autocomplete {
+		height: inherit;
+		width: 100%;
+		border-radius: 3px;
+		background-color: rgba(255, 255, 255, .16);
+
+		input {
+			padding: 0 16px 0 68px;
+			color: inherit;
+			transition: background-color $transition;
+			-webkit-appearance: none;
+
+			&:focus {
+				background-color: rgba(255, 255, 255, .08); // .24 - .16
+			}
+
+			&::-webkit-input-placeholder {
+				color: inherit;
+			}
+
+			@media (max-width: $bp-medium) {
+				padding: 0 8px 0 48px;
+			}
+		}
+
+		@media (min-width: 601px) {
+			md-autocomplete-wrap {
+				height: 44px;
+			}
+		}
+
+		button {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			margin-top: -15px;
+
+			path {
+				fill: inherit;
+			}
+		}
+	}
+}
+
+.search-results-wrapper {
+	// Width of facets + 4 lots of 8px margin
+	max-width: calc(100% - 252px);
+}

@@ -1,0 +1,24 @@
+.steps {
+	
+}
+
+.step {
+	&__icon {
+		margin: 0;
+		box-shadow: none !important;
+		flex-shrink: 0;
+	}
+
+	&__action {
+		margin: 0 6px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		line-height: 22px;
+		white-space: normal;
+		text-align: left;
+	}
+
+	&__description {
+		margin: 0 0 1em 52px;
+	}
+}
