@@ -1,3 +1,5 @@
+$md-whiteframe-z2: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
 form {
 	width: 100%;
 	max-width: 600px;
@@ -9,7 +11,7 @@ form {
 	flex-direction: column;
 
 	& + & {
-		margin-top: 10px;
+		margin-top: 15px;
 	}
 
 	&--with-cta {
@@ -18,6 +20,10 @@ form {
 	.md-button {
 		margin: 0;
 	}
+
+	.label {
+		margin-bottom: 4px;
+	}
 }
 
 input {
@@ -25,8 +31,45 @@ input {
 	padding: 0 12px;
 	margin: 0;
 	border: 0 none;
+	background: transparent;
+	transition: box-shadow $transition;
 
 	&:focus {
 		outline: none;
+		&.md-whiteframe-z1 {
+			box-shadow: $md-whiteframe-z2;
+		}
+	}
+}
+
+textarea {
+	@extend input;
+	padding: 8px 12px;
+	height: auto;
+}
+
+.price-input {
+	display: flex;
+	align-items: center;
+	transition: box-shadow $transition;
+
+	&.has-focus {
+		box-shadow: $md-whiteframe-z2;
+	}
+
+	&__symbol {
+		flex-shrink: 0;
+		padding: 0 0 0 12px;
+	}
+
+	&__field {
+		flex: 1 1;
+		padding-left: .25em;
+		-moz-appearance: textfield;
+
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
 	}
 }

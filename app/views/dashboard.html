@@ -8,10 +8,10 @@
 		<ol class="unstyled-list steps">
 			<li class="step">
 				<div class="layout-row layout-align-start-center">
-					<md-button class="md-fab md-mini md-primary md-raised step__icon">
+					<md-button ng-href="products/add/?first=true" class="md-fab md-mini md-primary step__icon">
 						<md-icon md-svg-src="assets/images/icons/tag-multiple.svg"></md-icon>
 					</md-button>	
-					<md-button class="md-primary step__action">
+					<md-button ng-href="products/add/?first=true" class="md-primary step__action">
 						<span>Add some products</span>
 					</md-button>
 				</div>
@@ -19,7 +19,7 @@
 			</li>
 			<li class="step">
 				<div class="layout-row layout-align-start-center">
-					<md-button class="md-fab md-mini md-primary md-raised step__icon">
+					<md-button class="md-fab md-mini md-primary step__icon">
 						<md-icon md-svg-src="assets/images/icons/payment.svg"></md-icon>
 					</md-button>
 					<md-button class="md-primary step__action">
@@ -30,11 +30,11 @@
 			</li>
 			<li class="step">
 				<div class="layout-row layout-align-start-center">
-					<md-button class="md-fab md-mini md-primary md-raised step__icon">
+					<md-button class="md-fab md-mini md-primary step__icon">
 						<md-icon md-svg-src="assets/images/icons/info.svg"></md-icon>
 					</md-button>
 					<md-button class="md-primary step__action">
-						<span>Enter more about <span ng-bind="vm.supplier.name"></span></span>
+						<span>Tell us more about <span ng-bind="vm.supplier.name"></span></span>
 					</md-button>
 				</div>
 				<p class="step__description">Paper invoices are a thing of the past! Orderable takes away the hastle and automatically generates invoices for retailers on purchase. To do that we need a few things like you</p>				

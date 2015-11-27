@@ -235,3 +235,20 @@ ol {
 md-content > *:first-child {
 	margin-top: 0;
 }
+
+.expandable {
+	border: 0 none;
+
+	&__icon {
+		transform: rotateZ(0deg);
+		transition: transform $transition;
+
+		.is-open & {
+			transform: rotateZ(-180deg);
+		}
+	}
+}
+.weak {
+	color: rgba(0, 0, 0, .34);
+}
+

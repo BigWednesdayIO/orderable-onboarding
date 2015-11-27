@@ -1,0 +1,39 @@
+<header>
+	<h1 class="md-headline">Add <span ng-bind="::(vm.firstTime ? 'your first' : 'a new')"></span> product</h1>
+</header>
+<main class="layout-column layout-align-start-center">
+	<form name="vm.productForm" class="layout-column layout-align-start-stretch" ng-submit="vm.saveProduct()">
+		<ol class="unstyled-list form-rows">
+			<li class="form-row">
+				<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.name" placeholder="Product name" required />
+			</li>
+			<li class="form-row">
+				<span class="label">Price</span>
+				<price-fields inc-vat="vm.product.price_incvat" ex-vat="vm.product.price_exvat" allow-free="true" required="true"></price-fields>
+			</li>
+			<li class="form-row">
+				<a href="#" class="expandable" ng-click="vm.showMore = !vm.showMore" ng-class="{'is-open': vm.showMore}">
+					<md-icon class="expandable__icon" md-svg-src="assets/images/icons/chevron-down.svg"></md-icon>
+					<span class="expandable__text">More product specifics</span>
+				</a>
+				<ol class="unstyled-list form-rows" ng-show="vm.showMore" style="margin-top: 10px;">
+					<li class="form-row">
+						<span class="label">Was price <span class="weak">(optional)</span></span>
+						<price-fields inc-vat="vm.product.was_price_incvat" ex-vat="vm.product.was_price_exvat" required="false"></price-fields>
+					</li>
+					<li class="form-row">
+						<label class="label">SKU Code <span class="weak">(optional)</span></label>
+						<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.sku" placeholder="A unique ID for your reference" optional />
+					</li>
+					<li class="form-row">
+						<label class="label">Description <span class="weak">(optional)</span></label>
+						<textarea class="md-whiteframe md-whiteframe-z1" rows="5" ng-model="vm.product.description" placeholder="This will be shown on the product details page" optional></textarea>
+					</li>
+				</ol>
+			</li>
+			<li class="form-row form-row--with-cta">
+				<md-button type="submit" class="md-primary md-raised">Save</md-button>
+			</li>
+		</ol>
+	</form>
+</main>

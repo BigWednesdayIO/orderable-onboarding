@@ -33,8 +33,26 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 		})
 
 		// Product
-
-		// Category
+		.state('add-product', {
+			url: '/products/add/?first&category',
+			controller: 'ProductController as vm',
+			templateUrl: 'views/add-product.html'
+		})
+		.state('edit-product', {
+			url: '/products/:id/',
+			controller: 'ProductController as vm',
+			templateUrl: 'views/add-product.html'
+		})
+		.state('product-category', {
+			url: '/products/:id/category/',
+			controller: 'ProductCategoryController as vm',
+			resolve: ProductCategoryController.resolve,
+			templateUrl: 'views/product-category.html'
+		})
+		.state('review-product', {
+			url: '/products/:id/review/',
+			templateUrl: 'views/add-product.html'
+		})
 
 		;
 

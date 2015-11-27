@@ -1,0 +1,29 @@
+<header>
+	<h1 class="md-headline">Now choose a category for <span ng-bind="vm.product.name"></span></h1>
+</header>
+<main class="layout-column layout-align-start-center">
+	<form name="vm.categoryForm" class="layout-column layout-align-start-stretch" ng-submit="vm.saveProduct()">
+		<md-content class="md-whiteframe-z1" style="padding: 12px; margin-bottom: 15px;">
+			<h2 class="md-subhead">Here's where we think it should go</h2>
+
+			<div class="breadcrumbs">
+				<span ng-repeat="crumb in vm.categories track by crumb.id">
+					<span ng-if="!$last">
+						<a class="breadcrumbs__crumb"  ng-bind="::crumb.name"></a>
+						<span class="breadcrumbs__spacer">›</span>
+					</span>
+					<span ng-if="$last" style="display: inline-block">
+						<span class="breadcrumbs__crumb--final" ng-bind="::crumb.name"></span>
+						<a class="breadcrumbs__remove" ng-click="vm.removeLast()">&times;</a>
+					</span>
+				</span>
+			</div>
+		</md-content>
+
+		<ol class="unstyled-list form-rows">
+			<li class="form-row form-row--with-cta">
+				<md-button type="submit" class="md-primary md-raised">Looks good, save it</md-button>
+			</li>
+		</ol>
+	</form>
+</main>
