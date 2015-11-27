@@ -1,21 +1,12 @@
-<a class="product-thumb__link" ng-href="product/{{ ::vm.product.id }}">
+<a class="product-thumb__link" href="#">
 	<div class="product-thumb__info">
 		<img class="product-thumb__image" ng-src="{{ ::vm.product.thumbnail_image_url }}" height="180" alt="{{ ::vm.product.name }}" />
 		<h3 class="product-thumb__name md-body-1" ng-bind="::vm.product.name"></h3>
 	</div>
 	<div class="product-thumb__actions">
 		<span class="product-thumb__price md-body-2" price product="vm.product"></span>
-		<md-button ng-if="::vm.basket" ng-show="vm.quantity === 0" ng-click="vm.addToBasket($event, 1)" class="md-icon-button" aria-label="Add {{ ::vm.product.name }} to basket">
+		<md-button class="md-icon-button" aria-label="Add {{ ::vm.product.name }} to basket">
 			<md-icon md-svg-src="assets/images/icons/cart-add.svg"></md-icon>
 		</md-button>
-		<div ng-if="::vm.basket" ng-show="vm.quantity > 0" class="product-thumb__quantity-wrapper layout-row layout-align-center-center">
-			<md-button class="md-icon-button md-icon-button--quantity" ng-click="vm.changeQuantity($event, -1)" aria-label="Remove 1 from basket">
-				<md-icon md-svg-src="assets/images/icons/minus-circle.svg"></md-icon>
-			</md-button>
-			<span class="product-thumb__quantity" ng-bind="vm.quantity"></span>
-			<md-button class="md-icon-button md-icon-button--quantity" ng-click="vm.changeQuantity($event, +1)" aria-label="Add 1 to basket">
-				<md-icon md-svg-src="assets/images/icons/plus-circle.svg"></md-icon>
-			</md-button>
-		</div>
 	</div>
 </a>

@@ -1,0 +1,10 @@
+<header>
+	<h1 class="md-headline">Great, here's how this listing will look</h1>
+</header>
+<main class="layout-column">
+	<div class="md-whiteframe md-whiteframe-z1" product-thumb product="vm.product" style="margin-bottom: 15px;"></div>
+
+	<md-button class="md-primary md-raised" ng-href="/products/add/?category={{ ::vm.product.category }}">Add another in <span ng-bind="::vm.productCategory"></span></md-button>
+	<md-button class="md-raised" ng-href="/products/add/">Add something different</md-button>
+	<md-button ng-href="/dashboard/">I've finished adding for now</md-button>
+</main>

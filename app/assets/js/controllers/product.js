@@ -1,9 +1,13 @@
-function ProductController ($state, productService) {
+function ProductController ($state, productService, productCategory) {
 	var vm = this;
 
 	vm.firstTime = $state.params.first;
 
-	vm.product = {};
+	vm.product = {
+		category: $state.params.category
+	};
+
+	vm.productCategory = productCategory
 
 	vm.saveProduct = function() {
 		return productService
@@ -21,6 +25,17 @@ function ProductController ($state, productService) {
 			});
 	}
 }
+
+ProductController.resolve = /* @ngInject */ {
+	productCategory: function($q, $stateParams, categoriesService) {
+		if (!$stateParams.category) {
+			return;
+		}
+
+		return categoriesService
+			.getNameForCategory($stateParams.category);
+	}
+};
 
 angular
 	.module('app')

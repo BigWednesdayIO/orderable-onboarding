@@ -1,5 +1,5 @@
 <header>
-	<h1 class="md-headline">Add <span ng-bind="::(vm.firstTime ? 'your first' : 'a new')"></span> product</h1>
+	<h1 class="md-headline">Add <span ng-bind="::(vm.firstTime ? 'your first' : 'a new')"></span> product <span ng-if="::vm.productCategory">to <span ng-bind="::vm.productCategory"></span></span></h1>
 </header>
 <main class="layout-column layout-align-start-center">
 	<form name="vm.productForm" class="layout-column layout-align-start-stretch" ng-submit="vm.saveProduct()">

@@ -7,6 +7,7 @@
 		flex-flow: column nowrap;
 		width: 100%;
 		padding: 24px 16px 16px;
+		color: inherit;
 	}
 
 	&__link,
@@ -44,6 +45,7 @@
 
 	&__price {
 		display: flex;
+		align-items: baseline;
 		font-weight: 600;
 	}
 
