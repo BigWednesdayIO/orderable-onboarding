@@ -29,7 +29,10 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			url: '/dashboard/',
 			controller: 'DashboardController as vm',
 			resolve: DashboardController.resolve,
-			templateUrl: 'views/dashboard.html'
+			templateUrl: 'views/dashboard.html',
+			params: {
+				first: null
+			}
 		})
 
 		// Product

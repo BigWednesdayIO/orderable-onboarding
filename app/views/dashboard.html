@@ -1,43 +1,41 @@
-<header>
-	<h1 class="md-headline"><strong>Congratulations!</strong> You've joined Orderable</h1>
+<header class="layout-row">
+	<md-button toggle-menu class="md-icon-button md-accent md-hue-1" aria-label="Menu" style="margin: -8px 2px -8px -14px; flex-shrink: 0">
+		<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
+	</md-button>
+	<h1 class="md-headline">
+		<span ng-show="::vm.first"><strong>Congratulations!</strong> You've joined Orderable</span>
+		<span ng-hide="::vm.first">Welcome to Orderable</span>
+	</h1>
 </header>
 <main class="layout-column">
-	<md-content class="md-whiteframe-z1" style="padding: 12px;">
-		<h2 class="md-subhead">You are just <strong><span>3</span> steps</strong> away from selling to retailers in your area</h2>
+	<md-content class="md-whiteframe-z1" style="padding: 12px; margin-bottom: 20px" ng-show="::vm.steps.length">
+		<h2 class="md-subhead">You are just <strong><span ng-bind="::vm.steps.length"></span> steps</strong> away from selling to retailers in your area</h2>
 
 		<ol class="unstyled-list steps">
-			<li class="step">
+			<li class="step" ng-repeat="step in ::vm.steps track by step.name">
 				<div class="layout-row layout-align-start-center">
-					<md-button ng-href="products/add/?first=true" class="md-fab md-mini md-primary step__icon">
-						<md-icon md-svg-src="assets/images/icons/tag-multiple.svg"></md-icon>
-					</md-button>	
-					<md-button ng-href="products/add/?first=true" class="md-primary step__action">
-						<span>Add some products</span>
+					<md-button ng-href="{{ ::step.action }}" class="md-fab md-mini md-primary step__icon" aria-label="{{ ::step.name }}">
+						<md-icon md-svg-src="assets/images/icons/{{ ::step.icon }}.svg"></md-icon>
+					</md-button>
+					<md-button ng-href="{{ ::step.action }}" class="md-primary step__action" aria-label="{{ ::step.name }}">
+						<span ng-bind="::step.name"></span>
 					</md-button>
 				</div>
-				<p class="step__description">To sell to retailers you'll need to add your supplies to Orderable</p>
+				<p class="step__description" ng-bind-html="::step.description"></p>
 			</li>
-			<li class="step">
+		</ol>
+	</md-content>
+
+	<md-content class="md-whiteframe-z1" style="padding: 12px;" ng-show="::vm.completed.length">
+		<ol class="unstyled-list steps">
+			<li class="step" ng-repeat="step in ::vm.completed track by step.name">
 				<div class="layout-row layout-align-start-center">
-					<md-button class="md-fab md-mini md-primary step__icon">
-						<md-icon md-svg-src="assets/images/icons/payment.svg"></md-icon>
+					<md-button class="md-fab md-mini md-accent step__icon" aria-label="{{ ::step.name }}">
+						<md-icon md-svg-src="assets/images/icons/done.svg"></md-icon>
 					</md-button>
-					<md-button class="md-primary step__action">
-						<span>Set up a payment method</span>
-					</md-button>
+					<h3 class="md-body-2 step__action" ng-bind="::step.name"></h3>
 				</div>
-				<p class="step__description">Orderable uses <a href="https://stripe.com/gb" target="_blank">Stripe</a> to securely handle payments for you. To get paid you'll need to set up an account</p>
-			</li>
-			<li class="step">
-				<div class="layout-row layout-align-start-center">
-					<md-button class="md-fab md-mini md-primary step__icon">
-						<md-icon md-svg-src="assets/images/icons/info.svg"></md-icon>
-					</md-button>
-					<md-button class="md-primary step__action">
-						<span>Tell us more about <span ng-bind="vm.supplier.name"></span></span>
-					</md-button>
-				</div>
-				<p class="step__description">Paper invoices are a thing of the past! Orderable takes away the hastle and automatically generates invoices for retailers on purchase. To do that we need a few things like you</p>				
+				<p class="step__description" ng-bind-html="::step.description"></p>
 			</li>
 		</ol>
 	</md-content>

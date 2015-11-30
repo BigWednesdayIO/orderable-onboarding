@@ -22,7 +22,9 @@ function DeliveryLocationController ($state, $http, $filter, supplierService) {
 		return supplierService
 			.updateInfo('location', vm.location)
 			.then(function() {
-				$state.go('dashboard');
+				$state.go('dashboard', {
+					first: true
+				});
 			});
 	};
 }

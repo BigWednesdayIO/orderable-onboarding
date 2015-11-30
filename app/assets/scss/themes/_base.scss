@@ -76,6 +76,12 @@ button,
 	touch-action: manipulation;
 }
 
+.md-button.full-width {
+	display: block;
+	width: 100%;
+	margin: 0;
+}
+
 [ng-cloak] {
 	display: none;
 }
@@ -221,17 +227,6 @@ fieldset {
 	background: white;
 }
 
-ol {
-	counter-reset: section;
-
-	li {
-		counter-increment: section;
-		h3::before {
-			content: counter(section) ' - ';
-		}
-	}
-}
-
 md-content > *:first-child {
 	margin-top: 0;
 }
@@ -252,3 +247,15 @@ md-content > *:first-child {
 	color: rgba(0, 0, 0, .34);
 }
 
+.splash {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+}
+
+.centred {
+	text-align: center;
+}

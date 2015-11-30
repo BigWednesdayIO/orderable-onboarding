@@ -9,7 +9,17 @@ function SupplierService ($q, browserStorage) {
 		return service
 			.getInfo()
 			.then(function(info) {
-				info[key] = value;
+				if (typeof key === 'string' && typeof value !== 'undefined') {
+					info[key] = value;
+				} else if (typeof key === 'object' && typeof value === 'undefined') {
+					Object.keys(key).forEach(function(attr) {
+						info[attr] = key[attr];
+					});
+				} else {
+					return $q.reject({
+						message: 'Invalid input format'
+					});
+				}
 				browserStorage.setItem('supplier', info);
 				return info;
 			});
