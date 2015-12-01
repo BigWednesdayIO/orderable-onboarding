@@ -7,4 +7,13 @@ header {
 	.md-headline {
 		margin: 0;
 	}
+
+	.md-icon-button {
+		margin: -8px 2px -8px -14px !important;
+		flex-shrink: 0;
+
+		md-icon {
+			color: inherit;
+		}
+	}
 }

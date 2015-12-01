@@ -67,6 +67,12 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			templateUrl: 'views/products.html'
 		})
 
+		// Orders
+		.state('orders', {
+			url: '/orders/',
+			templateUrl: 'views/orders.html'
+		})
+
 		;
 
 	$urlRouterProvider.otherwise("/");
