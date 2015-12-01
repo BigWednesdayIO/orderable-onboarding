@@ -44,8 +44,9 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 		})
 		.state('edit-product', {
 			url: '/products/:id/',
-			controller: 'ProductController as vm',
-			templateUrl: 'views/add-product.html'
+			controller: 'EditProductController as vm',
+			resolve: EditProductController.resolve,
+			templateUrl: 'views/edit-product.html'
 		})
 		.state('product-category', {
 			url: '/products/:id/category/',
@@ -58,6 +59,12 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			controller: 'ProductReviewController as vm',
 			resolve: ProductReviewController.resolve,
 			templateUrl: 'views/product-review.html'
+		})
+		.state('products', {
+			url: '/products/',
+			controller: 'ProductsController as vm',
+			resolve: ProductsController.resolve,
+			templateUrl: 'views/products.html'
 		})
 
 		;

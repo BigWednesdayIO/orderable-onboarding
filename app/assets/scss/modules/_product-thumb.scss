@@ -1,6 +1,18 @@
 .product-thumb {
+	position: relative;
 	display: flex;
 	flex-flow: column nowrap;
+
+	& + & {
+		border-top: $divider;
+	}
+
+	&__edit {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0 !important;
+	}
 
 	&__link {
 		display: flex;
@@ -8,6 +20,7 @@
 		width: 100%;
 		padding: 24px 16px 16px;
 		color: inherit;
+		border: 0 none;
 	}
 
 	&__link,

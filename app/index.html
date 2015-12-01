@@ -38,32 +38,35 @@
 		<script src="phonegap.js"></script>
 	</head>
 	<body class="layout-column">
-		<div class="event-wrapper flex layout-column">
+		<div class="event-wrapper flex layout-row">
 			<loading-indicator></loading-indicator>
-			<md-content class="content-body flex" ui-view scroll-on-state-change></md-content>
-			<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menu" ng-cloak>
-				<md-toolbar class="md-primary">
-					<div class="md-toolbar-tools">
-						<md-button toggle-menu class="md-icon-button" aria-label="Close">
-							<md-icon md-svg-src="assets/images/icons/close.svg"></md-icon>
-						</md-button>
-					</div>
-				</md-toolbar>
-				<md-list>
-					<md-list-item ng-click="products">
-						<md-icon md-svg-src="assets/images/icons/tag-multiple.svg"></md-icon>
-						<span class="flex">Products</span>
-					</md-list-item>
-					<md-list-item ng-click="orders">
-						<md-icon md-svg-src="assets/images/icons/assignment-turned-in.svg"></md-icon>
-						<span class="flex">Orders</span>
-					</md-list-item>
-					<md-list-item ng-click="account">
-						<md-icon md-svg-src="assets/images/icons/person.svg"></md-icon>
-						<span class="flex">Account</span>
-					</md-list-item>
-				</md-list>
+			<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menu" md-is-locked-open="$mdMedia('gt-md')" ng-cloak>
+				<div ng-controller="MenuController as vm">
+					<md-toolbar class="md-primary hide-gt-md">
+						<div class="md-toolbar-tools">
+							<md-button toggle-menu class="md-icon-button" aria-label="Close">
+								<md-icon md-svg-src="assets/images/icons/close.svg"></md-icon>
+							</md-button>
+							<h3 ng-bind="vm.supplier.name"></h3>
+						</div>
+					</md-toolbar>
+					<md-list>
+						<md-list-item ng-click="vm.state('products')">
+							<md-icon md-svg-src="assets/images/icons/tag-multiple.svg"></md-icon>
+							<span class="flex">Products</span>
+						</md-list-item>
+						<md-list-item ng-click="vm.state('orders')">
+							<md-icon md-svg-src="assets/images/icons/assignment-turned-in.svg"></md-icon>
+							<span class="flex">Orders</span>
+						</md-list-item>
+						<md-list-item ng-click="vm.state('account')">
+							<md-icon md-svg-src="assets/images/icons/person.svg"></md-icon>
+							<span class="flex">Account</span>
+						</md-list-item>
+					</md-list>
+				</div>
 			</md-sidenav>
+			<md-content class="content-body flex" ui-view scroll-on-state-change></md-content>
 		</div>
 
 

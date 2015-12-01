@@ -2,7 +2,8 @@ function ProductThumbDirective () {
 	return {
 		restrict: 'EA',
 		scope: {
-			product: '='
+			product: '=',
+			editable: '='
 		},
 		link: function(scope, element) {
 			element.addClass('product-thumb');

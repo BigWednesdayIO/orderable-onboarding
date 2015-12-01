@@ -1,0 +1,14 @@
+<header>
+	<h1 class="md-headline">Your products</h1>
+</header>
+<main class="layout-column">
+	<div class="md-whiteframe md-whiteframe-z1" style="margin-bottom: 24px;">
+		<ul class="unstyled-list">
+			<li ng-repeat="product in ::vm.products" product-thumb product="product" editable="true"></li>
+		</ul>
+	</div>
+</main>
+<md-button class="md-fab md-primary" ng-href="products/add/" aria-label="Add a new product" style="position: fixed; bottom: 10px;
+right: 10px; margin: 0;">
+	<md-icon md-svg-src="assets/images/icons/add.svg"></md-icon>
+</md-button>

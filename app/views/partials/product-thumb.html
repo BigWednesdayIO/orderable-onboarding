@@ -1,3 +1,6 @@
+<md-button class="md-icon-button product-thumb__edit" ng-href="products/{{ ::vm.product.id }}/" aria-label="Edit {{ ::vm.product.name }}" ng-show="vm.editable">
+	<md-icon md-svg-src="assets/images/icons/edit.svg"></md-icon>
+</md-button>
 <a class="product-thumb__link" href="#">
 	<div class="product-thumb__info">
 		<img class="product-thumb__image" ng-src="{{ ::vm.product.thumbnail_image_url }}" height="180" alt="{{ ::vm.product.name }}" />
