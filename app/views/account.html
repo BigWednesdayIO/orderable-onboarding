@@ -6,10 +6,6 @@
 </header>
 <main class="layout-column">
 	<div class="md-whiteframe md-whiteframe-z1 content-block">
-		<h2 class="md-caption" style="margin-top: 0">Company info</h2>
-		<p ng-bind="::vm.supplier.name"></p>
-	</div>
-	<div class="md-whiteframe md-whiteframe-z1 content-block">
 		<h2 class="md-caption" style="margin-top: 0">Payment Methods</h2>
 		<ul class="unstyled-list">
 			<li class="layout-column" ng-repeat="method in ::vm.paymentMethods track by method.id">
@@ -28,8 +24,8 @@
 			</li>
 		</ul>
 	</div>
-	<div class="md-whiteframe md-whiteframe-z1 content-block">
+	<!-- <div class="md-whiteframe md-whiteframe-z1 content-block">
 		<h2 class="md-caption" style="margin-top: 0">Loyalty Scheme</h2>
 		<p>Not set up</p>
-	</div>
+	</div> -->
 </main>

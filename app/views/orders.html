@@ -4,9 +4,11 @@
 	</md-button>
 	<h1 class="md-headline">Orders</h1>
 </header>
-<main class="layout-column">
-	<md-content class="md-whiteframe md-whiteframe-z1 content-block">
-		<h2 class="md-subhead">You haven't received any orders yet</h2>
-		<p>Why not <a href="products/add/">add some new products</a> for retailers to find.</p>
-	</md-content>
+<main class="layout-column" ng-show="::vm.orders.length">
+
 </main>
+
+<div class="empty-listing" ng-hide="::vm.orders.length">
+	<h2 class="md-subhead">You haven't received any orders yet</h2>
+	<p>Why not <a href="products/add/">add some new products</a> for retailers to find.</p>
+</div>
