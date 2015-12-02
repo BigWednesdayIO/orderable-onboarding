@@ -48,7 +48,7 @@ DashboardController.resolve = /* @ngInject */ {
 			}, {
 				name: 'Tell us more about ' + supplierInfo.name,
 				description: 'Paper invoices are a thing of the past! Orderable takes away the hastle and automatically generates invoices for retailers on purchase. To do that we need a few things from you',
-				action: 'account/',
+				action: 'account/company-info/',
 				icon: 'info'
 			}
 		]);

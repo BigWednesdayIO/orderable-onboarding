@@ -7,22 +7,29 @@
 <main class="layout-column">
 	<div class="md-whiteframe md-whiteframe-z1 content-block">
 		<h2 class="md-caption" style="margin-top: 0">Company info</h2>
-		<p ng-bind="::vm.supplier.name"></p>
+		<div class="layout-column">
+			<md-button class="md-no-style account-button" ng-href="account/company-info/" aria-label="Edit company info">
+				<div class="layout-row layout-align-start-center">
+					<span class="account-button__text flex md-subhead" ng-bind="::vm.supplier.name"></span>
+					<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="account-button__arrow"></md-icon>
+				</div>
+			</md-button>
+		</div>
 	</div>
 	<div class="md-whiteframe md-whiteframe-z1 content-block">
 		<h2 class="md-caption" style="margin-top: 0">Payment Methods</h2>
 		<ul class="unstyled-list">
 			<li class="layout-column" ng-repeat="method in ::vm.paymentMethods track by method.id">
-				<md-button class="md-no-style payment-method" ng-href="account/payment-methods/{{ ::method.id }}/" aria-label="{{ ::method.name }}">
+				<md-button class="md-no-style account-button" ng-href="account/payment-methods/{{ ::method.id }}/" aria-label="{{ ::method.name }}">
 					<div class="layout-row layout-align-start-center">
-						<md-icon md-svg-src="assets/images/icons/{{ ::method.icon }}.svg" class="payment-method__icon" ng-class="{'payment-method__icon--disabled': !method.enabled}"></md-icon>
-						<div class="payment-method__text flex">
-							<h3 class="md-subhead payment-method__name" ng-bind="method.name"></h3>
-							<p class="payment-method__status" ng-class="{'payment-method__status--disabled': !method.enabled}">
+						<md-icon md-svg-src="assets/images/icons/{{ ::method.icon }}.svg" class="account-button__icon" ng-class="{'account-button__icon--disabled': !method.enabled}"></md-icon>
+						<div class="account-button__text flex">
+							<h3 class="md-subhead account-button__name" ng-bind="method.name"></h3>
+							<p class="account-button__status" ng-class="{'account-button__status--disabled': !method.enabled}">
 								<span ng-bind="method.enabled ? 'Enabled' : 'Disabled'"></span>
 							</p>
 						</div>
-						<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="account-button__arrow"></md-icon>
 					</div>
 				</md-button>
 			</li>
