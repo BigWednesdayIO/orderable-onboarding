@@ -73,6 +73,28 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			templateUrl: 'views/orders.html'
 		})
 
+		// Delivery Location
+		.state('delivery', {
+			url: '/delivery/',
+			controller: 'DeliveryController as vm',
+			resolve: DeliveryController.resolve,
+			templateUrl: 'views/delivery-location.html'
+		})
+
+		// Account
+		.state('account', {
+			url: '/account/',
+			controller: 'AccountController as vm',
+			resolve: AccountController.resolve,
+			templateUrl: 'views/account.html'
+		})
+		.state('payment-method', {
+			url: '/account/payment-methods/:id/',
+			controller: 'PaymentMethodController as vm',
+			resolve: PaymentMethodController.resolve,
+			templateUrl: 'views/payment-method.html'
+		})
+
 		;
 
 	$urlRouterProvider.otherwise("/");

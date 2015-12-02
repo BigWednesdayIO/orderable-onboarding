@@ -1,0 +1,36 @@
+.payment-method {
+	padding: 8px 0;
+	margin: 0;
+	line-height: 1.4;
+	text-transform: none;
+	text-align: left;
+
+	&__name,
+	&__status {
+		margin: 0;
+	}
+
+	&__status {
+		color: rgba(0, 0, 0, .54);
+		font-weight: normal;
+	}
+
+	&__icon {
+		height: 40px;
+		width: 40px;
+		padding: 8px;
+		margin: 0 12px 0 0;
+		border-radius: 50%;
+		background: $md-accent;
+		color: $md-primary;
+
+		&--disabled {
+			background: $md-accent;
+			color: rgba(0, 0, 0, 0.258824);
+		}
+	}
+
+	&__arrow {
+		margin: 0;
+	}
+}

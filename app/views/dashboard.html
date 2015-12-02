@@ -8,7 +8,7 @@
 	</h1>
 </header>
 <main class="layout-column">
-	<md-content class="md-whiteframe-z1" style="padding: 12px; margin-bottom: 20px" ng-show="::vm.steps.length">
+	<md-content class="md-whiteframe-z1 content-block" ng-show="::vm.steps.length">
 		<h2 class="md-subhead">You are just <strong><span ng-bind="::vm.steps.length"></span> steps</strong> away from selling to retailers in your area</h2>
 
 		<ol class="unstyled-list steps">
@@ -26,7 +26,7 @@
 		</ol>
 	</md-content>
 
-	<md-content class="md-whiteframe-z1" style="padding: 12px;" ng-show="::vm.completed.length">
+	<md-content class="md-whiteframe-z1 content-block" ng-show="::vm.completed.length">
 		<ol class="unstyled-list steps">
 			<li class="step" ng-repeat="step in ::vm.completed track by step.name">
 				<div class="layout-row layout-align-start-center">

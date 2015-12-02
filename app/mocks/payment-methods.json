@@ -1,0 +1,21 @@
+[
+	{
+		"id": "card",
+		"name": "Card Payments",
+		"icon": "payment",
+		"enabled": false,
+		"info": {}
+	}, {
+		"id": "account",
+		"name": "Account payments",
+		"icon": "account-balance-wallet",
+		"enabled": false,
+		"info": {}
+	}, {
+		"id": "cash",
+		"name": "Cash with order",
+		"icon": "cash-multiple",
+		"enabled": false,
+		"info": {}
+	}
+]
