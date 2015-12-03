@@ -1,0 +1,32 @@
+<label>
+	<input type="file" accept="image/*" aria-label="Add a photo">
+	<div ng-hide="showPictureSrc" class="layout-row layout-align-center-center" style="min-height: 180px">
+		<md-icon md-svg-src="assets/images/icons/add-a-photo.svg" style="height: 40px; width: 40px;"></md-icon>
+	</div>
+</label>
+<div class="image-wrapper" ng-show="showPictureSrc">
+	<md-button ng-hide="editing" class="md-icon-button image-action" ng-click="newImage($event)" aria-label="Use new image">
+		<md-icon md-svg-src="assets/images/icons/camera-alt.svg"></md-icon>
+	</md-button>
+	<md-button ng-show="editing" class="md-icon-button image-action" ng-click="done($event)" aria-label="Save changes to image">
+		<md-icon md-svg-src="assets/images/icons/done.svg"></md-icon>
+	</md-button>
+	<img id="image" ng-src="{{ showPictureSrc }}" alt="" />
+	<div ng-show="editing" class="layout-row layout-align-center-center" style="margin-bottom: -12px">
+		<md-button class="md-icon-button" ng-click="transform($event, 'rotateLeft')" aria-label="Rotate left">
+			<md-icon md-svg-src="assets/images/icons/rotate-left.svg"></md-icon>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="transform($event, 'zoomOut')" aria-label="Zoom out">
+			<md-icon md-svg-src="assets/images/icons/zoom-out.svg"></md-icon>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="transform($event, 'fit')" aria-label="Reset zoom">
+			<md-icon md-svg-src="assets/images/icons/zoom-out-map.svg"></md-icon>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="transform($event, 'zoomIn')" aria-label="Zoom in">
+			<md-icon md-svg-src="assets/images/icons/zoom-in.svg"></md-icon>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="transform($event, 'rotateRight')" aria-label="Rotate left">
+			<md-icon md-svg-src="assets/images/icons/rotate-right.svg"></md-icon>
+		</md-button>
+	</div>
+</div>

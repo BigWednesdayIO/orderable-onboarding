@@ -10,7 +10,7 @@
     "protractor": "protractor tests/protractor.conf.js",
     "setuptest": "node_modules/protractor/bin/webdriver-manager update && node_modules/protractor/bin/webdriver-manager start",
     "test": "gulp lint",
-    "wiredep": "wiredep -s app/index.html -e jquery"
+    "wiredep": "wiredep -s app/index.html"
   },
   "author": "Big Wednesday IO",
   "devDependencies": {

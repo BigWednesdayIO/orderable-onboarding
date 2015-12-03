@@ -8,6 +8,11 @@
 	<form name="vm.productForm" class="layout-column layout-align-start-stretch" ng-submit="vm.saveProduct()">
 		<ol class="unstyled-list form-rows">
 			<li class="form-row">
+				<div class="md-whiteframe md-whiteframe-z1" style="padding: 12px;">
+					<div get-product-image cropping-data="vm.product.image_data"></div>
+				</div>
+			</li>
+			<li class="form-row">
 				<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.name" placeholder="Product name" required />
 			</li>
 			<li class="form-row">

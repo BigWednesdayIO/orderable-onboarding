@@ -1,0 +1,32 @@
+[get-product-image] {
+	input {
+		height: 0;
+		width: 0;
+		position: absolute;
+		visibility: hidden;
+	}
+
+	img {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.image-wrapper {
+		position: relative;
+	}
+
+	.image-action {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		z-index: 999;
+
+		md-icon {
+			height: 32px;
+			width: 32px;
+			color: white;
+			filter: drop-shadow(0 0 2px rgba(0, 0, 0, .87));
+		}
+	}
+}

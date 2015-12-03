@@ -21,9 +21,12 @@
     "angular-ui-router": "ui-router#~0.2.15",
     "lodash": "~3.10.1",
     "Element.closest": "closest#~1.0.3",
-    "angular-digest-hud": "mstrutt/digest-hud#feature/no-jquery"
+    "angular-digest-hud": "mstrutt/digest-hud#feature/no-jquery",
+    "jquery-guillotine": "~1.3.0",
+    "hammerjs": "~2.0.4"
   },
   "resolutions": {
     "angular": "1.4.5-build.4188+sha.7e67e52"
-  }
+  },
+  "overrides": {}
 }
