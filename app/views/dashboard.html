@@ -9,7 +9,7 @@
 </header>
 <main class="layout-column">
 	<md-content class="md-whiteframe-z1 content-block" ng-show="::vm.steps.length">
-		<h2 class="md-subhead">You are just <strong><span ng-bind="::vm.steps.length"></span> steps</strong> away from selling to retailers in your area</h2>
+		<h2 class="md-subhead">You are just <strong><span ng-bind="::vm.steps.length"></span> step<span ng-if="::vm.steps.length !== 1">s</span></strong> away from selling to retailers in your area</h2>
 
 		<ol class="unstyled-list steps">
 			<li class="step" ng-repeat="step in ::vm.steps track by step.name">
