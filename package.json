@@ -1,8 +1,12 @@
 {
-  "name": "crateful",
-  "version": "1.0.4",
+  "name": "orderable-onboarding",
+  "version": "0.0.1",
   "description": "",
   "main": "app/index.html",
+  "engines": {
+    "node": "4.x",
+    "npm": ">=3.3.3"
+  },
   "scripts": {
     "postinstall": "bower install && npm run wiredep",
     "karma": "karma start tests/karma.conf.js",
