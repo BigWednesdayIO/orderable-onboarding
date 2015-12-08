@@ -274,3 +274,24 @@ md-content > *:first-child {
 	transform: translateY(50%);
 	color: rgba(0, 0, 0, .54);
 }
+
+.add-product {
+	&__image {
+		margin: 0 auto 15px;
+
+		@media (min-width: $bp-medium) {
+			min-width: 260px;
+			max-width: 320px;
+			margin-right: 20px;
+			flex-shrink: 0;
+		}
+	}
+
+	&__extra-fields {
+		margin-top: 10px;
+
+		@media (min-width: $bp-medium) {
+			margin-top: 0;
+		}
+	}
+}

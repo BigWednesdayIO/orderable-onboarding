@@ -1,29 +1,35 @@
-<header class="layout-row">
-	<md-button class="md-icon-button" aria-label="Back" browser-back>
-		<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
-	</md-button>
-	<h1 class="md-headline" ng-bind="::vm.paymentMethod.name"></h1>
-</header>
-<main class="layout-column">
-	<md-content class="md-whiteframe-z1 content-block">
+<header>
+	<div class="content-wrap">
 		<div class="layout-row">
-			<p class="flex">Accept <span ng-bind="vm.paymentMethod.name"></span></p>
-			<md-switch class="md-primary" style="margin: 3px;" ng-model="vm.paymentMethod.enabled" ng-change="vm.toggleEnabled()" aria-label="Accept {{ ::vm.paymentMethod.name }}"></md-switch>
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline" ng-bind="::vm.paymentMethod.name"></h1>
 		</div>
+	</div>
+</header>
+<main>
+	<div class="content-wrap layout-column">
+		<md-content class="md-whiteframe-z1 content-block">
+			<div class="layout-row">
+				<p class="flex">Accept <span ng-bind="vm.paymentMethod.name"></span></p>
+				<md-switch class="md-primary" style="margin: 3px;" ng-model="vm.paymentMethod.enabled" ng-change="vm.toggleEnabled()" aria-label="Accept {{ ::vm.paymentMethod.name }}"></md-switch>
+			</div>
 
-		<div ng-switch="vm.paymentMethod.id">
-			<div ng-switch-when="account">
-				<p>I expect new retailers to have passed a credit check:</p>
-				<md-select ng-model="vm.paymentMethod.options.credit" ng-change="vm.saveChanges()" aria-label="Credit check preference">
-					<md-option ng-repeat="option in ::vm.creditOptions" ng-value="::option">{{ ::option }}</md-option>
-				</md-select>
+			<div ng-switch="vm.paymentMethod.id">
+				<div ng-switch-when="account">
+					<p>I expect new retailers to have passed a credit check:</p>
+					<md-select ng-model="vm.paymentMethod.options.credit" ng-change="vm.saveChanges()" aria-label="Credit check preference">
+						<md-option ng-repeat="option in ::vm.creditOptions" ng-value="::option">{{ ::option }}</md-option>
+					</md-select>
+				</div>
+				<div ng-switch-when="card">
+					<md-input-container>
+						<label>Stripe username</label>
+						<input ng-model="vm.paymentMethod.options.stripe_username" ng-change="vm.saveChanges()" />
+					</md-input-container>
+				</div>
 			</div>
-			<div ng-switch-when="card">
-				<md-input-container>
-					<label>Stripe username</label>
-					<input ng-model="vm.paymentMethod.options.stripe_username" ng-change="vm.saveChanges()" />
-				</md-input-container>
-			</div>
-		</div>
-	</md-content>
+		</md-content>
+	</div>
 </main>

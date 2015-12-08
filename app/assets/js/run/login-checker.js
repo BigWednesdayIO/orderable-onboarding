@@ -1,5 +1,5 @@
 function LoginChecker ($rootScope, $state, browserStorage) {
-	var registrationSteps = ['home', 'register', 'name', 'location'],
+	var registrationSteps = ['home', 'register', 'name', 'location', 'sign-in'],
 		supplierAttributes = ['email', 'mobile', 'name', 'location'];
 
 	$rootScope.$on('$stateChangeStart', function(e, toState) {

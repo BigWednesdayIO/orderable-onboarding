@@ -1,21 +1,30 @@
-<header class="layout-row">
-	<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
-		<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
-	</md-button>
-	<h1 class="md-headline">Your products</h1>
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
+				<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">Your products</h1>
+		</div>
+	</div>
 </header>
-<main class="layout-column" ng-show="::vm.products.length">
-	<div class="md-whiteframe md-whiteframe-z1" style="margin-bottom: 24px;">
-		<ul class="unstyled-list">
-			<li ng-repeat="product in ::vm.products" product-thumb product="product" editable="true"></li>
-		</ul>
+<main ng-show="::vm.products.length">
+	<div class="content-wrap layout-column">
+		<div class="md-whiteframe md-whiteframe-z1" style="margin-bottom: 24px;">
+			<ul class="unstyled-list products">
+				<li ng-repeat="product in ::vm.products" product-thumb product="product" editable="true"></li>
+			</ul>
+		</div>
 	</div>
 </main>
 
 <div class="empty-listing" ng-hide="::vm.products.length">
-	<p>Welcome! This is where your products will be listed, but it's empty at the moment.</p>
-	<p>Lets add your first one now, by tapping on the plus sign in the bottom right</p>
+	<div class="content-wrap">
+		<p>Welcome! This is where your products will be listed, but it's empty at the moment.</p>
+		<p>Lets add your first one now, by tapping on the plus sign in the bottom right</p>
+	</div>
 </div>
+
 
 <md-button class="md-fab md-primary" ng-href="products/add/{{ ::(vm.products.length ? '' : '?first=true' ) }}" aria-label="Add a new product" style="position: fixed; bottom: 10px;
 right: 10px; margin: 0;">

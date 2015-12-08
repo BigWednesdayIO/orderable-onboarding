@@ -15,6 +15,9 @@ form {
 	}
 
 	&--with-cta {
+		@media (min-width: $bp-medium) {
+			flex-direction: row-reverse;
+		}
 	}
 
 	.md-button {

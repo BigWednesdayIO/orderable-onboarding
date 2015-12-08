@@ -1,17 +1,11 @@
-function DeliveryLocationController ($state, $http, $filter, supplierService) {
+function DeliveryLocationController ($rootScope, $state, locationService, supplierService) {
 	var vm = this;
 
 	vm.location = [];
 
 	vm.locationSearch = function(query) {
-		return $http({
-			method: 'GET',
-			url: 'mocks/uk-towns.json',
-			cache: true
-		})
-			.then(function(response) {
-				return $filter('filter')(response, query);
-			});
+		return locationService
+			.search(query);
 	};
 
 	vm.saveLocation = function() {
@@ -22,9 +16,12 @@ function DeliveryLocationController ($state, $http, $filter, supplierService) {
 		return supplierService
 			.updateInfo('location', vm.location)
 			.then(function() {
-				$state.go('dashboard', {
+				return $state.go('dashboard', {
 					first: true
-				});
+				}));
+			})
+			.then(function() {
+				$rootScope.isSignedIn = true;
 			});
 	};
 }

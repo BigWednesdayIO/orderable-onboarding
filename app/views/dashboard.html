@@ -1,42 +1,48 @@
-<header class="layout-row">
-	<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
-		<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
-	</md-button>
-	<h1 class="md-headline">
-		<span ng-show="::vm.first"><strong>Congratulations!</strong> You've joined Orderable</span>
-		<span ng-hide="::vm.first">Welcome to Orderable</span>
-	</h1>
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
+				<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">
+				<span ng-show="::vm.first"><strong>Congratulations!</strong> You've joined Orderable</span>
+				<span ng-hide="::vm.first">Welcome to Orderable</span>
+			</h1>
+		</div>
+	</div>
 </header>
-<main class="layout-column">
-	<md-content class="md-whiteframe-z1 content-block" ng-show="::vm.steps.length">
-		<h2 class="md-subhead">You are just <strong><span ng-bind="::vm.steps.length"></span> step<span ng-if="::vm.steps.length !== 1">s</span></strong> away from selling to retailers in your area</h2>
+<main>
+	<div class="content-wrap layout-column">
+		<md-content class="md-whiteframe-z1 content-block" ng-show="::vm.steps.length">
+			<h2 class="md-subhead">You are just <strong><span ng-bind="::vm.steps.length"></span> step<span ng-if="::vm.steps.length !== 1">s</span></strong> away from selling to retailers in your area</h2>
 
-		<ol class="unstyled-list steps">
-			<li class="step" ng-repeat="step in ::vm.steps track by step.name">
-				<div class="layout-row layout-align-start-center">
-					<md-button ng-href="{{ ::step.action }}" class="md-fab md-mini md-primary step__icon" aria-label="{{ ::step.name }}">
-						<md-icon md-svg-src="assets/images/icons/{{ ::step.icon }}.svg"></md-icon>
-					</md-button>
-					<md-button ng-href="{{ ::step.action }}" class="md-primary step__action" aria-label="{{ ::step.name }}">
-						<span ng-bind="::step.name"></span>
-					</md-button>
-				</div>
-				<p class="step__description" ng-bind-html="::step.description"></p>
-			</li>
-		</ol>
-	</md-content>
+			<ol class="unstyled-list steps">
+				<li class="step" ng-repeat="step in ::vm.steps track by step.name">
+					<div class="layout-row layout-align-start-center">
+						<md-button ng-href="{{ ::step.action }}" class="md-fab md-mini md-primary step__icon" aria-label="{{ ::step.name }}">
+							<md-icon md-svg-src="assets/images/icons/{{ ::step.icon }}.svg"></md-icon>
+						</md-button>
+						<md-button ng-href="{{ ::step.action }}" class="md-primary step__action" aria-label="{{ ::step.name }}">
+							<span ng-bind="::step.name"></span>
+						</md-button>
+					</div>
+					<p class="step__description" ng-bind-html="::step.description"></p>
+				</li>
+			</ol>
+		</md-content>
 
-	<md-content class="md-whiteframe-z1 content-block" ng-show="::vm.completed.length">
-		<ol class="unstyled-list steps">
-			<li class="step" ng-repeat="step in ::vm.completed track by step.name">
-				<div class="layout-row layout-align-start-center">
-					<md-button class="md-fab md-mini md-accent step__icon" aria-label="{{ ::step.name }}">
-						<md-icon md-svg-src="assets/images/icons/done.svg"></md-icon>
-					</md-button>
-					<h3 class="md-body-2 step__action" ng-bind="::step.name"></h3>
-				</div>
-				<p class="step__description" ng-bind-html="::step.description"></p>
-			</li>
-		</ol>
-	</md-content>
+		<md-content class="md-whiteframe-z1 content-block" ng-show="::vm.completed.length">
+			<ol class="unstyled-list steps">
+				<li class="step" ng-repeat="step in ::vm.completed track by step.name">
+					<div class="layout-row layout-align-start-center">
+						<md-button class="md-fab md-mini md-accent step__icon" aria-label="{{ ::step.name }}">
+							<md-icon md-svg-src="assets/images/icons/done.svg"></md-icon>
+						</md-button>
+						<h3 class="md-body-2 step__action" ng-bind="::step.name"></h3>
+					</div>
+					<p class="step__description" ng-bind-html="::step.description"></p>
+				</li>
+			</ol>
+		</md-content>
+	</div>
 </main>

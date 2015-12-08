@@ -41,7 +41,7 @@
 	<body class="layout-column">
 		<div class="event-wrapper flex layout-row">
 			<loading-indicator></loading-indicator>
-			<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menu" md-is-locked-open="$mdMedia('gt-md')" ng-cloak>
+			<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menu" md-is-locked-open="$mdMedia('gt-md') && isSignedIn" ng-cloak>
 				<div ng-controller="MenuController as vm">
 					<md-toolbar class="md-primary hide-gt-md">
 						<div class="md-toolbar-tools">

@@ -1,70 +1,74 @@
 <header>
-	<h1 class="md-headline">Now choose a category for <span ng-bind="vm.product.name"></span></h1>
+	<div class="content-wrap">
+		<h1 class="md-headline">Now choose a category for <span ng-bind="vm.product.name"></span></h1>
+	</div>
 </header>
-<main class="layout-column layout-align-start-center">
-	<form name="vm.categoryForm" class="layout-column layout-align-start-stretch" ng-submit="vm.saveProduct()">
-		<ol class="unstyled-list form-rows">
-			<li class="form-row">
-				<md-content class="md-whiteframe-z1" style="padding: 12px;">
-					<h2 class="md-subhead">
-						<span ng-show="vm.product.category === vm.suggestedCategory">Here's where we think it should go</span>
-						<span ng-show="vm.product.category !== vm.suggestedCategory && vm.currentLevel !== ''">This is where your item will be listed</span>
-						<span ng-show="vm.currentLevel === ''">Chose a category from the list below to get started</span>
-					</h2>
+<main>
+	<div class="content-wrap layout-column layout-align-start-center">
+		<form name="vm.categoryForm" class="layout-column layout-align-start-stretch" ng-submit="vm.saveProduct()">
+			<ol class="unstyled-list form-rows">
+				<li class="form-row">
+					<md-content class="md-whiteframe-z1" style="padding: 12px;">
+						<h2 class="md-subhead">
+							<span ng-show="vm.product.category === vm.suggestedCategory">Here's where we think it should go</span>
+							<span ng-show="vm.product.category !== vm.suggestedCategory && vm.currentLevel !== ''">This is where your item will be listed</span>
+							<span ng-show="vm.currentLevel === ''">Chose a category from the list below to get started</span>
+						</h2>
 
-					<div class="breadcrumbs" ng-show="vm.categories.length">
-						<span ng-repeat="crumb in vm.categories track by crumb.id">
-							<span ng-if="crumb.id !== vm.product.category">
-								<a class="breadcrumbs__crumb" ng-click="vm.drillTo(crumb.id)" ng-bind="::crumb.name"></a>
-								<span ng-if="!$last" class="breadcrumbs__spacer">›</span>
+						<div class="breadcrumbs" ng-show="vm.categories.length">
+							<span ng-repeat="crumb in vm.categories track by crumb.id">
+								<span ng-if="crumb.id !== vm.product.category">
+									<a class="breadcrumbs__crumb" ng-click="vm.drillTo(crumb.id)" ng-bind="::crumb.name"></a>
+									<span ng-if="!$last" class="breadcrumbs__spacer">›</span>
+								</span>
+								<span ng-if="crumb.id === vm.product.category" style="display: inline-block">
+									<span class="breadcrumbs__crumb--final" ng-bind="::crumb.name"></span>
+								</span>
 							</span>
-							<span ng-if="crumb.id === vm.product.category" style="display: inline-block">
-								<span class="breadcrumbs__crumb--final" ng-bind="::crumb.name"></span>
-							</span>
-						</span>
-						<md-icon md-svg-src="assets/images/icons/edit.svg" ng-click="vm.edit()" ng-hide="vm.editing"></md-icon>
+							<md-icon md-svg-src="assets/images/icons/edit.svg" ng-click="vm.edit()" ng-hide="vm.editing"></md-icon>
+						</div>
+					</md-content>
+				</li>
+
+				<li class="form-row" ng-show="vm.editing && (vm.currentLevel !== '' || vm.suggestedCategory)">
+					<div class="layout-row">
+						<md-button type="button" class="md-secondary" style="margin: 0; min-width: 0" ng-show="vm.currentLevel !== ''" ng-click="vm.upOneLevel()">
+							<md-icon md-svg-src="assets/images/icons/chevron-left.svg"></md-icon>
+							<span>Back</span>
+						</md-button>
+
+						<span class="flex"></span>
+
+						<md-button type="button" class="md-secondary" style="margin: 0; min-width: 0" ng-click="vm.useSuggestion()" ng-if="::vm.suggestedCategory">
+							<span>Cancel</span>
+						</md-button>
 					</div>
-				</md-content>
-			</li>
+				</li>
 
-			<li class="form-row" ng-show="vm.editing && (vm.currentLevel !== '' || vm.suggestedCategory)">
-				<div class="layout-row">
-					<md-button type="button" class="md-secondary" style="margin: 0; min-width: 0" ng-show="vm.currentLevel !== ''" ng-click="vm.upOneLevel()">
-						<md-icon md-svg-src="assets/images/icons/chevron-left.svg"></md-icon>
-						<span>Back</span>
-					</md-button>
+				<li class="form-row" ng-show="vm.editing">
+					<md-content class="md-whiteframe-z1">
+						<md-list style="padding: 0">
+							<!-- <md-subheader class="md-no-sticky" ng-show="vm.currentLevelName">
+								<span ng-bind="vm.currentLevelName"></span>
+							</md-subheader> -->
+							<md-list-item ng-repeat="category in vm.categoryOptions" class="md-clickable" style="position: relative;">
+								<md-button type="button" class="md-no-style" ng-click="vm.categorySelected(category)" aria-label="{{ ::category.name }}">
+									<div class="md-list-item-inner layout-row">
+										<span class="flex" ng-bind="::category.name"></span>
+										<md-icon md-svg-src="assets/images/icons/chevron-right.svg" ng-if="::category.hasChildren"></md-icon>
+										<md-icon class="md-primary" md-svg-src="assets/images/icons/done.svg" ng-if="::!category.hasChildren" ng-show="vm.product.category === category.hierachy"></md-icon>
+									</div>
+								</md-button>
+								<md-divider ng-if="::!$last"></md-divider>
+							</md-list-item>
+						</md-list>
+					</md-content>
+				</li>
 
-					<span class="flex"></span>
-
-					<md-button type="button" class="md-secondary" style="margin: 0; min-width: 0" ng-click="vm.useSuggestion()" ng-if="::vm.suggestedCategory">
-						<span>Cancel</span>
-					</md-button>
-				</div>
-			</li>
-
-			<li class="form-row" ng-show="vm.editing">
-				<md-content class="md-whiteframe-z1">
-					<md-list style="padding: 0">
-						<!-- <md-subheader class="md-no-sticky" ng-show="vm.currentLevelName">
-							<span ng-bind="vm.currentLevelName"></span>
-						</md-subheader> -->
-						<md-list-item ng-repeat="category in vm.categoryOptions" class="md-clickable" style="position: relative;">
-							<md-button type="button" class="md-no-style" ng-click="vm.categorySelected(category)" aria-label="{{ ::category.name }}">
-								<div class="md-list-item-inner layout-row">
-									<span class="flex" ng-bind="::category.name"></span>
-									<md-icon md-svg-src="assets/images/icons/chevron-right.svg" ng-if="::category.hasChildren"></md-icon>
-									<md-icon class="md-primary" md-svg-src="assets/images/icons/done.svg" ng-if="::!category.hasChildren" ng-show="vm.product.category === category.hierachy"></md-icon>
-								</div>
-							</md-button>
-							<md-divider ng-if="::!$last"></md-divider>
-						</md-list-item>
-					</md-list>
-				</md-content>
-			</li>
-
-			<li class="form-row form-row--with-cta">
-				<md-button type="submit" class="md-primary md-raised" ng-disabled="!vm.product.category">Looks good, save it</md-button>
-			</li>
-		</ol>
-	</form>
+				<li class="form-row form-row--with-cta">
+					<md-button type="submit" class="md-primary md-raised" ng-disabled="!vm.product.category">Looks good, save it</md-button>
+				</li>
+			</ol>
+		</form>
+	</div>
 </main>

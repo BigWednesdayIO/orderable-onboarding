@@ -1,10 +1,23 @@
 <header>
-	<h1 class="md-headline">Great, here's how this listing will look</h1>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
+				<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">Great, here's how this listing will look</h1>
+		</div>
+	</div>
 </header>
-<main class="layout-column">
-	<div class="md-whiteframe md-whiteframe-z1" product-thumb product="vm.product" style="margin-bottom: 15px;"></div>
+<main>
+	<div class="content-wrap layout-sm-column layout-gt-sm-row">
+		<div class="flex layout-row layout-align-center" style="margin-bottom: 15px;">
+			<div class="flex md-whiteframe md-whiteframe-z1" product-thumb product="vm.product"></div>
+		</div>
 
-	<md-button class="md-primary md-raised" ng-href="/products/add/?category={{ ::vm.product.category }}">Add another in <span ng-bind="::vm.productCategory"></span></md-button>
-	<md-button class="md-raised" ng-href="/products/add/">Add something different</md-button>
-	<md-button ng-href="/dashboard/">I've finished adding for now</md-button>
+		<div class="flex layout-column layout-align-center">
+			<md-button class="md-primary md-raised" ng-href="/products/add/?category={{ ::vm.product.category }}">Add another in <span ng-bind="::vm.productCategory"></span></md-button>
+			<md-button class="md-raised" ng-href="/products/add/">Add something different</md-button>
+			<md-button ng-href="/dashboard/">I've finished adding for now</md-button>
+		</div>
+	</div>
 </main>

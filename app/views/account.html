@@ -1,31 +1,37 @@
-<header class="layout-row">
-	<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
-		<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
-	</md-button>
-	<h1 class="md-headline">Account</h1>
-</header>
-<main class="layout-column">
-	<div class="md-whiteframe md-whiteframe-z1 content-block">
-		<h2 class="md-caption" style="margin-top: 0">Payment Methods</h2>
-		<ul class="unstyled-list">
-			<li class="layout-column" ng-repeat="method in ::vm.paymentMethods track by method.id">
-				<md-button class="md-no-style payment-method" ng-href="account/payment-methods/{{ ::method.id }}/" aria-label="{{ ::method.name }}">
-					<div class="layout-row layout-align-start-center">
-						<md-icon md-svg-src="assets/images/icons/{{ ::method.icon }}.svg" class="payment-method__icon" ng-class="{'payment-method__icon--disabled': !method.enabled}"></md-icon>
-						<div class="payment-method__text flex">
-							<h3 class="md-subhead payment-method__name" ng-bind="method.name"></h3>
-							<p class="payment-method__status" ng-class="{'payment-method__status--disabled': !method.enabled}">
-								<span ng-bind="method.enabled ? 'Enabled' : 'Disabled'"></span>
-							</p>
-						</div>
-						<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
-					</div>
-				</md-button>
-			</li>
-		</ul>
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
+				<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">Account</h1>
+		</div>
 	</div>
-	<!-- <div class="md-whiteframe md-whiteframe-z1 content-block">
-		<h2 class="md-caption" style="margin-top: 0">Loyalty Scheme</h2>
-		<p>Not set up</p>
-	</div> -->
+</header>
+<main>
+	<div class="content-wrap layout-column">
+		<div class="md-whiteframe md-whiteframe-z1 content-block">
+			<h2 class="md-caption" style="margin-top: 0">Payment Methods</h2>
+			<ul class="unstyled-list">
+				<li class="layout-column" ng-repeat="method in ::vm.paymentMethods track by method.id">
+					<md-button class="md-no-style payment-method" ng-href="account/payment-methods/{{ ::method.id }}/" aria-label="{{ ::method.name }}">
+						<div class="layout-row layout-align-start-center">
+							<md-icon md-svg-src="assets/images/icons/{{ ::method.icon }}.svg" class="payment-method__icon" ng-class="{'payment-method__icon--disabled': !method.enabled}"></md-icon>
+							<div class="payment-method__text flex">
+								<h3 class="md-subhead payment-method__name" ng-bind="method.name"></h3>
+								<p class="payment-method__status" ng-class="{'payment-method__status--disabled': !method.enabled}">
+									<span ng-bind="method.enabled ? 'Enabled' : 'Disabled'"></span>
+								</p>
+							</div>
+							<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						</div>
+					</md-button>
+				</li>
+			</ul>
+		</div>
+		<!-- <div class="md-whiteframe md-whiteframe-z1 content-block">
+			<h2 class="md-caption" style="margin-top: 0">Loyalty Scheme</h2>
+			<p>Not set up</p>
+		</div> -->
+	</div>
 </main>

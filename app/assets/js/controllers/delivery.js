@@ -1,7 +1,12 @@
-function DeliveryController (supplierService, supplierInfo) {
+function DeliveryController (locationService, supplierService, supplierInfo) {
 	var vm = this;
 
 	vm.location = supplierInfo.location;
+
+	vm.locationSearch = function(query) {
+		return locationService
+			.search(query);
+	};
 
 	vm.saveLocation = function() {
 		if (vm.searchText.length) {

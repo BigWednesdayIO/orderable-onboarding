@@ -1,0 +1,56 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline" ng-if="::!vm.product.id">Add <span ng-bind="::(vm.firstTime ? 'your first' : 'a new')"></span> product <span ng-if="::vm.productCategory">to <span ng-bind="::vm.productCategory"></span></span></h1>
+			<h1 class="md-headline" ng-if="::vm.product.id">Edit</h1>
+		</div>
+	</div>
+</header>
+<main>
+	<div class="content-wrap layout-column layout-align-start-center">
+		<form name="vm.productForm" class="layout-column" ng-submit="vm.saveProduct()">
+			<div class="layout-gt-sm-row">
+				<div class="add-product__image">
+					<div class="md-whiteframe md-whiteframe-z1" style="padding: 12px;">
+						<div get-product-image cropping-data="vm.product.image_data"></div>
+					</div>
+				</div>
+				<div class="flex">
+					<div class="form-row">
+						<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.name" placeholder="Product name" required />
+					</div>
+					<div class="form-row">
+						<span class="label">Price</span>
+						<price-fields inc-vat="vm.product.price_incvat" ex-vat="vm.product.price_exvat" allow-free="true" required="true"></price-fields>
+					</div>
+					<div class="form-row">
+						<a href="#" class="expandable hide-gt-sm" ng-hide="::vm.product.id" ng-click="vm.showMore = !vm.showMore" ng-class="{'is-open': vm.showMore}">
+							<md-icon class="expandable__icon" md-svg-src="assets/images/icons/chevron-down.svg"></md-icon>
+							<span class="expandable__text">More product specifics</span>
+						</a>
+						<div class="add-product__extra-fields" ng-show="vm.showMore || $mdMedia('gt-sm') || vm.product.id">
+							<div class="form-row">
+								<span class="label">Was price <span class="weak">(optional)</span></span>
+								<price-fields inc-vat="vm.product.was_price_incvat" ex-vat="vm.product.was_price_exvat" required="false"></price-fields>
+							</div>
+							<div class="form-row">
+								<label class="label">SKU Code <span class="weak">(optional)</span></label>
+								<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.sku" placeholder="A unique ID for your reference" optional />
+							</div>
+							<div class="form-row">
+								<label class="label">Description <span class="weak">(optional)</span></label>
+								<textarea class="md-whiteframe md-whiteframe-z1" rows="5" ng-model="vm.product.description" placeholder="This will be shown on the product details page" optional></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="form-row form-row--with-cta">
+						<md-button type="submit" class="md-primary md-raised">Save</md-button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</main>

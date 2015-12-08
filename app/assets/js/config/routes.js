@@ -6,6 +6,11 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 		})
 
 		// Login
+		.state('sign-in', {
+			url: '/sign-in/',
+			controller: 'SignInController as vm',
+			templateUrl: 'views/sign-in.html'
+		})
 
 		// Registration
 		.state('register', {
@@ -40,13 +45,13 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			url: '/products/add/?first&category',
 			controller: 'ProductController as vm',
 			resolve: ProductController.resolve,
-			templateUrl: 'views/add-product.html'
+			templateUrl: 'views/product.html'
 		})
 		.state('edit-product', {
 			url: '/products/:id/',
 			controller: 'EditProductController as vm',
 			resolve: EditProductController.resolve,
-			templateUrl: 'views/edit-product.html'
+			templateUrl: 'views/product.html'
 		})
 		.state('product-category', {
 			url: '/products/:id/category/',

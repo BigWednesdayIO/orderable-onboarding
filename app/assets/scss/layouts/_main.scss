@@ -1,7 +1,7 @@
 .content-wrap {
 	position: relative;
 	width: 100%;
-	max-width: 1180px;
+	max-width: 800px;
 	margin: 0 auto;
 
 	&--960 {
@@ -10,6 +10,10 @@
 
 	&--940 {
 		max-width: 940px;
+	}
+
+	&--narrow {
+		max-width: 600px;
 	}
 }
 

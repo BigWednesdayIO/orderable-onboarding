@@ -1,23 +1,28 @@
 <header>
-	<h1 class="md-headline">First, tell us a bit about yourself</h1>
+	<div class="content-wrap content-wrap--narrow">
+		<h1 class="md-headline">First, tell us a bit about yourself</h1>
+	</div>
 </header>
-<main class="layout-column layout-align-start-center">
-	<form class="layout-column layout-align-start-stretch" name="vm.registerForm" ng-submit="vm.register()">
-		<ul class="unstyled-list">
-			<li class="form-row">
-				<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.name" placeholder="What's your name?" required />
-			</li>
-			<li class="form-row">
-				<input class="md-whiteframe md-whiteframe-z1" type="email" ng-model="vm.email" placeholder="email address" required />
-			</li>
-			<li class="form-row">
-				<input class="md-whiteframe md-whiteframe-z1" type="tel" ng-model="vm.mobile" placeholder="and mobile number"  minlength="11" pattern="(\+44|0)7[- 0-9]{9}" required />
-				<p class="weak" style="margin-bottom: 0"><md-icon md-svg-src="assets/images/icons/lock.svg" style="height: 18px; width: 18px"></md-icon> We only use your mobile number for secure login, and in case we need to contact you about an order. See our <a href="privacy/">privacy policy</a>.</p>
-			</li>
-			<li class="form-row form-row--with-cta">
-				<md-button type="submit" class="md-primary md-raised">Continue</md-button>
-			</li>
-		</ul>
-	</form>
-	<a style="margin-top: 40px" href="sign-in/">Already joined? Sign in</a>
+<main>
+	<div class="content-wrap content-wrap--narrow">
+		<div class="layout-column">
+			<form class="layout-column layout-align-start-stretch" name="vm.registerForm" ng-submit="vm.register()">
+				<ul class="unstyled-list">
+					<li class="form-row">
+						<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.name" placeholder="What's your name?" required />
+					</li>
+					<li class="form-row">
+						<input class="md-whiteframe md-whiteframe-z1" type="email" ng-model="vm.email" placeholder="email address" required />
+					</li>
+					<li class="form-row">
+						<input class="md-whiteframe md-whiteframe-z1" type="tel" ng-model="vm.mobile" placeholder="and mobile number"  minlength="11" pattern="(\+44|0)7[- 0-9]{9}" required />
+						<p class="weak" style="margin-bottom: 0"><md-icon md-svg-src="assets/images/icons/lock.svg" style="height: 18px; width: 18px"></md-icon> We only use your mobile number for secure login, and in case we need to contact you about an order. See our <a href="privacy/">privacy policy</a>.</p>
+					</li>
+					<li class="form-row form-row--with-cta layout-gt-sm-row">
+						<md-button type="submit" class="md-primary md-raised">Continue</md-button>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
 </main>
