@@ -1,7 +1,7 @@
-function DeliveryController ($state, locationService, supplierService, supplierInfo) {
+function DeliveryController ($state, locationService, supplierService, deliveryInfo) {
 	var vm = this;
 
-	vm.location = supplierInfo.location;
+	vm.location = deliveryInfo;
 
 	vm.locationSearch = function(query) {
 		return locationService
@@ -9,12 +9,8 @@ function DeliveryController ($state, locationService, supplierService, supplierI
 	};
 
 	vm.saveLocation = function() {
-		if ((vm.searchText || '').length) {
-			vm.location.push(vm.searchText);
-		}
-
 		return supplierService
-			.updateInfo('location', vm.location)
+			.updateDeliveryInfo(vm.location)
 			.then(function() {
 				return $state.go('dashboard');
 			});
@@ -22,9 +18,28 @@ function DeliveryController ($state, locationService, supplierService, supplierI
 }
 
 DeliveryController.resolve = /* @ngInject */ {
-	supplierInfo: function(supplierService) {
+	deliveryInfo: function(supplierService) {
 		return supplierService
-			.getInfo();
+			.getDeliveryInfo()
+			.then(function(deliveryInfo) {
+				var isDelivery = new RegExp('^delivery_(.+)s');
+				var locations = [];
+
+				Object.keys(deliveryInfo).filter(function(key) {
+					return isDelivery.test(key);
+				}).forEach(function(key) {
+					var type = key.match(isDelivery)[1];
+
+					locations.concat(deliveryInfo[key].map(function(location) {
+						return {
+							location: location,
+							type: type
+						};
+					}));
+				});
+
+				return locations;
+			});
 	}	
 };
 

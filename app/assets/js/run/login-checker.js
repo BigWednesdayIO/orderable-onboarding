@@ -1,13 +1,9 @@
-function LoginChecker ($rootScope, $state, browserStorage) {
-	var registrationSteps = ['home', 'register', 'name', 'location', 'sign-in'],
-		supplierAttributes = ['email', 'mobile', 'name', 'location'];
+function LoginChecker ($rootScope, $state, authenticationService) {
+	var registrationSteps = ['home', 'register', 'sign-in'];
 
 	$rootScope.$on('$stateChangeStart', function(e, toState) {
-		var supplierInfo = browserStorage.getItem('supplier'),
-			isRegistering = registrationSteps.indexOf(toState.name) >= 0,
-			isLoggedIn = supplierInfo && supplierAttributes.reduce(function(status, attr) {
-				return status && supplierInfo[attr];
-			}, true);
+		var isRegistering = registrationSteps.indexOf(toState.name) >= 0;
+		var isLoggedIn = authenticationService.isAuthenticated();
 
 		if (isLoggedIn && isRegistering) {
 			e.preventDefault();

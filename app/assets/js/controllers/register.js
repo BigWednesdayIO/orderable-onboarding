@@ -3,10 +3,10 @@ function RegisterController ($state, supplierService) {
 
 	vm.register = function() {
 		return supplierService
-			.updateInfo({
+			.register({
 				email: vm.email,
-				mobile: vm.mobile,
-				user_name: vm.name
+				password: vm.password,
+				name: vm.name
 			})
 			.then(function() {
 				$state.go('name');
