@@ -30,7 +30,7 @@ DeliveryController.resolve = /* @ngInject */ {
 				}).forEach(function(key) {
 					var type = key.match(isDelivery)[1];
 
-					locations.concat(deliveryInfo[key].map(function(location) {
+					locations = locations.concat(deliveryInfo[key].map(function(location) {
 						return {
 							location: location,
 							type: type
