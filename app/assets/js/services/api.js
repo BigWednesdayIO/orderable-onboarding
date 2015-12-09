@@ -5,6 +5,8 @@ function APIService (baseAPI) {
 	this.search = this.products + '/query';
 	this.search_suggestions = baseAPI + 'indexes/crateful-suggestions/query'
 
+	this.location_search = baseAPI + 'indexes/orderable-delivery-locations/query';
+
 	this.checkouts = baseAPI + 'checkouts'
 
 	this.categories = 'https://raw.githubusercontent.com/BigWednesdayIO/categories-api/master/categories.json';

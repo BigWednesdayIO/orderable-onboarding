@@ -1,14 +1,16 @@
-function LocationService ($http, $filter) {
+function LocationService ($http, API) {
 	var service = this;
 
 	service.search = function(query) {
 		return $http({
-			method: 'GET',
-			url: 'mocks/uk-towns.json',
-			cache: true
+			method: 'POST',
+			url: API.location_search,
+			data: {
+				query: query
+			}
 		})
 			.then(function(response) {
-				return $filter('filter')(response, query);
+				return response.hits;
 			});
 	};
 }

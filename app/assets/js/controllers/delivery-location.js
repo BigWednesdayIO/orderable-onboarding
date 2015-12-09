@@ -18,7 +18,7 @@ function DeliveryLocationController ($rootScope, $state, locationService, suppli
 			.then(function() {
 				return $state.go('dashboard', {
 					first: true
-				}));
+				});
 			})
 			.then(function() {
 				$rootScope.isSignedIn = true;

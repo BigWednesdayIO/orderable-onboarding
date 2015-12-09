@@ -1,4 +1,4 @@
-function DeliveryController (locationService, supplierService, supplierInfo) {
+function DeliveryController ($state, locationService, supplierService, supplierInfo) {
 	var vm = this;
 
 	vm.location = supplierInfo.location;
@@ -9,12 +9,15 @@ function DeliveryController (locationService, supplierService, supplierInfo) {
 	};
 
 	vm.saveLocation = function() {
-		if (vm.searchText.length) {
+		if ((vm.searchText || '').length) {
 			vm.location.push(vm.searchText);
 		}
 
 		return supplierService
-			.updateInfo('location', vm.location);
+			.updateInfo('location', vm.location)
+			.then(function() {
+				return $state.go('dashboard');
+			});
 	};
 }
 
