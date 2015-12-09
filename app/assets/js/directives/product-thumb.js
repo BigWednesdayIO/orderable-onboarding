@@ -12,7 +12,7 @@ function ProductThumbDirective () {
 			var vm = this;
 
 			vm.product.id = vm.product.id || vm.product.objectID;
-			vm.product.thumbnail_image_url = vm.product.thumbnail_image_url || 'http://placehold.it/180x180/fff';
+			vm.product.thumbnail_image_url = vm.product.thumbnail_image_url || 'assets/images/placeholder.jpg';
 		},
 		controllerAs: 'vm',
 		bindToController: true,

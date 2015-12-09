@@ -55,10 +55,15 @@
 		justify-content: space-between;
 		height: 48px;
 		margin-right: -16px;
+
+		.md-button {
+			flex-shrink: 0;
+		}
 	}
 
 	&__price {
 		display: flex;
+		flex-flow: row wrap;
 		align-items: baseline;
 		font-weight: 600;
 	}
