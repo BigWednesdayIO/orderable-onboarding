@@ -20,7 +20,11 @@ function LoginChecker ($rootScope, $state, browserStorage) {
 			$state.go('home');
 			return;
 		}
-	})
+
+		if (isLoggedIn && !isRegistering) {
+			$rootScope.isSignedIn = true;
+		}
+	});
 }
 
 angular
