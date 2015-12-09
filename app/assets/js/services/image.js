@@ -59,6 +59,7 @@ function ImageService ($window, $q) {
 				width: 180,
 				eventOnChange: 'guillotinechange'
 			})
+			.guillotine('enable')
 			.guillotine('fit')
 			.guillotine('instance');
 	};
