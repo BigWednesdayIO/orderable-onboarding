@@ -85,8 +85,10 @@ function ProductService ($http, $q, API, browserStorage, _) {
 	};
 
 	service.updateSupplierProduct = function(supplierProduct) {
+		var supplier_id = browserStorage.getItem('supplier_id');
 		var id = supplierProduct.id;
 		delete supplierProduct.id;
+		delete supplierProduct._metadata;
 
 		return $http({
 			method: 'PUT',
