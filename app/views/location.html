@@ -18,7 +18,7 @@
 							md-search-text="vm.searchText"
 							md-items="item in vm.locationSearch(vm.searchText)"
 							md-item-text="item.location"
-							placeholder="{{ vm.location.length ? 'Anywhere else?' : 'Eg. London or EC2' }}"
+							placeholder="{{ vm.location.length ? 'Anywhere else?' : 'Eg. London' }}"
 							secondary-placeholder="">
 							<md-item-template>
 								<span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{ item.location }}</span>

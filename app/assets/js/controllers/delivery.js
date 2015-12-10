@@ -25,6 +25,10 @@ DeliveryController.resolve = /* @ngInject */ {
 				var isDelivery = new RegExp('^delivery_(.+)s');
 				var locations = [];
 
+				if (!deliveryInfo) {
+					return locations;
+				}
+
 				Object.keys(deliveryInfo).filter(function(key) {
 					return isDelivery.test(key);
 				}).forEach(function(key) {
@@ -38,7 +42,7 @@ DeliveryController.resolve = /* @ngInject */ {
 					}));
 				});
 
-				return locations;
+				return _.sortBy(locations, 'location');
 			});
 	}	
 };
