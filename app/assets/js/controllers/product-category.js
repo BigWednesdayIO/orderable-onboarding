@@ -1,4 +1,4 @@
-function ProductCategoryController ($state, $q, productService, categoriesService, productData, suggestedCategory, suggestedCategoryHierarchy, siblingCategories) {
+function ProductCategoryController ($state, productService, categoriesService, productData, suggestedCategory, suggestedCategoryHierarchy, siblingCategories) {
 	var vm = this;
 
 	function directParent (category) {
@@ -68,10 +68,10 @@ function ProductCategoryController ($state, $q, productService, categoriesServic
 
 	vm.saveProduct = function() {
 		return productService
-			.saveProduct(vm.product)
-			.then(function(product) {
+			.updateProduct(vm.product)
+			.then(function() {
 				$state.go('review-product', {
-					id: product.id
+					id: $state.params.id
 				});
 			});
 	};
@@ -80,7 +80,11 @@ function ProductCategoryController ($state, $q, productService, categoriesServic
 ProductCategoryController.resolve = /* @ngInject */ {
 	productData: function($stateParams, productService) {
 		return productService
-			.getProduct($stateParams.id);
+			.getSupplierProduct($stateParams.id)
+			.then(function(supplierProduct) {
+				return productService
+					.getProduct(supplierProduct.product_id);
+			});
 	},
 	suggestedCategory: function(categoriesService, productData) {
 		return categoriesService

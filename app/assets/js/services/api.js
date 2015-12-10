@@ -12,6 +12,8 @@ function APIService (baseAPI) {
 	this.categories = 'https://raw.githubusercontent.com/BigWednesdayIO/categories-api/master/categories.json';
 
 	this.suppliers = baseAPI + 'suppliers';
+
+	this.products = baseAPI + 'products';
 }
 
 angular

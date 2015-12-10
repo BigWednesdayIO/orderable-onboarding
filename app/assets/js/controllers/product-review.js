@@ -9,7 +9,11 @@ function ProductReviewController (productData, productCategory) {
 ProductReviewController.resolve = /* @ngInject */ {
 	productData: function($stateParams, productService) {
 		return productService
-			.getProduct($stateParams.id);
+			.getSupplierProduct($stateParams.id)
+			.then(function(supplierProduct) {
+				return productService
+					.getProduct(supplierProduct.product_id);
+			});;
 	},
 	productCategory: function(productData, categoriesService) {
 		return categoriesService

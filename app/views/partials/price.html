@@ -1,2 +1,2 @@
-<span ng-class="::{'price--now': product.was_price_exvat}" ng-bind="::product.price_exvat | currency: '£'"></span>
-<span ng-show="::product.was_price_exvat" class="price--was"  ng-bind="::product.was_price_exvat | currency: '£'"></span>
+<span ng-class="::{'price--now': product.was_price}" ng-bind="::product.price | currency: '£'"></span>
+<span ng-show="::product.was_price" class="price--was"  ng-bind="::product.was_price | currency: '£'"></span>
