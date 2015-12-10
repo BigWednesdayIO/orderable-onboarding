@@ -12,8 +12,13 @@ ProductReviewController.resolve = /* @ngInject */ {
 			.getSupplierProduct($stateParams.id)
 			.then(function(supplierProduct) {
 				return productService
-					.getProduct(supplierProduct.product_id);
-			});;
+					.getProduct(supplierProduct.product_id)
+					.then(function(product) {
+						product.price = supplierProduct.price;
+						product.was_price = supplierProduct.was_price;
+						return product;
+					});
+			});
 	},
 	productCategory: function(productData, categoriesService) {
 		return categoriesService
