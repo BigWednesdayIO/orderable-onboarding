@@ -1,9 +1,9 @@
-function SupplierService ($http, $q, API, browserStorage, _) {
+function SupplierService ($http, $q, API, authenticationService, browserStorage, _) {
 	var service = this;
 
 	function getSupplierId () {
 		var deferred = $q.defer();
-		var id = browserStorage.getItem('supplier_id');
+		var id = authenticationService.getSessionInfo().id;
 
 		if (id) {
 			deferred.resolve(id)
@@ -23,8 +23,11 @@ function SupplierService ($http, $q, API, browserStorage, _) {
 			data: details
 		})
 			.then(function(response) {
-				browserStorage.setItem('supplier_id', response.id);
-				return response;
+				return authenticationService
+					.signIn({
+						email: details.email,
+						password: details.password
+					});
 			});
 	};
 
