@@ -20,9 +20,6 @@ function ProductService ($http, $q, API, browserStorage, _) {
 
 		if (data.was_price) {
 			data.was_price = parseFloat(data.was_price);
-		} else {
-			// Until the API is fixed
-			data.was_price = data.price;
 		}
 
 		return data;
