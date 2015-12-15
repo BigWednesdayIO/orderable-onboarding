@@ -60,6 +60,7 @@ function PriceFieldsDirective () {
 				return vm.vatExempt;
 			}, function(vatExempt) {
 				taxMultiplier = vatExempt ? 1 : 1.2;
+				// TODO check for a dirty value to use
 				if (vm.exVat) {
 					vm.exVatUpdated();
 				}

@@ -35,6 +35,10 @@ md-select + md-select {
 
 .link-button {
 	text-transform: none;
+}
+
+.link-button,
+.md-button.multi-line {
 	white-space: normal;
 	line-height: 20px;
 	padding-top: 6px;
