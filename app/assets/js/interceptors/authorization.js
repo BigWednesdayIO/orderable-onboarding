@@ -2,7 +2,7 @@ function AuthorizationInterceptor (baseAPI, browserStorage) {
 	return {
 		request: function(config) {
 			if (config.url.match(baseAPI) && !config.headers['Authorization']) {
-				config.headers['Authorization'] = 'Bearer NG0TuV~u2ni#BP|';
+				config.headers['Authorization'] = browserStorage.getItem('token');
 			}
 			return config;
 		}
