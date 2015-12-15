@@ -1,2 +1,2 @@
-<span ng-class="::{'price--now': product.was_price}" ng-bind="::product.price | currency: '£'"></span>
-<span ng-show="::product.was_price" class="price--was"  ng-bind="::product.was_price | currency: '£'"></span>
+<span ng-class="::{'price--now': (product.was_price && product.was_price > product.price)}" ng-bind="::product.price | currency: '£'"></span>
+<span ng-show="::(product.was_price && product.was_price > product.price)" class="price--was"  ng-bind="::product.was_price | currency: '£'"></span>
