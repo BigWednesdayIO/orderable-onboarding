@@ -19,11 +19,11 @@ function AuthenticationService ($http, $q, API, browserStorage) {
 
 	service.isAuthenticated	= function() {
 		var info = service.getSessionInfo();
-		return true && info.id && info.token;
+		return info.id && info.token && true;
 	};
 
 	service.signIn = function(credentials) {
-		$http({
+		return $http({
 			method: 'POST',
 			url: API.suppliers + '/authenticate',
 			data: credentials
@@ -34,8 +34,10 @@ function AuthenticationService ($http, $q, API, browserStorage) {
 	service.signOut = function() {
 		return $q.when(browserStorage.clear());
 	};
+
+	return service;
 }
 
 angular
 	.module('app')
-	.service('authenticationService', AuthenticationService);
+	.factory('authenticationService', AuthenticationService);

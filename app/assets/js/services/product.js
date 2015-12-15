@@ -30,14 +30,20 @@ function ProductService ($http, $q, API, authenticationService, _) {
 
 		return $http({
 			method: 'GET',
-			url: API.suppliers + '/' + id + '/linked_products?expand[]=product',
+			url: API.suppliers + '/' + id + '/linked_products', // ?expand[]=product
+			headers: {
+				Authorization: authenticationService.getSessionInfo().token
+			}
 		});
 	};
 
 	service.getProduct = function(id) {
 		return $http({
 			method: 'GET',
-			url: API.products + '/' + id
+			url: API.products + '/' + id,
+			headers: {
+				Authorization: authenticationService.getSessionInfo().token
+			}
 		});
 	};
 
@@ -46,7 +52,10 @@ function ProductService ($http, $q, API, authenticationService, _) {
 
 		return $http({
 			method: 'GET',
-			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id
+			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id,
+			headers: {
+				Authorization: authenticationService.getSessionInfo().token
+			}
 		});
 	};
 
@@ -57,14 +66,20 @@ function ProductService ($http, $q, API, authenticationService, _) {
 		return $http({
 			method: 'POST',
 			url: API.products,
-			data: enrichProductData(productData)
+			data: enrichProductData(productData),
+			headers: {
+				Authorization: authenticationService.getSessionInfo().token
+			}
 		})
 			.then(function(response) {
 				supplierProduct.product_id = product_id = response.id;
 				return $http({
 					method: 'POST',
 					url: API.suppliers + '/' + supplier_id + '/linked_products',
-					data: formatSupplierProduct(supplierProduct)
+					data: formatSupplierProduct(supplierProduct),
+					headers: {
+						Authorization: authenticationService.getSessionInfo().token
+					}
 				});
 			});
 	};
@@ -77,7 +92,10 @@ function ProductService ($http, $q, API, authenticationService, _) {
 		return $http({
 			method: 'PUT',
 			url: API.products + '/' + product_id,
-			data: product
+			data: product,
+			headers: {
+				Authorization: authenticationService.getSessionInfo().token
+			}
 		});
 	};
 
@@ -90,7 +108,10 @@ function ProductService ($http, $q, API, authenticationService, _) {
 		return $http({
 			method: 'PUT',
 			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id,
-			data: formatSupplierProduct(supplierProduct)
+			data: formatSupplierProduct(supplierProduct),
+			headers: {
+				Authorization: authenticationService.getSessionInfo().token
+			}
 		});
 	};
 }

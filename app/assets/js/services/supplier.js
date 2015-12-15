@@ -65,7 +65,10 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 				return $http({
 					method: 'PUT',
 					url: API.suppliers + '/' + id,
-					data: info
+					data: info,
+					headers: {
+						Authorization: authenticationService.getSessionInfo().token
+					}
 				});
 			});
 	};
@@ -75,7 +78,10 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 			.then(function(id) {
 				return $http({
 					method: 'GET',
-					url: API.suppliers + '/' + id + '/depots'
+					url: API.suppliers + '/' + id + '/depots',
+					headers: {
+						Authorization: authenticationService.getSessionInfo().token
+					}
 				});
 			})
 			.then(function(depots) {
@@ -126,6 +132,9 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 						delivery_counties: [],
 						delivery_districts: [],
 						delivery_places: []
+					},
+					headers: {
+						Authorization: authenticationService.getSessionInfo().token
 					}
 				});
 			})
@@ -133,7 +142,10 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 				return $http({
 					method: 'PUT',
 					url: depotsUrl + '/' + deliveryInfo.id,
-					data: newDeliveryInfo
+					data: newDeliveryInfo,
+					headers: {
+						Authorization: authenticationService.getSessionInfo().token
+					}
 				});
 			});
 	};
