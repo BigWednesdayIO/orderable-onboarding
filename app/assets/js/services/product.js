@@ -41,12 +41,12 @@ function ProductService ($http, $q, API, authenticationService, _) {
 		});
 	};
 
-	service.getSupplierProduct = function(id) {
+	service.getSupplierProduct = function(id, expand) {
 		var supplier_id = authenticationService.getSessionInfo().id;
 
 		return $http({
 			method: 'GET',
-			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id
+			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id + (expand ? '?expand[]=product' : '')
 		});
 	};
 
