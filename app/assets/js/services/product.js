@@ -1,4 +1,4 @@
-function ProductService ($http, $q, API, browserStorage, _) {
+function ProductService ($http, $q, API, authenticationService, _) {
 	var service = this;
 
 	function enrichProductData (data) {
@@ -26,11 +26,11 @@ function ProductService ($http, $q, API, browserStorage, _) {
 	}
 
 	service.getProducts = function() {
-		var id = browserStorage.getItem('supplier_id');
+		var id = authenticationService.getSessionInfo().id;
 
 		return $http({
 			method: 'GET',
-			url: API.suppliers + '/' + id + '/linked_products?expand[]=product',
+			url: API.suppliers + '/' + id + '/linked_products?expand[]=product'
 		});
 	};
 
@@ -41,17 +41,17 @@ function ProductService ($http, $q, API, browserStorage, _) {
 		});
 	};
 
-	service.getSupplierProduct = function(id) {
-		var supplier_id = browserStorage.getItem('supplier_id');
+	service.getSupplierProduct = function(id, expand) {
+		var supplier_id = authenticationService.getSessionInfo().id;
 
 		return $http({
 			method: 'GET',
-			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id
+			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id + (expand ? '?expand[]=product' : '')
 		});
 	};
 
 	service.addProduct = function(productData, supplierProduct) {
-		var supplier_id = browserStorage.getItem('supplier_id');
+		var supplier_id = authenticationService.getSessionInfo().id;
 		var product_id;
 
 		return $http({
@@ -82,7 +82,7 @@ function ProductService ($http, $q, API, browserStorage, _) {
 	};
 
 	service.updateSupplierProduct = function(supplierProduct) {
-		var supplier_id = browserStorage.getItem('supplier_id');
+		var supplier_id = authenticationService.getSessionInfo().id;
 		var id = supplierProduct.id;
 		delete supplierProduct.id;
 		delete supplierProduct._metadata;

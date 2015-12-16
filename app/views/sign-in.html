@@ -9,10 +9,10 @@
 			<form class="layout-column layout-align-start-stretch" name="vm.signInForm" ng-submit="vm.signIn()">
 				<ul class="unstyled-list">
 					<li class="form-row">
-						<input class="md-whiteframe md-whiteframe-z1" type="email" ng-model="vm.email" placeholder="email address" required />
+						<input class="md-whiteframe md-whiteframe-z1" type="email" ng-model="vm.credentials.email" placeholder="email address" required />
 					</li>
 					<li class="form-row">
-						<input class="md-whiteframe md-whiteframe-z1" type="password" ng-model="vm.password" placeholder="and password" focus-placeholder="(it's at least 6 characters)"  minlength="6" required />
+						<input class="md-whiteframe md-whiteframe-z1" type="password" ng-model="vm.credentials.password" placeholder="and password" focus-placeholder="(it's at least 6 characters)"  minlength="6" required />
 					</li>
 					<li class="form-row form-row--with-cta">
 						<md-button type="submit" class="md-primary md-raised">Continue</md-button>

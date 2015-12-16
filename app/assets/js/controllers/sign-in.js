@@ -1,19 +1,12 @@
-function SignInController ($state, $http, $q, API, browserStorage, _) {
+function SignInController ($state, authenticationService) {
 	var vm = this;
 
+	vm.credentials = {};
+
 	vm.signIn = function() {
-		return $http({
-			method: 'GET',
-			url: API.suppliers
-		})
-			.then(function(suppliers) {
-				var supplier = _.find(suppliers, {email: vm.email});
-
-				if (!supplier) {
-					return $q.reject();
-				}
-
-				browserStorage.setItem('supplier_id', supplier.id);
+		return authenticationService
+			.signIn(vm.credentials)
+			.then(function() {
 				return $state.go('dashboard');
 			})
 	};

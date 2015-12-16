@@ -80,10 +80,9 @@ function ProductCategoryController ($state, productService, categoriesService, p
 ProductCategoryController.resolve = /* @ngInject */ {
 	productData: function($stateParams, productService) {
 		return productService
-			.getSupplierProduct($stateParams.id)
-			.then(function(supplierProduct) {
-				return productService
-					.getProduct(supplierProduct.product_id);
+			.getSupplierProduct($stateParams.id, true)
+			.then(function(linkProduct) {
+				return linkProduct.product;
 			});
 	},
 	suggestedCategory: function(categoriesService, productData) {

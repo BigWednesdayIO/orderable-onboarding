@@ -1,4 +1,4 @@
-<md-button class="md-icon-button product-thumb__edit" ng-href="products/{{ ::vm.product.id }}/" aria-label="Edit {{ ::vm.product.name }}" ng-show="vm.editable">
+<md-button class="md-icon-button product-thumb__edit" ng-href="products/{{ ::vm.linkId }}/" aria-label="Edit {{ ::vm.product.name }}" ng-if="::vm.linkId">
 	<md-icon md-svg-src="assets/images/icons/edit.svg"></md-icon>
 </md-button>
 <a class="product-thumb__link" href="#">

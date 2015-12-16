@@ -88,6 +88,9 @@ function CategoriesService ($http, $q, API, _) {
 			method: 'POST',
 			data: {
 				query: product.name
+			},
+			headers: {
+				Authorization: 'Bearer NG0TuV~u2ni#BP|'
 			}
 		})
 			.then(function(response) {

@@ -7,7 +7,7 @@ function SupplierNameController ($state, supplierService) {
 			.then(function() {
 				$state.go('location');
 			})
-	}
+	};
 }
 
 angular
