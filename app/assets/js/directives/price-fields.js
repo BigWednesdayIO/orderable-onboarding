@@ -3,7 +3,6 @@ function PriceFieldsDirective () {
 		restrict: 'EA',
 		scope: {
 			exVat: '=',
-			incVat: '=',
 			allowFree: '=',
 			required: '='
 		},
@@ -52,6 +51,11 @@ function PriceFieldsDirective () {
 					return;
 				}
 				vm[value] = toPounds(toPence(vm[value]));
+			};
+
+			if (vm.exVat) {
+				vm.format('exVat');
+				vm.exVatUpdated();
 			}
 		},
 		controllerAs: 'vm',

@@ -4,23 +4,25 @@ function ProductController ($state, productService, productCategory) {
 	vm.firstTime = $state.params.first;
 
 	vm.product = {
-		category: $state.params.category
+		category: $state.params.category || ' '
 	};
 
-	vm.productCategory = productCategory
+	vm.supplierProduct = {};
+
+	vm.productCategory = productCategory;
 
 	vm.saveProduct = function() {
 		return productService
-			.saveProduct(vm.product)
-			.then(function(product) {
+			.addProduct(vm.product, vm.supplierProduct)
+			.then(function(supplierProduct) {
 				if (!$state.params.category) {
 					$state.go('product-category', {
-						id: product.id
+						id: supplierProduct.id
 					});
 					return;
 				}
 				$state.go('review-product', {
-					id: product.id
+					id: supplierProduct.id
 				});
 			});
 	}
