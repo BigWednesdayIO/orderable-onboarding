@@ -9,12 +9,12 @@ function DeliveryLocationController ($rootScope, $state, locationService, suppli
 	};
 
 	vm.saveLocation = function() {
-		if (vm.searchText.length) {
-			vm.location.push(vm.searchText);
+		if ((vm.searchText || '').length) {
+			return;
 		}
 
 		return supplierService
-			.updateInfo('location', vm.location)
+			.updateDeliveryInfo(vm.location)
 			.then(function() {
 				return $state.go('dashboard', {
 					first: true

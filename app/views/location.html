@@ -11,15 +11,20 @@
 					<md-chips
 						class="md-whiteframe md-whiteframe-z1"
 						ng-model="vm.location"
+						md-require-match="true"
 						md-autocomplete-snap>
 						<md-autocomplete
 							md-selected-item="vm.selectedItem"
 							md-search-text="vm.searchText"
 							md-items="item in vm.locationSearch(vm.searchText)"
-							placeholder="{{ vm.location.length ? 'Anywhere else?' : 'Eg. London or EC2' }}"
+							md-item-text="item.location"
+							placeholder="{{ vm.location.length ? 'Anywhere else?' : 'Eg. London' }}"
 							secondary-placeholder="">
-							<span md-highlight-text="vm.searchText">{{item}}</span>
+							<md-item-template>
+								<span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{ item.location }}</span>
+							</md-item-template>
 						</md-autocomplete>
+						<md-chip-template>{{ $chip.location || $chip }}</md-chip-template>
 					</md-chips>
 					<p class="weak">You can modify or refine this at any time from your account</p>
 				</li>
