@@ -30,7 +30,7 @@ function ProductService ($http, $q, API, authenticationService, _) {
 
 		return $http({
 			method: 'GET',
-			url: API.suppliers + '/' + id + '/linked_products' // ?expand[]=product
+			url: API.suppliers + '/' + id + '/linked_products?expand[]=product'
 		});
 	};
 
