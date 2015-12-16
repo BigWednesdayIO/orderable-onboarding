@@ -9,3 +9,11 @@
 		font-weight: 400;
 	}
 }
+
+.price-fields {
+	&__labels {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+}

@@ -43,6 +43,10 @@ input {
 			box-shadow: $md-whiteframe-z2;
 		}
 	}
+
+	&[disabled] {
+		color: rgba(0, 0, 0, .54);
+	}
 }
 
 textarea {
@@ -74,5 +78,9 @@ textarea {
 			-webkit-appearance: none;
 			margin: 0;
 		}
+	}
+
+	&--disabled {
+		color: rgba(0, 0, 0, .54);
 	}
 }

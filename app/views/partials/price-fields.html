@@ -1,11 +1,23 @@
-<div class="layout-row layout-align-center-center">
-	<div class="price-input flex md-whiteframe md-whiteframe-z1">
-		<span class="price-input__symbol">&pound;</span>
-		<input class="price-input__field no-focus" type="tel" ng-model="vm.exVat" ng-change="vm.exVatUpdated()" ng-blur="vm.format('exVat')" placeholder="exVAT" ng-required="vm.required" />
+<div class="price-fields">
+	<div class="price-fields__labels">
+		<span class="label">
+			<span ng-bind="::vm.label"></span>
+			<span ng-hide="vm.required" class="weak">(optional)</span>
+		</span>
+		<label class="layout-row layout-align-start-center">
+			<span>VAT Exempt</span>
+			<md-switch ng-model="vm.vatExempt" class="md-primary" style="margin: 8px -8px 8px 15px" aria-label="VAT Exempt"></md-switch>
+		</label>
 	</div>
-	<span style="text-align: center; padding: 0 1em;">or</span>
-	<div class="price-input flex md-whiteframe md-whiteframe-z1">
-		<span class="price-input__symbol">&pound;</span>
-		<input class="price-input__field no-focus" type="tel" ng-model="vm.incVat" ng-change="vm.incVatUpdated()" ng-blur="vm.format('incVat')" placeholder="incVAT" ng-required="vm.required" />
+	<div class="layout-row layout-align-center-center">
+		<div class="price-input flex md-whiteframe md-whiteframe-z1">
+			<span class="price-input__symbol">&pound;</span>
+			<input class="price-input__field no-focus" type="tel" ng-model="vm.exVat" ng-change="vm.exVatUpdated()" ng-blur="vm.format('exVat')" placeholder="exVAT" ng-required="vm.required" aria-label="{{ ::vm.label }} excluding VAT" />
+		</div>
+		<span style="text-align: center; padding: 0 1em;">or</span>
+		<div class="price-input flex md-whiteframe md-whiteframe-z1" ng-class="{'price-input--disabled': vm.vatExempt}">
+			<span class="price-input__symbol">&pound;</span>
+			<input class="price-input__field no-focus" type="tel" ng-model="vm.incVat" ng-change="vm.incVatUpdated()" ng-blur="vm.format('incVat')" placeholder="incVAT" ng-required="vm.required" ng-disabled="vm.vatExempt" aria-label="{{ ::vm.label }} including VAT" />
+		</div>
 	</div>
 </div>
