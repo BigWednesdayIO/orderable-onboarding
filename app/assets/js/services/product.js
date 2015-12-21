@@ -1,5 +1,14 @@
-function ProductService ($http, $q, API, authenticationService, _) {
+function ProductService ($http, $q, $mdToast, API, authenticationService, _) {
 	var service = this;
+
+	function notifyError (error) {
+		$mdToast.show(
+			$mdToast.simple()
+				.content(error.message)
+				.hideDelay(3000)
+		);
+		return $q.reject(error);
+	}
 
 	function enrichProductData (data) {
 		data.brand = 'Other';
@@ -31,14 +40,16 @@ function ProductService ($http, $q, API, authenticationService, _) {
 		return $http({
 			method: 'GET',
 			url: API.suppliers + '/' + id + '/linked_products?expand[]=product'
-		});
+		})
+			.catch(notifyError);
 	};
 
 	service.getProduct = function(id) {
 		return $http({
 			method: 'GET',
 			url: API.products + '/' + id
-		});
+		})
+			.catch(notifyError);
 	};
 
 	service.getSupplierProduct = function(id, expand) {
@@ -47,7 +58,8 @@ function ProductService ($http, $q, API, authenticationService, _) {
 		return $http({
 			method: 'GET',
 			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id + (expand ? '?expand[]=product' : '')
-		});
+		})
+			.catch(notifyError);
 	};
 
 	service.addProduct = function(productData, supplierProduct) {
@@ -66,7 +78,8 @@ function ProductService ($http, $q, API, authenticationService, _) {
 					url: API.suppliers + '/' + supplier_id + '/linked_products',
 					data: formatSupplierProduct(supplierProduct)
 				});
-			});
+			})
+			.catch(notifyError);
 	};
 
 	service.updateProduct = function(product) {
@@ -78,7 +91,8 @@ function ProductService ($http, $q, API, authenticationService, _) {
 			method: 'PUT',
 			url: API.products + '/' + product_id,
 			data: product
-		});
+		})
+			.catch(notifyError);
 	};
 
 	service.updateSupplierProduct = function(supplierProduct) {
@@ -91,7 +105,8 @@ function ProductService ($http, $q, API, authenticationService, _) {
 			method: 'PUT',
 			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id,
 			data: formatSupplierProduct(supplierProduct)
-		});
+		})
+			.catch(notifyError);
 	};
 }
 

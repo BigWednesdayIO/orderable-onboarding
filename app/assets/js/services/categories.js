@@ -1,5 +1,14 @@
-function CategoriesService ($http, $q, API, _) {
+function CategoriesService ($http, $q, $mdToast, API, _) {
 	var service = this;
+
+	function notifyError (error) {
+		$mdToast.show(
+			$mdToast.simple()
+				.content(error.message)
+				.hideDelay(3000)
+		);
+		return $q.reject(error);
+	}
 
 	function getCategories () {
 		return $http({
@@ -7,6 +16,7 @@ function CategoriesService ($http, $q, API, _) {
 			method: 'GET',
 			cache: true
 		})
+			.catch(notifyError);
 	}
 
 	function getIdsFromChain (idChain) {
@@ -101,7 +111,8 @@ function CategoriesService ($http, $q, API, _) {
 				};
 
 				return categories.values[0].value;
-			});
+			})
+			.catch(notifyError);
 	};
 }
 

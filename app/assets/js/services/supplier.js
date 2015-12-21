@@ -1,5 +1,14 @@
-function SupplierService ($http, $q, API, authenticationService, browserStorage, _) {
+function SupplierService ($http, $q, $mdToast, API, authenticationService, browserStorage, _) {
 	var service = this;
+
+	function notifyError (error) {
+		$mdToast.show(
+			$mdToast.simple()
+				.content(error.message)
+				.hideDelay(3000)
+		);
+		return $q.reject(error);
+	}
 
 	function getSupplierId () {
 		var deferred = $q.defer();
@@ -28,7 +37,8 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 						email: details.email,
 						password: details.password
 					});
-			});
+			})
+			.catch(notifyError);
 	};
 
 	service.getInfo = function() {
@@ -39,6 +49,7 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 					url: API.suppliers + '/' + id
 				});
 			})
+			.catch(notifyError);
 	};
 
 	service.updateInfo = function(key, value) {
@@ -66,7 +77,8 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 					method: 'PUT',
 					url: API.suppliers + '/' + id,
 					data: info
-				});
+				})
+				.catch(notifyError);
 			});
 	};
 
@@ -81,7 +93,8 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 			.then(function(depots) {
 				// Working with only one depot for now
 				return depots[0];
-			});
+			})
+			.catch(notifyError);
 	};
 
 	service.updateDeliveryInfo = function(info) {
@@ -140,7 +153,8 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 					url: depotsUrl + '/' + deliveryInfo.id,
 					data: newDeliveryInfo
 				});
-			});
+			})
+			.catch(notifyError);
 	};
 
 	service.getPaymentMethods = function() {
@@ -153,7 +167,8 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 		return $http({
 			method: 'GET',
 			url: 'mocks/payment-methods.json'
-		});
+		})
+			.catch(notifyError);
 	};
 
 	service.getPaymentMethod = function(id) {

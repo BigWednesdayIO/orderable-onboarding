@@ -1,4 +1,4 @@
-function AuthenticationService ($http, $q, API, browserStorage) {
+function AuthenticationService ($http, $q, $mdToast, API, browserStorage) {
 	var service = this;
 	var session = {};
 
@@ -28,7 +28,15 @@ function AuthenticationService ($http, $q, API, browserStorage) {
 			url: API.suppliers + '/authenticate',
 			data: credentials
 		})
-			.then(storeSessionInfo);
+			.then(storeSessionInfo)
+			.catch(function(error) {
+				$mdToast.show(
+					$mdToast.simple()
+						.content(error.message)
+						.hideDelay(3000)
+				);
+				return $q.reject(error);
+			});
 	};
 
 	service.signOut = function() {

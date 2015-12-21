@@ -1,4 +1,4 @@
-function LocationService ($http, API) {
+function LocationService ($http, $q, $mdToast, API) {
 	var service = this;
 
 	service.search = function(query) {
@@ -14,6 +14,14 @@ function LocationService ($http, API) {
 		})
 			.then(function(response) {
 				return response.hits;
+			})
+			.catch(function notifyError (error) {
+				$mdToast.show(
+					$mdToast.simple()
+						.content(error.message)
+						.hideDelay(3000)
+				);
+				return $q.reject(error);
 			});
 	};
 }
