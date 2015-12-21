@@ -16,7 +16,7 @@
 				<md-switch class="md-primary" style="margin: 3px;" ng-model="vm.paymentMethod.enabled" ng-change="vm.toggleEnabled()" aria-label="Accept {{ ::vm.paymentMethod.name }}"></md-switch>
 			</div>
 
-			<div ng-switch="vm.paymentMethod.id">
+			<!-- <div ng-switch="vm.paymentMethod.id">
 				<div ng-switch-when="account">
 					<p>I expect new retailers to have passed a credit check:</p>
 					<md-select ng-model="vm.paymentMethod.options.credit" ng-change="vm.saveChanges()" aria-label="Credit check preference">
@@ -29,7 +29,7 @@
 						<input ng-model="vm.paymentMethod.options.stripe_username" ng-change="vm.saveChanges()" />
 					</md-input-container>
 				</div>
-			</div>
+			</div> -->
 		</md-content>
 	</div>
 </main>
