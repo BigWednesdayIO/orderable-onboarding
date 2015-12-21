@@ -95,8 +95,13 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 			delivery_places: []
 		};
 
+		function makePlural (type) {
+			type = type.replace(/y$/, 'ie');
+			return type + 's';
+		}
+
 		info.forEach(function(area) {
-			newDeliveryInfo['delivery_' + area.type + 's'].push(area.location);
+			newDeliveryInfo['delivery_' + makePlural(area.type)].push(area.location);
 		});
 
 		return $q.all([
