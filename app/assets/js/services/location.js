@@ -7,6 +7,9 @@ function LocationService ($http, API) {
 			url: API.location_search,
 			data: {
 				query: query
+			},
+			headers: {
+				Authorization: 'Bearer NG0TuV~u2ni#BP|'
 			}
 		})
 			.then(function(response) {
