@@ -51,7 +51,7 @@ function SetupStepsService ($sce, $q, productService, supplierService) {
 				} else {
 					pending.push({
 						name: 'Set up a payment method',
-						description: 'Orderable uses <a href="https://stripe.com/gb" target="_blank">Stripe</a> to securely handle payments for you. To get paid you\'ll need to set up an account',
+						description: 'To receive orders, you\'ll need to set up which payment methods you accept',
 						action: 'account/',
 						icon: 'payment'
 					});

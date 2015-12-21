@@ -1,11 +1,5 @@
 [
 	{
-		"id": "card",
-		"name": "Card Payments",
-		"icon": "payment",
-		"enabled": false,
-		"info": {}
-	}, {
 		"id": "account",
 		"name": "Account payments",
 		"icon": "account-balance-wallet",
