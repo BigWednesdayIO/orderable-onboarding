@@ -71,8 +71,14 @@ function ProductService ($http, $q, API, authenticationService, _) {
 
 	service.updateProduct = function(product) {
 		var product_id = product.id;
+		var i;
 		delete product.id;
 		delete product._metadata;
+
+		i = product.category_id.lastIndexOf('.');
+		if (i > -1) {
+			product.category_id = product.category_id.substring(i + 1);
+		}
 
 		return $http({
 			method: 'PUT',
