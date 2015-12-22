@@ -15,7 +15,7 @@ function ProductCategoryController ($state, productService, categoriesService, p
 
 	vm.product = productData;
 
-	vm.product.category = suggestedCategory || null;
+	vm.product.category_id = suggestedCategory || null;
 
 	vm.editing = !suggestedCategory;
 
@@ -29,8 +29,8 @@ function ProductCategoryController ($state, productService, categoriesService, p
 
 	vm.drillTo = function(id) {
 		vm.currentLevel = id;
-		if (vm.product.category) {
-			vm.product.category = null;
+		if (vm.product.category_id) {
+			vm.product.category_id = null;
 		}
 		categoriesService
 			.getChildCategories(vm.currentLevel)
@@ -49,7 +49,7 @@ function ProductCategoryController ($state, productService, categoriesService, p
 		if (category.hasChildren) {
 			return vm.drillTo(category.hierachy);
 		}
-		vm.product.category = category.hierachy;
+		vm.product.category_id = category.hierachy;
 		updateBreadcrumbs(category.hierachy);
 		vm.editing = false;
 	};

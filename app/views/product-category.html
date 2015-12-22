@@ -10,18 +10,18 @@
 				<li class="form-row">
 					<md-content class="md-whiteframe-z1" style="padding: 12px;">
 						<h2 class="md-subhead">
-							<span ng-show="vm.product.category === vm.suggestedCategory">Here's where we think it should go</span>
-							<span ng-show="vm.product.category !== vm.suggestedCategory && vm.currentLevel !== ''">This is where your item will be listed</span>
+							<span ng-show="vm.product.category_id === vm.suggestedCategory">Here's where we think it should go</span>
+							<span ng-show="vm.product.category_id !== vm.suggestedCategory && vm.currentLevel !== ''">This is where your item will be listed</span>
 							<span ng-show="vm.currentLevel === ''">Chose a category from the list below to get started</span>
 						</h2>
 
 						<div class="breadcrumbs" ng-show="vm.categories.length">
 							<span ng-repeat="crumb in vm.categories track by crumb.id">
-								<span ng-if="crumb.id !== vm.product.category">
+								<span ng-if="crumb.id !== vm.product.category_id">
 									<a class="breadcrumbs__crumb" ng-click="vm.drillTo(crumb.id)" ng-bind="::crumb.name"></a>
 									<span ng-if="!$last" class="breadcrumbs__spacer">›</span>
 								</span>
-								<span ng-if="crumb.id === vm.product.category" style="display: inline-block">
+								<span ng-if="crumb.id === vm.product.category_id" style="display: inline-block">
 									<span class="breadcrumbs__crumb--final" ng-bind="::crumb.name"></span>
 								</span>
 							</span>
@@ -56,7 +56,7 @@
 									<div class="md-list-item-inner layout-row">
 										<span class="flex" ng-bind="::category.name"></span>
 										<md-icon md-svg-src="assets/images/icons/chevron-right.svg" ng-if="::category.hasChildren"></md-icon>
-										<md-icon class="md-primary" md-svg-src="assets/images/icons/done.svg" ng-if="::!category.hasChildren" ng-show="vm.product.category === category.hierachy"></md-icon>
+										<md-icon class="md-primary" md-svg-src="assets/images/icons/done.svg" ng-if="::!category.hasChildren" ng-show="vm.product.category_id === category.hierachy"></md-icon>
 									</div>
 								</md-button>
 								<md-divider ng-if="::!$last"></md-divider>
@@ -66,7 +66,7 @@
 				</li>
 
 				<li class="form-row form-row--with-cta">
-					<md-button type="submit" class="md-primary md-raised" ng-disabled="!vm.product.category">Looks good, save it</md-button>
+					<md-button type="submit" class="md-primary md-raised" ng-disabled="!vm.product.category_id">Looks good, save it</md-button>
 				</li>
 			</ol>
 		</form>

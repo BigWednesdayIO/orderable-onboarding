@@ -4,7 +4,7 @@ function ProductController ($state, productService, productCategory) {
 	vm.firstTime = $state.params.first;
 
 	vm.product = {
-		category: $state.params.category || ' '
+		category_id: $state.params.category || ' '
 	};
 
 	vm.supplierProduct = {};
