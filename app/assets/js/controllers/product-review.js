@@ -19,7 +19,7 @@ ProductReviewController.resolve = /* @ngInject */ {
 	},
 	productCategory: function(productData, categoriesService) {
 		return categoriesService
-			.getNameForCategory(productData.category);
+			.getNameForCategory(productData.category_id);
 	}
 };
 
