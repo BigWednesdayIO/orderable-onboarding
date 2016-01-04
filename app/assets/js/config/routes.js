@@ -75,7 +75,15 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 		// Orders
 		.state('orders', {
 			url: '/orders/',
+			controller: 'OrdersController as vm',
+			resolve: OrdersController.resolve,
 			templateUrl: 'views/orders.html'
+		})
+		.state('order', {
+			url: '/orders/:id/',
+			controller: 'OrderDetailsController as vm',
+			resolve: OrderDetailsController.resolve,
+			templateUrl: 'views/order-details.html'
 		})
 
 		// Delivery Location
