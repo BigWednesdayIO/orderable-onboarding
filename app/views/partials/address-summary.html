@@ -1,0 +1,9 @@
+<div class="address-summary">
+	<div class="address-summary__line" ng-repeat="line in ::vm.addressLines" ng-if="::vm.address[line]">
+		<div ng-switch="::line">
+			<strong ng-switch-when="company" ng-bind="::vm.address[line]"></strong>
+			<a ng-switch-when="email" ng-href="mailto:{{ ::vm.address[line] }}" ng-bind="::vm.address[line]"></a>
+			<span ng-switch-default ng-bind="::vm.address[line]"></span>
+		</div>
+	</div>
+</div>
