@@ -1,0 +1,58 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">Price tier <span ng-bind="::vm.id"></span></h1>
+		</div>
+	</div>
+</header>
+<main>
+	<div class="content-wrap">
+		<form name="vm.priceTierForm" ng-submit="vm.savePriceAdjustments($event)">
+			<ul class="unstyled-list">
+				<li class="form-row">
+					<div class="md-whiteframe md-whiteframe-z1">
+						<table>
+							<thead>
+								<tr>
+									<td>[Search]</td>
+									<th scope="col">Tier price</th>
+									<th scope="col">Adjustment</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="supplierProduct in ::vm.supplierProducts">
+									<th scope="row">
+										<span ng-bind="::supplierProduct.product.id"></span>
+										<span ng-bind="::supplierProduct.product.name"></span>
+									</th>
+									<td>
+										<span ng-bind="supplierProduct.adjusted_price | currency: '£'"></span>
+										<del class="weak" ng-show="supplierProduct.adjusted_price !== supplierProduct.price">
+											(<span ng-bind="::supplierProduct.price | currency: '£'"></span>)
+										</del>
+									</td>
+									<td>
+										<div class="layout-row">
+											<md-select ng-model="vm.priceAdjustments[supplierProduct.id].type" ng-change="vm.calculateAdjustedPrice($index)" aria-label="{{ ::supplierProduct.product.name }} adjustment type">
+												<md-option ng-repeat="type in ::vm.adjustmentTypes" ng-value="::type.value">{{ ::type.display_name }}</md-option>
+											</md-select>
+											<md-input-container>
+												<input type="number" min="0" step="0.01" ng-model="vm.priceAdjustments[supplierProduct.id].amount" ng-change="vm.calculateAdjustedPrice($index)" aria-label="{{ ::supplierProduct.product.name }} adjustment amount" />
+											</md-input-container>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</li>
+				<li class="form-row form-row--with-cta">
+					<md-button type="submit" class="md-primary md-raised md-button md-ink-ripple">Save</md-button>
+				</li>
+			</ul>
+		</form>
+	</div>
+</main>
