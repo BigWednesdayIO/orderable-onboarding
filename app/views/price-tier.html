@@ -14,35 +14,33 @@
 			<ul class="unstyled-list">
 				<li class="form-row">
 					<div class="md-whiteframe md-whiteframe-z1">
-						<table>
+						<table class="material-table price-tier-table">
 							<thead>
 								<tr>
-									<td>[Search]</td>
-									<th scope="col">Tier price</th>
-									<th scope="col">Adjustment</th>
+									<th><input type="search" ng-model="vm.searchText" placeholder="Search for a product..." style="width: 100%;" /></th>
+									<th scope="col" class="numeric hide-sm">Tier price</th>
+									<th scope="col" colspan="2" class="numeric hide-sm">Adjustment</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="supplierProduct in ::vm.supplierProducts">
-									<th scope="row">
-										<span ng-bind="::supplierProduct.product.id"></span>
+								<tr ng-repeat="supplierProduct in vm.supplierProducts | filter: {$: vm.searchText}">
+									<td style="width: 100%">
 										<span ng-bind="::supplierProduct.product.name"></span>
-									</th>
-									<td>
+										<span class="weak" ng-bind="::supplierProduct.product.id"></span>
+									</td>
+									<td class="numeric price-tier-table__price">
 										<span ng-bind="supplierProduct.adjusted_price | currency: '£'"></span>
 										<del class="weak" ng-show="supplierProduct.adjusted_price !== supplierProduct.price">
 											(<span ng-bind="::supplierProduct.price | currency: '£'"></span>)
 										</del>
 									</td>
-									<td>
-										<div class="layout-row">
-											<md-select ng-model="vm.priceAdjustments[supplierProduct.id].type" ng-change="vm.calculateAdjustedPrice($index)" aria-label="{{ ::supplierProduct.product.name }} adjustment type">
-												<md-option ng-repeat="type in ::vm.adjustmentTypes" ng-value="::type.value">{{ ::type.display_name }}</md-option>
-											</md-select>
-											<md-input-container>
-												<input type="number" min="0" step="0.01" ng-model="vm.priceAdjustments[supplierProduct.id].amount" ng-change="vm.calculateAdjustedPrice($index)" aria-label="{{ ::supplierProduct.product.name }} adjustment amount" />
-											</md-input-container>
-										</div>
+									<td class="merge-start">
+										<md-select ng-model="vm.priceAdjustments[supplierProduct.id].type" ng-change="vm.calculateAdjustedPrice($index)" aria-label="{{ ::supplierProduct.product.name }} adjustment type">
+											<md-option ng-repeat="type in ::vm.adjustmentTypes" ng-value="::type.value">{{ ::type.display_name }}</md-option>
+										</md-select>
+									</td>
+									<td class="numeric merge-end">
+										<input type="number" min="0" step="0.01" ng-model="vm.priceAdjustments[supplierProduct.id].amount" ng-change="vm.calculateAdjustedPrice($index)" placeholder="amount" style="width: 42px;" aria-label="{{ ::supplierProduct.product.name }} adjustment amount" />
 									</td>
 								</tr>
 							</tbody>

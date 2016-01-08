@@ -5,10 +5,10 @@ angular
 			display_name: '£',
 			value: 'value_override'
 		}, {
-			display_name: '-£',
+			display_name: '−£',
 			value: 'value_adjustment'
 		}, {
-			display_name: '-%',
+			display_name: '−%',
 			value: 'percentage_adjustment'
 		}
 	]);
