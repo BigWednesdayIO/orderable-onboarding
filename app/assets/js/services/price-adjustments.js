@@ -1,4 +1,4 @@
-function PriceAdjustmentsService ($filter, $http, $q, API, authenticationService, priceAdjustmentTypes, _) {
+function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, authenticationService, priceAdjustmentTypes, _) {
 	var service = this;
 
 	function toPence (value) {
@@ -130,6 +130,36 @@ function PriceAdjustmentsService ($filter, $http, $q, API, authenticationService
 		});
 
 		return $q.all(promises);
+	};
+
+	service.createNewPriceTier = function($event) {
+		return $mdDialog
+			.show({
+				targetEvent: $event,
+				templateUrl: 'views/partials/new-price-tier.html',
+				controller: 'NewPriceTierController',
+				controllerAs: 'vm',
+				clickOutsideToClose: true
+			})
+			.then(function(name) {
+				return $state.go('edit-price-tier', {
+					id: name
+				});
+			});
+	};
+
+	service.updateCustomerMembership = function(membership) {
+		var data = angular.copy(membership);
+
+		delete data._metadata;
+		delete data.customer_id;
+		delete data.id;
+
+		$http({
+			method: 'PUT',
+			url: API.customers + '/' + membership.customer_id + '/memberships/' + membership.id,
+			data: data
+		});
 	};
 }
 

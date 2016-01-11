@@ -10,8 +10,48 @@
 </header>
 <main>
 	<div class="content-wrap">
-		<div class="md-whiteframe md-whiteframe-z1">
-			
-		</div>
+		<form name="vm.priceTierForm" ng-submit="vm.updateCustomerMemberships($event)">
+			<ul class="unstyled-list">
+				<li class="form-row">
+					<div class="md-whiteframe md-whiteframe-z1">
+						<table class="material-table">
+							<thead>
+								<tr>
+									<th>[Search]</th>
+									<th scope="col" style="text-align: center;">Default</th>
+									<th scope="col" style="text-align: center;" ng-repeat="priceTier in ::vm.priceTiers" ng-bind="::priceTier"></th>
+									<th>
+										<md-button type="button" class="md-icon-button" ng-click="vm.newPriceTier($event)" aria-label="add new price tier">
+											<md-icon md-svg-src="assets/images/icons/playlist-add.svg"></md-icon>
+										</md-button>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="member in ::vm.members track by member.id">
+									<td ng-bind="::member.membership_number" style="width: 100%;"></td>
+									<td style="text-align: center;">
+										<md-radio-group ng-model="member.price_adjustment_group_id">
+											<md-radio-button class="md-primary table-lable" ng-value="" aria-label="Default"></md-radio-button>
+										</md-radio-group>
+									</td>
+									<td style="text-align: center;" ng-repeat="priceTier in ::vm.priceTiers">
+										<div>
+											<md-radio-group ng-model="member.price_adjustment_group_id">
+												<md-radio-button class="md-primary table-lable" ng-value="priceTier" aria-label="{{ ::priceTier }}"></md-radio-button>
+											</md-radio-group>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</li>
+				<li class="form-row form-row--with-cta">
+					<md-button type="submit" class="md-primary md-raised md-button md-ink-ripple">Save</md-button>
+				</li>
+			</ul>
+		</form>
 	</div>
 </main>

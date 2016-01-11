@@ -76,6 +76,7 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 		.state('price-tiers', {
 			url: '/price-tiers/',
 			controller: 'PriceTiersController as vm',
+			resolve: PriceTiersController.resolve,
 			templateUrl: 'views/price-tiers.html'
 		})
 		.state('edit-price-tier', {

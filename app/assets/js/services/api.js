@@ -16,6 +16,8 @@ function APIService (baseAPI) {
 	this.products = baseAPI + 'products';
 
 	this.orders = baseAPI + 'orders';
+
+	this.customers = baseAPI + 'customers';
 }
 
 angular

@@ -1,0 +1,13 @@
+<md-dialog>
+	<md-dialog-content class="md-dialog-content">
+		<h2 class="md-title">Create a new price tier</h2>
+		<md-input-container style="padding: 2px;">
+			<label>Tier name</label>
+			<input ng-model="vm.tierName" />
+		</md-input-container>
+	</md-dialog-content>
+	<div class="md-actions">
+		<md-button ng-click="vm.cancel()">Cancel</md-button>
+		<md-button ng-click="vm.create()" class="md-primary">Create</md-button>
+	</div>
+</md-dialog>

@@ -1,4 +1,6 @@
 .material-table {
+	text-align: left;
+
 	thead {
 		font-size: 12px;
 		font-weight: 400;
@@ -80,6 +82,10 @@
 	input {
 		padding: 0;
 		height: inherit;
+	}
+
+	md-radio-button[aria-label] .md-label {
+		display: none !important;
 	}
 }
 
