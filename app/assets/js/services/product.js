@@ -2,7 +2,6 @@ function ProductService ($http, $q, API, authenticationService, _) {
 	var service = this;
 
 	function enrichProductData (data) {
-		data.brand = 'Other';
 		data.product_type = 'test_product';
 		data.product_type_attributes = [
 			{

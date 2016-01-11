@@ -4,7 +4,7 @@ function PriceFieldsDirective () {
 		scope: {
 			exVat: '=',
 			allowFree: '=',
-			vatExempt: '=',
+			taxable: '=',
 			required: '=',
 			label: '@'
 		},
@@ -23,7 +23,7 @@ function PriceFieldsDirective () {
 		},
 		controller: function($scope) {
 			var vm = this;
-			var taxMultiplier = vm.vatExempt ? 1 : 1.2;
+			var taxMultiplier = vm.taxable ? 1.2 : 1;
 
 			function toPence (value) {
 				if (isNaN(+value)) {
@@ -57,9 +57,9 @@ function PriceFieldsDirective () {
 			};
 
 			$scope.$watch(function() {
-				return vm.vatExempt;
-			}, function(vatExempt) {
-				taxMultiplier = vatExempt ? 1 : 1.2;
+				return vm.taxable;
+			}, function(taxable) {
+				taxMultiplier = taxable ? 1.2 : 1;
 				// TODO check for a dirty value to use
 				if (vm.exVat) {
 					vm.exVatUpdated();
