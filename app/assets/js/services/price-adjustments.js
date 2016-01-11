@@ -112,12 +112,14 @@ function PriceAdjustmentsService ($filter, $http, $q, API, authenticationService
 		var promises = [];
 
 		_.forOwn(priceAdjustments, function(adjustment, productId) {
-			if (!adjustment.amount && adjustment.amount !== 0) {
+			if (!adjustment.amount) {
 				if (adjustment.id) {
 					promises.push(service.removeProductAdjustment(productId, adjustment));
 				}
 				return;
 			}
+
+			adjustment.amount = parseFloat(angular.copy(adjustment.amount).replace(/[£%]/, ''));
 
 			if (adjustment.id) {
 				promises.push(service.updateProductAdjustment(productId, adjustment));
