@@ -1,5 +1,6 @@
-function EditPriceTierController ($stateParams, priceAdjustmentsService, priceAdjustmentTypes, supplierProducts, priceAdjustments) {
+function EditPriceTierController ($stateParams, $filter, priceAdjustmentsService, priceAdjustmentTypes, supplierProducts, priceAdjustments) {
 	var vm = this;
+	var $currency = $filter('currency');
 
 	vm.id = $stateParams.id;
 
@@ -20,6 +21,21 @@ function EditPriceTierController ($stateParams, priceAdjustmentsService, priceAd
 			.calculateAdjustedPrice(product.price, adjustment);
 	};
 
+	vm.maskInput = function(id) {
+		vm.priceAdjustments[id].amount = priceAdjustmentsService
+			.maskAdjustment(vm.priceAdjustments[id]);
+	}
+
+	vm.adjustmentPlaceholder = function(supplierProduct) {
+		var placeholders = {
+			value_override: $currency(supplierProduct.price, '£'),
+			value_adjustment: $currency(0, '£'),
+			percentage_adjustment: '0%'
+		};
+
+		return placeholders[vm.priceAdjustments[supplierProduct.id].type];
+	}
+
 	vm.savePriceAdjustments = function() {
 		priceAdjustmentsService
 			.savePriceAdjustments(vm.priceAdjustments);
@@ -36,8 +52,14 @@ EditPriceTierController.resolve = /* @ngInject */ {
 			promises[linkedProduct.id] = priceAdjustmentsService
 				.getAdjustmentForProductById(linkedProduct.id, $stateParams.id)
 				.then(function(adjustment) {
-					return adjustment || priceAdjustmentsService
-						.bootstrapAdjustment($stateParams.id);
+					if (adjustment) {
+						adjustment.amount = priceAdjustmentsService
+							.maskAdjustment(adjustment);
+					} else {
+						adjustment = priceAdjustmentsService
+							.bootstrapAdjustment($stateParams.id);
+					}
+					return adjustment;
 				});
 
 			return promises;

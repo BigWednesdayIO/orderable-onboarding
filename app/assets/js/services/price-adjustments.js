@@ -1,4 +1,4 @@
-function PriceAdjustmentsService ($http, $q, API, authenticationService, priceAdjustmentTypes, _) {
+function PriceAdjustmentsService ($filter, $http, $q, API, authenticationService, priceAdjustmentTypes, _) {
 	var service = this;
 
 	function toPence (value) {
@@ -36,23 +36,39 @@ function PriceAdjustmentsService ($http, $q, API, authenticationService, priceAd
 		};
 	};
 
+	service.maskAdjustment = function(adjustment) {
+		if (typeof adjustment.amount === 'string') {
+			adjustment.amount = parseFloat(adjustment.amount.replace(/[^\d\.]/g, ''));
+		}
+		return adjustment.type === 'percentage_adjustment' ? $filter('number')(adjustment.amount) + '%' : $filter('currency')(adjustment.amount, '£');
+	};
+
 	service.calculateAdjustedPrice = function(basePrice, adjustment) {
+		var amount = angular.copy(adjustment.amount);
 		var adjustments = {
 			value_adjustment: function() {
-				return toPounds(toPence(basePrice) - toPence(adjustment.amount));
+				return toPounds(toPence(basePrice) - toPence(amount));
 			},
 			percentage_adjustment: function() {
-				return toPounds(toPence(basePrice) * ((100 - adjustment.amount) / 100));
+				return toPounds(toPence(basePrice) * ((100 - amount) / 100));
 			},
 			value_override: function() {
-				return adjustment.amount;
+				return amount;
 			},
 			default: function() {
 				return basePrice;
 			}
 		};
 
-		if (!adjustment.amount && adjustment.amount !== 0) {
+		if (!amount && amount !== 0) {
+			return adjustments.default();
+		}
+
+		if (typeof amount === 'string') {
+			amount = parseFloat(amount.replace(/[^\d\.]/g, ''));
+		}
+
+		if (isNaN(amount)) {
 			return adjustments.default();
 		}
 
