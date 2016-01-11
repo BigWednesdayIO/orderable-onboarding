@@ -8,7 +8,10 @@ function OrdersService ($http, $q, API, authenticationService, _) {
 			params: {
 				supplier_id: authenticationService.getSessionInfo().id
 			}
-		});
+		})
+			.then(function(orders) {
+				return _.sortByOrder(orders, '_metadata.created', 'desc');
+			});
 	};
 
 	service.getOrder = function(id) {

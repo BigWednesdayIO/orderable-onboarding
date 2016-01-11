@@ -3,6 +3,8 @@ function OrdersController ($state, orders) {
 
 	vm.orders = orders;
 
+	vm.hasOrders = Object.keys(orders).length;
+
 	vm.viewOrder = function(order) {
 		$state.go('order', {
 			id: order.id
@@ -11,9 +13,16 @@ function OrdersController ($state, orders) {
 }
 
 OrdersController.resolve = /* @ngInject */ {
-	orders: function(ordersService) {
+	orders: function($filter, ordersService) {
+		var $date = $filter('date');
+
 		return ordersService
-			.getOrders();
+			.getOrders()
+			.then(function(orders) {
+				return _.groupBy(orders, function(order) {
+					return $date(order._metadata.created, 'EEE, MMM d');
+				});
+			});
 	}
 };
 
