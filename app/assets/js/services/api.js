@@ -1,9 +1,8 @@
 function APIService (baseAPI) {
 	this.navigation = 'mocks/navigation.json';
 
-	this.products = baseAPI + 'indexes/crateful-products';
+	this.products = baseAPI + 'indexes/orderable-products';
 	this.search = this.products + '/query';
-	this.search_suggestions = baseAPI + 'indexes/crateful-suggestions/query'
 
 	this.location_search = baseAPI + 'indexes/orderable-delivery-locations/query';
 
