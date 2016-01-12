@@ -23,7 +23,7 @@
 						<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.name" placeholder="Product name" required />
 					</div>
 					<div class="form-row">
-						<price-fields label="Price" ex-vat="vm.supplierProduct.price" allow-free="true" vat-exempt="vm.vatExempt" required="true"></price-fields>
+						<price-fields label="Price" ex-vat="vm.supplierProduct.price" allow-free="true" taxable="vm.product.taxable" required="true"></price-fields>
 					</div>
 					<div class="form-row">
 						<a href="#" class="expandable hide-gt-sm" ng-hide="::vm.product.id" ng-click="vm.showMore = !vm.showMore" ng-class="{'is-open': vm.showMore}">
@@ -32,7 +32,7 @@
 						</a>
 						<div class="add-product__extra-fields" ng-show="vm.showMore || $mdMedia('gt-sm') || vm.product.id">
 							<div class="form-row">
-								<price-fields label="Was price" ex-vat="vm.supplierProduct.was_price" vat-exempt="vm.vatExempt" required="false"></price-fields>
+								<price-fields label="Was price" ex-vat="vm.supplierProduct.was_price" taxable="vm.product.taxable" required="false"></price-fields>
 							</div>
 							<div class="form-row">
 								<label class="label">SKU Code <span class="weak">(optional)</span></label>

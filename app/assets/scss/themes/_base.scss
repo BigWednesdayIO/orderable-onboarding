@@ -296,6 +296,10 @@ md-content > *:first-child {
 
 		@media (min-width: $bp-medium) {
 			margin-top: 0;
+
+			.price-fields__taxable {
+				display: none;
+			}
 		}
 	}
 }
