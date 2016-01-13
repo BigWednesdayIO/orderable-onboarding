@@ -42,7 +42,7 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 
 		// Product
 		.state('add-product', {
-			url: '/products/add/?first&category',
+			url: '/products/add/?first&category&taxable',
 			controller: 'ProductController as vm',
 			resolve: ProductController.resolve,
 			templateUrl: 'views/product.html'

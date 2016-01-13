@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="flex layout-column layout-align-center">
-			<md-button class="md-primary md-raised multi-line" ng-href="/products/add/?category={{ ::vm.product.category_id }}">Add another in <span ng-bind="::vm.productCategory"></span></md-button>
+			<md-button class="md-primary md-raised multi-line" ng-href="/products/add/?category={{ ::vm.product.category_id }}&taxable={{ ::vm.product.taxable }}">Add another in <span ng-bind="::vm.productCategory"></span></md-button>
 			<md-button class="md-raised" ng-href="/products/add/">Add something different</md-button>
 			<md-button ng-href="/dashboard/">I've finished adding for now</md-button>
 		</div>
