@@ -13,12 +13,16 @@ function ProductService ($http, $q, API, authenticationService, _) {
 	}
 
 	function formatSupplierProduct (data) {
+		data = angular.copy(data);
+
 		if (data.price) {
 			data.price = parseFloat(data.price);
 		}
 
 		if (data.was_price) {
 			data.was_price = parseFloat(data.was_price);
+		} else {
+			delete data.was_price;
 		}
 
 		return data;
