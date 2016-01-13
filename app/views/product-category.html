@@ -59,7 +59,15 @@
 										<md-icon class="md-primary" md-svg-src="assets/images/icons/done.svg" ng-if="::!category.hasChildren" ng-show="vm.product.category_id === category.hierachy"></md-icon>
 									</div>
 								</md-button>
-								<md-divider ng-if="::!$last"></md-divider>
+								<md-divider></md-divider>
+							</md-list-item>
+							<md-list-item ng-hide="vm.currentLevel === ''">
+								<md-button type="button" class="md-no-style" ng-click="vm.otherCategory()">
+									<div class="md-list-item-inner layout-row">
+										<span class="flex">Other <span ng-bind="vm.categories[vm.categories.length - 1].name"></span></span>
+										<md-icon class="md-primary" md-svg-src="assets/images/icons/done.svg" ng-show="vm.product.category_id === vm.currentLevel"></md-icon>
+									</div>
+								</md-button>
 							</md-list-item>
 						</md-list>
 					</md-content>
