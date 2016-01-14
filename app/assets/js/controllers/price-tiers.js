@@ -1,4 +1,4 @@
-function PriceTiersController (priceAdjustmentsService, members, priceTiers) {
+function PriceTiersController (membershipsService, priceAdjustmentsService, members, priceTiers) {
 	var vm = this;
 
 	vm.members = members;
@@ -9,25 +9,16 @@ function PriceTiersController (priceAdjustmentsService, members, priceTiers) {
 
 	vm.updateCustomerMemberships = function() {
 		vm.members.map(function(memberDetails) {
-			return priceAdjustmentsService
+			return membershipsService
 				.updateCustomerMembership(memberDetails);
 		});
 	};
 }
 
 PriceTiersController.resolve = /* @ngInject */ {
-	members: function() {
-		return [
-			{
-				_metadata: {
-					created: '2016-01-05T14:25:03.276Z'
-				},
-				membership_number: 'abcdef',
-				supplier_id: 'ciih98tyv00080igko0fv1et2',
-				customer_id: 'ciiipk89t00070iglel7os9dn',
-				id: 'cij1hmu5n00070lc3vik07oxq'
-			}
-		];
+	members: function(membershipsService) {
+		return membershipsService
+			.getMemberships();
 	},
 	priceTiers: function() {
 		return [

@@ -28,9 +28,9 @@ function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, au
 			});
 	};
 
-	service.bootstrapAdjustment = function(group_id) {
+	service.bootstrapAdjustment = function(groupId) {
 		return {
-			price_adjustment_group_id: group_id,
+			price_adjustment_group_id: groupId,
 			type: priceAdjustmentTypes[0].value,
 			start_date: new Date()
 		};
@@ -75,58 +75,55 @@ function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, au
 		return (adjustments[adjustment.type] || adjustments.default)();
 	};
 
-	service.createProductAdjustment = function(productId, adjustment) {
-		var supplierId = authenticationService.getSessionInfo().id;
-
-		return $http({
-			method: 'POST',
-			url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments',
-			data: adjustment
-		});
-	};
-
-	service.updateProductAdjustment = function(productId, adjustment) {
-		var supplierId = authenticationService.getSessionInfo().id;
-		var adjustmentData = angular.copy(adjustment);
-
-		delete adjustmentData.id;
-		delete adjustmentData._metadata;
-
-		return $http({
-			method: 'PUT',
-			url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments/' + adjustment.id,
-			data: adjustmentData
-		});
-	};
-
-	service.removeProductAdjustment = function(productId, adjustment) {
-		var supplierId = authenticationService.getSessionInfo().id;
-
-		return $http({
-			method: 'DELETE',
-			url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments/' + adjustment.id
-		});
-	};
-
 	service.savePriceAdjustments = function(priceAdjustments) {
-		var promises = [];
+		var promises;
+		var supplierId = authenticationService.getSessionInfo().id;
 
-		_.forOwn(priceAdjustments, function(adjustment, productId) {
+		function createAdjustment (productId, adjustment) {
+			return $http({
+				method: 'POST',
+				url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments',
+				data: adjustment
+			});
+		}
+
+		function updateAdjustment (productId, adjustment) {
+			var adjustmentData = angular.copy(adjustment);
+
+			delete adjustmentData.id;
+			delete adjustmentData._metadata;
+
+			return $http({
+				method: 'PUT',
+				url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments/' + adjustment.id,
+				data: adjustmentData
+			});
+		}
+
+		function removeAdjustment (productId, adjustment) {
+			return $http({
+				method: 'DELETE',
+				url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments/' + adjustment.id
+			});
+		}
+
+		promises = _.mapValues(priceAdjustments, function(newAdjustment, productId) {
+			var adjustment = angular.copy(newAdjustment);
+
 			if (!adjustment.amount) {
 				if (adjustment.id) {
-					promises.push(service.removeProductAdjustment(productId, adjustment));
+					return removeAdjustment(productId, adjustment);
 				}
 				return;
 			}
 
-			adjustment.amount = parseFloat(angular.copy(adjustment.amount).replace(/[£%]/, ''));
+			adjustment.amount = parseFloat(adjustment.amount.replace(/[£%]/, ''));
 
 			if (adjustment.id) {
-				promises.push(service.updateProductAdjustment(productId, adjustment));
-				return;
+				return updateAdjustment(productId, adjustment);
 			}
 
-			promises.push(service.createProductAdjustment(productId, adjustment));
+			return createAdjustment(productId, adjustment);
 		});
 
 		return $q.all(promises);
@@ -146,20 +143,6 @@ function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, au
 					id: name
 				});
 			});
-	};
-
-	service.updateCustomerMembership = function(membership) {
-		var data = angular.copy(membership);
-
-		delete data._metadata;
-		delete data.customer_id;
-		delete data.id;
-
-		$http({
-			method: 'PUT',
-			url: API.customers + '/' + membership.customer_id + '/memberships/' + membership.id,
-			data: data
-		});
 	};
 }
 

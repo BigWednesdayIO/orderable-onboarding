@@ -85,6 +85,12 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			resolve: EditPriceTierController.resolve,
 			templateUrl: 'views/price-tier.html'
 		})
+		.state('membership-price-tier', {
+			url: '/price-tiers/memberships/:id/',
+			controller: 'MembershipPriceTierController as vm',
+			resolve: MembershipPriceTierController.resolve,
+			templateUrl: 'views/price-tier.html'
+		})
 
 		// Orders
 		.state('orders', {
