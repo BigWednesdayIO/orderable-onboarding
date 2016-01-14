@@ -54,6 +54,11 @@ function ProductCategoryController ($state, productService, categoriesService, p
 		vm.editing = false;
 	};
 
+	vm.otherCategory = function() {
+		vm.product.category_id = vm.currentLevel;
+		vm.editing = false;
+	}
+
 	vm.useSuggestion = function() {
 		vm.categorySelected({
 			hierachy: suggestedCategory
