@@ -303,3 +303,29 @@ md-content > *:first-child {
 		}
 	}
 }
+
+.adjustment-types {
+	&__type {
+		min-width: 44px;
+		border: $divider;
+		transition:
+			box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+			background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+			color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+		&:not(:first-child) {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border-left: 0 none;
+		}
+
+		&:not(:last-child) {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		&--selected {
+			color: $md-primary;
+		}
+	}
+}

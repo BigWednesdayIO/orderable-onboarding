@@ -1,0 +1,64 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button toggle-menu class="md-icon-button hide-gt-md" aria-label="Menu">
+				<md-icon md-svg-src="assets/images/icons/menu.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">Price tiers</h1>
+		</div>
+	</div>
+</header>
+<main>
+	<div class="content-wrap">
+		<form name="vm.priceTierForm" ng-submit="vm.updateCustomerMemberships($event)">
+			<ul class="unstyled-list">
+				<li class="form-row">
+					<div class="md-whiteframe md-whiteframe-z1">
+						<table class="material-table">
+							<thead>
+								<tr>
+									<th><input type="search" ng-model="vm.searchText" placeholder="Search for a membership..." style="width: 100%;" /></th>
+									<th scope="col" style="text-align: center;">Default</th>
+									<th scope="col" class="clickable" style="text-align: center;" ng-repeat="priceTier in ::vm.priceTiers">
+										<a ng-href="price-tiers/{{ ::priceTier }}/" ng-bind="::priceTier"></a>
+									</th>
+									<th>
+										<md-button type="button" class="md-icon-button" ng-click="vm.newPriceTier($event)" aria-label="add new price tier">
+											<md-icon md-svg-src="assets/images/icons/playlist-add.svg"></md-icon>
+										</md-button>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="member in vm.filtered = (vm.members | filter: {$: vm.searchText}) track by member.id">
+									<td style="width: 100%;">
+										<a ng-href="price-tiers/memberships/{{ ::member.id }}/" ng-bind="::member.membership_number"></a>
+									</td>
+									<td style="text-align: center;">
+										<md-radio-group ng-model="member.price_adjustment_group_id">
+											<md-radio-button class="md-primary table-lable" ng-value="" aria-label="Default"></md-radio-button>
+										</md-radio-group>
+									</td>
+									<td style="text-align: center;" ng-repeat="priceTier in ::vm.priceTiers">
+										<div>
+											<md-radio-group ng-model="member.price_adjustment_group_id">
+												<md-radio-button class="md-primary table-lable" ng-value="priceTier" aria-label="{{ ::priceTier }}"></md-radio-button>
+											</md-radio-group>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr ng-show="!vm.filtered.length">
+									<td colspan="5" class="weak">No memberships matching "<span ng-bind="vm.searchText"></span>"</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</li>
+				<li class="form-row form-row--with-cta">
+					<md-button type="submit" class="md-primary md-raised md-button md-ink-ripple">Save</md-button>
+				</li>
+			</ul>
+		</form>
+	</div>
+</main>

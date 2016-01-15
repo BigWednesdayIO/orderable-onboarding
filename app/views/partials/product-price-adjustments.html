@@ -1,0 +1,56 @@
+<table class="material-table price-tier-table">
+	<thead>
+		<tr>
+			<th><input type="search" ng-model="vm.searchText" placeholder="Search for a product..." style="width: 100%;" /></th>
+			<th scope="col" class="numeric hide-sm">Price</th>
+			<th scope="col" colspan="2" class="numeric hide-sm">Adjustment</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="linkProduct in vm.filtered = (vm.linkProducts | filter: {$: vm.searchText}) track by linkProduct.id">
+			<td style="width: 100%">
+				<span ng-bind="::linkProduct.product.name"></span>
+				<span class="weak" ng-bind="::linkProduct.product_code"></span>
+			</td>
+			<td class="numeric price-tier-table__price">
+				<span ng-bind="linkProduct.adjusted_price | currency: '£'"></span>
+				<del class="weak" ng-show="linkProduct.adjusted_price !== linkProduct.price">
+					(<span ng-bind="::linkProduct.price | currency: '£'"></span>)
+				</del>
+			</td>
+			<td class="numeric merge-start">
+				<input
+					type="tel"
+					min="0"
+					ng-model="vm.priceAdjustments[linkProduct.id].amount"
+					ng-change="vm.calculateAdjustedPrice($index)"
+					ng-blur="vm.maskInput(linkProduct.id)"
+					placeholder="{{ vm.adjustmentPlaceholder(linkProduct) }}"
+					style="width: 42px;"
+					aria-label="{{ ::linkProduct.product.name }} adjustment amount" />
+			</td>
+			<td class="merge-end">
+				<!-- <md-select ng-model="vm.priceAdjustments[linkProduct.id].type" ng-change="vm.calculateAdjustedPrice($index)" aria-label="{{ ::linkProduct.product.name }} adjustment type">
+					<md-option ng-repeat="type in ::vm.adjustmentTypes" ng-value="::type.value">{{ ::type.display_name }}</md-option>
+				</md-select> -->
+
+				<div class="layout-row adjustment-types">
+					<md-button
+						type="button"
+						class="adjustment-types__type"
+						ng-class="{'adjustment-types__type--selected': vm.priceAdjustments[linkProduct.id].type === type.value}"
+						ng-repeat="type in ::vm.adjustmentTypes track by type.value"
+						ng-click="vm.priceAdjustments[linkProduct.id].type = type.value;
+							vm.calculateAdjustedPrice($parent.$index);
+							vm.priceAdjustments[linkProduct.id].amount = null"
+						ng-bind="::type.display_name"
+						aria-label="{{ ::type.display_name }}">
+					</md-button>
+				</div>
+			</td>
+		</tr>
+		<tr ng-show="!vm.filtered.length">
+			<td colspan="4" class="weak">No products matching "<span ng-bind="vm.searchText"></span>"</td>
+		</tr>
+	</tbody>
+</table>

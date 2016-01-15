@@ -1,0 +1,26 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline"><span ng-bind="::vm.title"></span></h1>
+		</div>
+	</div>
+</header>
+<main>
+	<div class="content-wrap">
+		<form name="vm.priceTierForm" ng-submit="vm.savePriceAdjustments($event)">
+			<ul class="unstyled-list">
+				<li class="form-row">
+					<div class="md-whiteframe md-whiteframe-z1">
+						<product-price-adjustments link-products="vm.products" price-adjustments="vm.priceAdjustments"></product-price-adjustments>
+					</div>
+				</li>
+				<li class="form-row form-row--with-cta">
+					<md-button type="submit" class="md-primary md-raised md-button md-ink-ripple">Save</md-button>
+				</li>
+			</ul>
+		</form>
+	</div>
+</main>

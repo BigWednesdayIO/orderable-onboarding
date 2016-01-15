@@ -1,0 +1,147 @@
+.material-table {
+	text-align: left;
+
+	thead {
+		font-size: 12px;
+		font-weight: 400;
+		color: rgba(0, 0, 0, .54);
+	}
+
+	tbody {
+		font-size: 13px;
+	}
+
+	th {
+		height: 56px;
+	}
+
+	td {
+		height: 48px;
+		border-top: $divider;
+	}
+
+	th,
+	td {
+		padding: 0 16px;
+
+		@media (min-width: $bp-medium) {
+			padding: 0 28px;
+
+			&:first-child {
+				padding-left: 24px;
+			}
+
+			&:last-child {
+				padding-right: 24px;
+			}
+		}
+	}
+
+	.merge-start {
+		padding-right: 6px;
+	}
+
+	.merge-end {
+		padding-left: 6px;
+	}
+
+	.numeric {
+		text-align: right;
+		white-space: nowrap;
+
+		input {
+			text-align: inherit;
+
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+		}
+	}
+
+	md-select {
+		margin: 0 0 4px;
+	}
+
+	.md-select-value {
+		width: 48px;
+		min-width: 48px;
+		text-align: right;
+	}
+
+	.md-select-value,
+	.md-input {
+		border-bottom-color: transparent !important;
+	}
+
+	.md-select-icon {
+		width: 18px;
+		color: rgba(0, 0, 0, .54);
+	}
+
+	input {
+		padding: 0;
+		height: inherit;
+	}
+
+	md-radio-button[aria-label] .md-label {
+		display: none !important;
+	}
+}
+
+.price-tier-table {
+	tr {
+		display: flex;
+		flex-flow: row wrap;
+
+		@media (min-width: $bp-medium) {
+			display: table-row;
+		}
+	}
+
+	th {
+		flex: 1;
+	}
+
+	td {
+		display: flex;
+		justify-content: center;
+
+		@media (min-width: $bp-medium) {
+			display: table-cell;
+		}
+
+		&:first-child {
+			flex-flow: column;
+		}
+
+		&:nth-child(n+2) {
+			align-items: center;
+			border-top: 0 none;
+
+			@media (min-width: $bp-medium) {
+				border-top: $divider;
+			}
+		}
+	}
+
+	.merge-end {
+		justify-content: flex-end;
+	}
+
+	.numeric {
+		flex: 1;
+		justify-content: center;
+	}
+
+	&__price {
+		flex-direction: column;
+		align-items: flex-start !important;
+
+		@media (min-width: $bp-medium) {
+			.weak {
+				margin-left: .25em;
+			}
+		}
+	}
+}
