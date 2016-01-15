@@ -14,12 +14,12 @@
 			<ul class="unstyled-list">
 				<li class="form-row">
 					<div class="md-whiteframe md-whiteframe-z1">
-						<table class="material-table">
+						<table class="material-table" ng-if="$mdMedia('gt-md')">
 							<thead>
 								<tr>
 									<th><input type="search" ng-model="vm.searchText" placeholder="Search for a membership..." style="width: 100%;" /></th>
 									<th scope="col" style="text-align: center;">Default</th>
-									<th scope="col" class="clickable" style="text-align: center;" ng-repeat="priceTier in ::vm.priceTiers">
+									<th scope="col" class="clickable" style="text-align: center;" ng-repeat="priceTier in ::vm.priceTiers track by priceTier">
 										<a ng-href="price-tiers/{{ ::priceTier }}/" ng-bind="::priceTier"></a>
 									</th>
 									<th>
@@ -53,6 +53,19 @@
 								</tr>
 							</tbody>
 						</table>
+
+						<div style="padding: 15px" ng-if="!$mdMedia('gt-md')">
+							<input type="search" ng-model="vm.searchText" placeholder="Search for a membership..." style="width: 100%;" />
+							<ul class="unstyled-list">
+								<li ng-repeat="member in vm.filtered = (vm.members | filter: {$: vm.searchText}) track by member.id">
+									<h2><a ng-href="price-tiers/memberships/{{ ::member.id }}/" ng-bind="::member.membership_number"></a></h2>
+									<md-select ng-model="member.price_adjustment_group_id">
+										<md-option ng-value="">Default</md-option>
+										<md-option ng-repeat="priceTier in ::vm.priceTiers track by priceTier" ng-value="::priceTier">{{ ::priceTier }}</md-option>
+									</md-select>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</li>
 				<li class="form-row form-row--with-cta">
