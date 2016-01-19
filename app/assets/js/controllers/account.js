@@ -1,9 +1,11 @@
-function AccountController (supplierInfo, paymentMethods) {
+function AccountController (externalLinks, supplierInfo, paymentMethods) {
 	var vm = this;
 
 	vm.supplier = supplierInfo;
 
 	vm.paymentMethods = paymentMethods;
+
+	vm.externals = externalLinks;
 }
 
 AccountController.resolve = /* @ngInject */ {

@@ -1,0 +1,33 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">About your business</h1>
+		</div>
+	</div>
+</header>
+<main>
+	<div class="content-wrap layout-column">
+		<form class="layout-column layout-align-start-stretch" name="vm.aboutForm" ng-submit="vm.saveInfo()">
+			<ul class="unstyled-list">
+				<li class="form-row">
+					<textarea rows="5" class="md-whiteframe md-whiteframe-z1" ng-model="vm.supplier.about" placeholder="Tell potential customers a little more about you..."></textarea>
+				</li>
+				<li class="form-row md-whiteframe md-whiteframe-z1" ng-repeat="external in ::vm.externals track by external.attribute">
+					<div class="layout-row layout-align-start-center">
+						<label for="{{ ::external.attribute }}" class="layout-row layout-align-start-center">
+							<md-icon md-svg-src="assets/images/icons/{{ ::external.icon }}.svg" style="margin-left: 10px"></md-icon>
+							<div class="weak" style="margin-left: 10px" ng-if="::external.prefix" ng-bind="::external.prefix"></div>
+						</label>
+						<input focus-parent id="{{ ::external.attribute }}" class="flex" type="::external.type || 'text'" ng-model="vm.supplier[external.attribute]" placeholder="{{ ::external.placeholder }}" />
+					</div>
+				</li>
+				<li class="form-row form-row--with-cta">
+					<md-button type="submit" class="md-primary md-raised">Save</md-button>
+				</li>
+			</ul>
+		</form>
+	</div>
+</main>

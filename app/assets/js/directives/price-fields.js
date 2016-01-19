@@ -8,19 +8,6 @@ function PriceFieldsDirective () {
 			required: '=',
 			label: '@'
 		},
-		link: function(scope, element) {
-			Array.prototype.map.call(element.find('input'), function(input) {
-				input = angular.element(input);
-
-				input.on('focus', function() {
-					input.parent().addClass('has-focus');
-				});
-
-				angular.element(input).on('blur', function() {
-					input.parent().removeClass('has-focus');
-				});
-			});
-		},
 		controller: function($scope) {
 			var vm = this;
 			var taxMultiplier = vm.taxable ? 1.2 : 1;

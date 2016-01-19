@@ -66,11 +66,6 @@ textarea {
 .price-input {
 	display: flex;
 	align-items: center;
-	transition: box-shadow $transition;
-
-	&.has-focus {
-		box-shadow: $md-whiteframe-z2;
-	}
 
 	&__symbol {
 		flex-shrink: 0;
@@ -90,5 +85,13 @@ textarea {
 
 	&--disabled {
 		color: rgba(0, 0, 0, .54);
+	}
+}
+
+.md-whiteframe-z1 {
+	transition: box-shadow $transition;
+
+	&.has-focus {
+		box-shadow: $md-whiteframe-z2;
 	}
 }
