@@ -26,7 +26,7 @@ function ProductController ($state, productService, productCategory) {
 					id: supplierProduct.id
 				});
 			});
-	}
+	};
 }
 
 ProductController.resolve = /* @ngInject */ {

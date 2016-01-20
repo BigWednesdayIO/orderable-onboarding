@@ -57,6 +57,7 @@
 					</div>
 					<div class="form-row form-row--with-cta">
 						<md-button type="submit" class="md-primary md-raised">Save</md-button>
+						<md-button type="button" class="md-warn md-raised" ng-if="::vm.product.id" ng-click="vm.deleteProduct($event)">Delete</md-button>
 					</div>
 				</div>
 			</div>

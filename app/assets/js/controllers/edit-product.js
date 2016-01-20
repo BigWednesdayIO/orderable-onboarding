@@ -18,6 +18,14 @@ function EditProductController ($state, $q, productService, productData, supplie
 				$state.go('products');
 			});
 	};
+
+	vm.deleteProduct = function($event) {
+		return productService
+			.deleteProduct($event, vm.supplierProduct, vm.product)
+			.then(function() {
+				$state.go('products');
+			});
+	};
 }
 
 EditProductController.resolve = /* @ngInject */ {
