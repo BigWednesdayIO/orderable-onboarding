@@ -91,6 +91,11 @@ ProductCategoryController.resolve = /* @ngInject */ {
 			});
 	},
 	suggestedCategory: function(categoriesService, productData) {
+		if (productData.category_id && productData.category_id.trim() !== '') {
+			return categoriesService
+				.getFullId(productData.category_id);
+		}
+
 		return categoriesService
 			.suggestCategoryForProduct(productData);
 	},

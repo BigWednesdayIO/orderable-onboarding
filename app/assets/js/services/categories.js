@@ -33,6 +33,13 @@ function CategoriesService ($http, $q, API, _) {
 			});
 	};
 
+	service.getFullId = function(id) {
+		return getCategories()
+			.then(function(categories) {
+				return categories[id].hierachy;
+			});
+	};
+
 	service.getHierarchyForCategory = function(idChain) {
 		var ids = getIdsFromChain(idChain);
 

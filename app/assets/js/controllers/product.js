@@ -30,7 +30,7 @@ function ProductController ($state, productService, productCategory) {
 }
 
 ProductController.resolve = /* @ngInject */ {
-	productCategory: function($q, $stateParams, categoriesService) {
+	productCategory: function($stateParams, categoriesService) {
 		if (!$stateParams.category) {
 			return;
 		}

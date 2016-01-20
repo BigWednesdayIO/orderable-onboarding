@@ -17,6 +17,9 @@
 					<div class="md-whiteframe md-whiteframe-z1" style="padding: 12px;">
 						<div get-product-image cropping-data="vm.imageData"></div>
 					</div>
+					<p ng-if="::vm.product.id" class="add-product__category">
+						This product is listed in <a ng-href="products/{{ ::vm.supplierProduct.id }}/category/" aria-label="Edit category"><span ng-bind="::vm.productCategory"></span> <md-icon md-svg-src="assets/images/icons/edit.svg"></md-icon></a>
+					</p>
 				</div>
 				<div class="flex">
 					<div class="form-row">

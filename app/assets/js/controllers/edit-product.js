@@ -1,9 +1,11 @@
-function EditProductController ($state, $q, productService, productData, supplierProductData) {
+function EditProductController ($state, $q, productService, productData, supplierProductData, productCategory) {
 	var vm = this;
 
 	vm.product = productData;
 
 	vm.supplierProduct = supplierProductData;
+
+	vm.productCategory = productCategory;
 
 	vm.saveProduct = function() {
 		return $q.all([
@@ -26,6 +28,10 @@ EditProductController.resolve = /* @ngInject */ {
 	productData: function(supplierProductData, productService) {
 		return productService
 			.getProduct(supplierProductData.product_id);
+	},
+	productCategory: function(productData, categoriesService) {
+		return categoriesService
+			.getNameForCategory(productData.category_id);
 	}
 };
 
