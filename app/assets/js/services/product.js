@@ -83,6 +83,10 @@ function ProductService ($http, $q, API, authenticationService, _) {
 			product.category_id = product.category_id.substring(i + 1);
 		}
 
+		if (product.pack_size === null) {
+			delete product.pack_size;
+		}
+
 		return $http({
 			method: 'PUT',
 			url: API.products + '/' + product_id,

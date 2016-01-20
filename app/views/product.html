@@ -35,8 +35,16 @@
 								<price-fields label="Was price" ex-vat="vm.supplierProduct.was_price" taxable="vm.product.taxable" required="false"></price-fields>
 							</div>
 							<div class="form-row">
-								<label class="label">SKU Code <span class="weak">(optional)</span></label>
+								<label class="label">SKU code <span class="weak">(optional)</span></label>
 								<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.supplierProduct.product_code" placeholder="A unique ID for your reference" optional />
+							</div>
+							<div class="form-row">
+								<label class="label">Pack size <span class="weak">(optional)</span></label>
+								<input type="number" min="1" class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.pack_size" placeholder="e.g. 24" optional />
+							</div>
+							<div class="form-row">
+								<label class="label">Unit size <span class="weak">(optional)</span></label>
+								<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.product.unit_size" placeholder="e.g. 500g" optional />
 							</div>
 							<div class="form-row">
 								<label class="label">Description <span class="weak">(optional)</span></label>
