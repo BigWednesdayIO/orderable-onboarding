@@ -38,6 +38,12 @@
 								<price-fields label="Was price" ex-vat="vm.supplierProduct.was_price" taxable="vm.product.taxable" required="false"></price-fields>
 							</div>
 							<div class="form-row">
+								<div class="layout-row layout-align-space-between-center">
+									<label class="label" for="in-stock">In stock</label>
+									<md-switch id="in-stock" class="md-primary" style="margin: 0" ng-model="vm.product.in_stock" aria-label="In stock"></md-switch>
+								</div>
+							</div>
+							<div class="form-row">
 								<label class="label">SKU code <span class="weak">(optional)</span></label>
 								<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.supplierProduct.product_code" placeholder="A unique ID for your reference" optional />
 							</div>
