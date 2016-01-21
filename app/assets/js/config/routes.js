@@ -133,6 +133,12 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			resolve: AboutController.resolve,
 			templateUrl: 'views/about.html'
 		})
+		.state('membership', {
+			url: '/account/memberships/',
+			controller: 'MembershipController as vm',
+			resolve: MembershipController.resolve,
+			templateUrl: 'views/membership.html'
+		})
 
 		;
 

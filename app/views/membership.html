@@ -1,0 +1,37 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">Customer memberships</h1>
+		</div>
+	</div>
+</header>
+<main>
+	<form name="vm.membershipForm" class="content-wrap layout-column" ng-submit="vm.updateMembershipInfo()">
+
+		<div class="form-row md-whiteframe md-whiteframe-z1" style="padding: 12px">
+			<h2 class="md-subhead" style="margin-top: 4px">Do you have membership numbers for your customers?</h2>
+			<p>Orderable can associate a membership with a customer to ensure tracking of purchases for loyalty schemes. It can even be used to power personalised and tiered pricing.</p>
+			<md-radio-group ng-model="vm.supplier.has_memberships">
+				<md-radio-button class="md-primary" ng-value="true"><strong>Yes</strong>, we have memberships</md-radio-button>
+				<md-radio-button class="md-primary" ng-value="false"><strong>No</strong>, we don't</md-radio-button>
+			</md-radio-group>
+		</div>
+
+		<div class="form-row md-whiteframe md-whiteframe-z1" style="padding: 12px">
+			<h2 class="md-subhead" style="margin-top: 4px">Do your require customers to have a membership number?</h2>
+			<md-radio-group ng-model="vm.supplier.purchase_restrictions" ng-disabled="!vm.supplier.has_memberships">
+				<md-radio-button class="md-primary" ng-disabled="!vm.supplier.has_memberships" value="none"><strong>No</strong>, anyone can buy from us</md-radio-button>
+				<md-radio-button class="md-primary" ng-disabled="!vm.supplier.has_memberships" value="members"><strong>Yes</strong>, only members</md-radio-button>
+				<md-radio-button class="md-primary" ng-disabled="!vm.supplier.has_memberships" value="verified"><strong>Yes</strong>, and we need to verify it first *</md-radio-button>
+			</md-radio-group>
+			<p class="md-caption">* this is the best option if you assign members to different price tiers</p>
+		</div>
+
+		<div class="form-row form-row--with-cta">
+			<md-button type="submit" class="md-primary md-raised">Save</md-button>
+		</div>
+	</form>
+</main>
