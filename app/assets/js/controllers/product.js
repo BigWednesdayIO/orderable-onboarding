@@ -5,7 +5,8 @@ function ProductController ($state, productService, productCategory) {
 
 	vm.product = {
 		category_id: $state.params.category || ' ',
-		taxable: $state.params.taxable !== 'false'
+		taxable: $state.params.taxable !== 'false',
+		in_stock: true
 	};
 
 	vm.supplierProduct = {};
