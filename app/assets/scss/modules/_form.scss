@@ -18,6 +18,14 @@ form {
 		@media (min-width: $bp-medium) {
 			flex-direction: row-reverse;
 		}
+
+		.md-button + .md-button {
+			margin-top: 12px;
+
+			@media (min-width: $bp-medium) {
+				margin: 0 12px 0 0;
+			}
+		}
 	}
 
 	.md-button {

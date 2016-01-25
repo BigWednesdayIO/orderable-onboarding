@@ -291,6 +291,21 @@ md-content > *:first-child {
 		}
 	}
 
+	&__category {
+		a {
+			border: 0 none;
+
+			&:hover {
+				color: $md-primary;
+			}
+		}
+
+		md-icon {
+			color: inherit;
+			vertical-align: bottom;
+		}
+	}
+
 	&__extra-fields {
 		margin-top: 10px;
 

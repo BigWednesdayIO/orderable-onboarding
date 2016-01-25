@@ -1,4 +1,4 @@
-function ProductService ($http, $q, API, authenticationService, _) {
+function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 	var service = this;
 
 	function enrichProductData (data) {
@@ -83,6 +83,10 @@ function ProductService ($http, $q, API, authenticationService, _) {
 			product.category_id = product.category_id.substring(i + 1);
 		}
 
+		if (product.pack_size === null) {
+			delete product.pack_size;
+		}
+
 		return $http({
 			method: 'PUT',
 			url: API.products + '/' + product_id,
@@ -101,6 +105,32 @@ function ProductService ($http, $q, API, authenticationService, _) {
 			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id,
 			data: formatSupplierProduct(supplierProduct)
 		});
+	};
+
+	service.deleteProduct = function($event, supplierProduct, product) {
+		var supplier_id = authenticationService.getSessionInfo().id;
+		var confirmDelete = $mdDialog.confirm()
+			.title('Are you sure you wish to delete ' + product.name + '?')
+			.content('This action cannot be undone.')
+			.ariaLabel('Delete product')
+			.targetEvent($event)
+			.ok('Yes, delete it')
+			.cancel('No, cancel');
+
+		return $mdDialog
+			.show(confirmDelete)
+			.then(function() {
+				return $http({
+					method: 'DELETE',
+					url: API.suppliers + '/' + supplier_id + '/linked_products/' + supplierProduct.id
+				});
+			})
+			.then(function() {
+				return $http({
+					method: 'DELETE',
+					url: API.products + '/' + product.id
+				});
+			});
 	};
 }
 
