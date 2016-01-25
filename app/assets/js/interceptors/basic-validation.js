@@ -1,4 +1,4 @@
-function BasicValidationInterceptor ($q, $log) {
+function BasicValidationInterceptor ($q, $log, browserStorage) {
 	function handleResponseError (response) {
 		var error = (response.data && typeof response.data === 'object') ? response.data : {};
 
@@ -11,7 +11,8 @@ function BasicValidationInterceptor ($q, $log) {
 		}
 
 		if (error.status === 401) {
-			$state.go('login');
+			browserStorage.clear();
+			window.location = '/';
 		} else {
 			$log.error('API Call failed:', (response.config || {}).url, error.status, '-', error.message);
 		}

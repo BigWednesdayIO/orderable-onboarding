@@ -1,4 +1,4 @@
-function AuthenticationService ($http, $q, API, browserStorage) {
+function AuthenticationService ($rootScope, $http, $q, API, browserStorage) {
 	var service = this;
 	var session = {};
 
@@ -32,6 +32,8 @@ function AuthenticationService ($http, $q, API, browserStorage) {
 	};
 
 	service.signOut = function() {
+		session = {};
+		$rootScope.isSignedIn = false;
 		return $q.when(browserStorage.clear());
 	};
 
