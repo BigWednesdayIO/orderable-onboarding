@@ -28,6 +28,10 @@ form {
 		}
 	}
 
+	&--with-validation {
+		position: relative;
+	}
+
 	.md-button {
 		margin: 0;
 	}
@@ -59,18 +63,37 @@ input {
 
 textarea {
 	@extend input;
-	padding: 8px 12px;
+	padding: 10px 12px;
 	height: auto;
+
+	+ .length-validation {
+		position: absolute;
+		bottom: 5px;
+		right: 16px;
+		background: white;
+		box-shadow: -3px -3px 8px 0 white;
+		color: rgba(0, 0, 0, .54);
+		font-size: 12px;
+		opacity: 1;
+		transition: opacity $transition;
+	}
+
+	&.ng-pristine + .length-validation {
+		opacity: 0;
+	}
+
+	&.ng-valid:focus + .length-validation {
+		opacity: 1;
+	}
+
+	&.ng-invalid-maxlength + .length-validation {
+		color: $md-warn
+	}
 }
 
 .price-input {
 	display: flex;
 	align-items: center;
-	transition: box-shadow $transition;
-
-	&.has-focus {
-		box-shadow: $md-whiteframe-z2;
-	}
 
 	&__symbol {
 		flex-shrink: 0;
@@ -90,5 +113,13 @@ textarea {
 
 	&--disabled {
 		color: rgba(0, 0, 0, .54);
+	}
+}
+
+.md-whiteframe-z1 {
+	transition: box-shadow $transition;
+
+	&.has-focus {
+		box-shadow: $md-whiteframe-z2;
 	}
 }

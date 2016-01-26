@@ -62,6 +62,12 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 					});
 				}
 
+				Object.keys(info).forEach(function(attr) {
+					if (info[attr] === '') {
+						delete info[attr];
+					}
+				})
+
 				return $http({
 					method: 'PUT',
 					url: API.suppliers + '/' + id,

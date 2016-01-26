@@ -12,12 +12,12 @@
 	<div class="layout-row layout-align-center-center">
 		<div class="price-input flex md-whiteframe md-whiteframe-z1">
 			<span class="price-input__symbol">&pound;</span>
-			<input class="price-input__field no-focus" type="tel" ng-model="vm.exVat" ng-change="vm.exVatUpdated()" ng-blur="vm.format('exVat')" placeholder="exVAT" ng-required="vm.required" aria-label="{{ ::vm.label }} excluding VAT" />
+			<input focus-parent class="price-input__field no-focus" type="tel" ng-model="vm.exVat" ng-change="vm.exVatUpdated()" ng-blur="vm.format('exVat')" placeholder="exVAT" ng-required="vm.required" aria-label="{{ ::vm.label }} excluding VAT" />
 		</div>
 		<span style="text-align: center; padding: 0 1em;">or</span>
 		<div class="price-input flex md-whiteframe md-whiteframe-z1" ng-class="{'price-input--disabled': !vm.taxable}">
 			<span class="price-input__symbol">&pound;</span>
-			<input class="price-input__field no-focus" type="tel" ng-model="vm.incVat" ng-change="vm.incVatUpdated()" ng-blur="vm.format('incVat')" placeholder="incVAT" ng-required="vm.required" ng-disabled="!vm.taxable" aria-label="{{ ::vm.label }} including VAT" />
+			<input focus-parent class="price-input__field no-focus" type="tel" ng-model="vm.incVat" ng-change="vm.incVatUpdated()" ng-blur="vm.format('incVat')" placeholder="incVAT" ng-required="vm.required" ng-disabled="!vm.taxable" aria-label="{{ ::vm.label }} including VAT" />
 		</div>
 	</div>
 </div>
