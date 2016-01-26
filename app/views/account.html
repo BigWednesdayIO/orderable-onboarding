@@ -32,11 +32,11 @@
 		<div class="md-whiteframe md-whiteframe-z1 content-block">
 			<md-button class="md-icon-button" style="float: right; margin: 0" ng-href="account/about/" aria-label="Edit"><md-icon md-svg-src="assets/images/icons/edit.svg"></md-icon></md-button>
 			<h2 class="md-caption" style="margin-top: 0">About your business</h2>
-			<p>Lorem ipsum dolor sit amet consectus...</p>
+			<p ng-bind="::vm.supplier.about"></p>
 			<ul class="unstyled-list">
 				<li ng-repeat="external in ::vm.externals track by external.attribute" style="padding: 8px 0;">
 					<md-icon md-svg-src="assets/images/icons/{{ ::external.icon }}.svg" class="disc-icon" ng-class="{'disc-icon--disabled': !vm.supplier[external.attribute]}" style="margin: 0 8px 0 0;"></md-icon>
-					<span class="weak" ng-if="::external.prefix" ng-bind="::external.prefix"></span><span ng-bind="vm.supplier[external.attribute]"></span>
+					<span class="weak" ng-if="::external.prefix" ng-bind="::external.prefix"></span><span ng-bind="::vm.supplier[external.attribute]"></span>
 				</li>
 			</ul>
 		</div>

@@ -12,8 +12,11 @@
 	<div class="content-wrap layout-column">
 		<form class="layout-column layout-align-start-stretch" name="vm.aboutForm" ng-submit="vm.saveInfo()">
 			<ul class="unstyled-list">
-				<li class="form-row">
-					<textarea rows="5" class="md-whiteframe md-whiteframe-z1" ng-model="vm.supplier.about" placeholder="Tell potential customers a little more about you..."></textarea>
+				<li class="form-row form-row--with-validation">
+					<textarea rows="6" class="md-whiteframe md-whiteframe-z1" name="about" ng-model="vm.supplier.about" placeholder="Tell potential customers a little more about you..." ng-maxlength="600"></textarea>
+					<div class="length-validation">
+						<span ng-bind="vm.aboutForm.about.$viewValue.length || 0"></span> / 600
+					</div>
 				</li>
 				<li class="form-row md-whiteframe md-whiteframe-z1" ng-repeat="external in ::vm.externals track by external.attribute">
 					<div class="layout-row layout-align-start-center">
