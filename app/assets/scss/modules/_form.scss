@@ -36,6 +36,13 @@ form {
 		margin: 0;
 	}
 
+	md-select {
+		.md-select-value {
+			border: 0 none !important;
+			padding: 6px 12px 10px !important;
+		}
+	}
+
 	.label {
 		margin-bottom: 4px;
 	}

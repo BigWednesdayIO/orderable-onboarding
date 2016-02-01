@@ -11,7 +11,22 @@
 <main>
 	<div class="content-wrap layout-column">
 		<div class="md-whiteframe md-whiteframe-z1 content-block">
-			<h2 class="md-caption" style="margin-top: 0">Payment methods</h2>
+			<h2 class="md-caption">Appearance</h2>
+			<div class="layout-column">
+				<md-button class="md-no-style payment-method" ng-href="account/appearance/" aria-label="Appearance">
+					<div class="layout-row layout-align-start-center">
+						<div class="payment-method__text flex">
+							<h3 class="md-subhead payment-method__name">How your appear in listings</h3>
+							<p class="payment-method__status">with a logo and banner image</p>
+						</div>
+						<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+					</div>
+				</md-button>
+			</div>
+		</div>
+
+		<div class="md-whiteframe md-whiteframe-z1 content-block">
+			<h2 class="md-caption">Payment methods</h2>
 			<ul class="unstyled-list">
 				<li class="layout-column" ng-repeat="method in ::vm.paymentMethods track by method.id">
 					<md-button class="md-no-style payment-method" ng-href="account/payment-methods/{{ ::method.id }}/" aria-label="{{ ::method.name }}">
@@ -32,7 +47,7 @@
 
 		<div class="md-whiteframe md-whiteframe-z1 content-block">
 			<md-button class="md-icon-button" style="float: right; margin: 0" ng-href="account/about/" aria-label="Edit"><md-icon md-svg-src="assets/images/icons/edit.svg"></md-icon></md-button>
-			<h2 class="md-caption" style="margin-top: 0">About your business</h2>
+			<h2 class="md-caption">About your business</h2>
 			<p ng-bind="::vm.supplier.about"></p>
 			<ul class="unstyled-list">
 				<li ng-repeat="external in ::vm.externals track by external.attribute" style="padding: 8px 0;">
@@ -43,7 +58,7 @@
 		</div>
 
 		<div class="md-whiteframe md-whiteframe-z1 content-block">
-			<h2 class="md-caption" style="margin-top: 0">Memberships</h2>
+			<h2 class="md-caption">Memberships</h2>
 			<div class="layout-column">
 				<md-button class="md-no-style payment-method" ng-href="account/memberships/" aria-label="Memberships">
 					<div class="layout-row layout-align-start-center">
