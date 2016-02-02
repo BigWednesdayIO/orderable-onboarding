@@ -14,7 +14,7 @@
 			<ul class="unstyled-list">
 				<li class="form-row">
 					<div class="supplier-listing__header" style="{{ 'background-image: url(' + vm.appearance.banner_image + ');' }}">
-						<div ng-if="::!vm.appearance.logo" class="supplier-listing__logo supplier-listing__logo--placeholder" style="background-color: {{ vm.appearance.colour }}" ng-bind="vm.appearance.initials" contenteditable ng-maxlength="2" length="2"></div>
+						<div ng-if="::!vm.appearance.logo" class="supplier-listing__logo supplier-listing__logo--placeholder" style="background-color: {{ vm.appearance.colour }}" ng-bind="vm.appearance.initials"></div>
 						<img ng-if="::vm.appearance.logo" ng-src="{{ ::vm.appearance.logo }}" class="supplier-listing__logo" height="80" width="80">
 						<h2 class="supplier-listing__name md-title" ng-bind="vm.supplier.name"></h2>
 					</div>
