@@ -1,4 +1,4 @@
-function AppearanceService ($http) {
+function AppearanceService ($http, $q) {
 	var service = this;
 
 	service.pickAtRandom = function(set) {
@@ -33,6 +33,28 @@ function AppearanceService ($http) {
 			})
 			.slice(0, 2)
 			.join('');
+	};
+
+	service.createRandomAppearance = function(supplier) {
+		var appearance = {};
+
+		appearance.initials = service.pickInitials(supplier);
+
+		return $q.all([
+			service
+				.getColours(),
+			service
+				.getBanners()
+		])
+			.then(function(response) {
+				var colours = response[0];
+				var banners = response[1];
+
+				appearance.colour = service.pickAtRandom(colours).value;
+				appearance.banner_image = service.pickAtRandom(banners);
+
+				return appearance;
+			});
 	};
 }
 
