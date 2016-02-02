@@ -139,6 +139,12 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			resolve: MembershipController.resolve,
 			templateUrl: 'views/membership.html'
 		})
+		.state('appearance', {
+			url: '/account/appearance/',
+			controller: 'AppearanceController as vm',
+			resolve: AppearanceController.resolve,
+			templateUrl: 'views/appearance.html'
+		})
 
 		;
 

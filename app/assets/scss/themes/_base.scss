@@ -267,6 +267,10 @@ md-content > *:first-child {
 .content-block {
 	padding: 12px;
 	margin-bottom: 20px;
+
+	> .md-caption:first-of-type {
+		margin-top: 0;
+	}
 }
 
 .empty-listing {

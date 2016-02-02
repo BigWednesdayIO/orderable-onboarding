@@ -1,0 +1,56 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">How you appear on Orderable</h1>
+		</div>
+	</div>
+</header>
+<main>
+	<div class="content-wrap layout-column">
+		<form class="layout-column layout-align-start-stretch" name="vm.appearanceForm" ng-submit="vm.saveAppearance()">
+			<ul class="unstyled-list">
+				<li class="form-row">
+					<div class="supplier-listing__header" style="{{ 'background-image: url(' + vm.appearance.banner_image + ');' }}">
+						<div ng-if="::!vm.appearance.logo" class="supplier-listing__logo supplier-listing__logo--placeholder" style="background-color: {{ vm.appearance.colour }}" ng-bind="vm.appearance.initials"></div>
+						<img ng-if="::vm.appearance.logo" ng-src="{{ ::vm.appearance.logo }}" class="supplier-listing__logo" height="80" width="80">
+						<h2 class="supplier-listing__name md-title" ng-bind="vm.supplier.name"></h2>
+					</div>
+				</li>
+
+				<li class="form-row">
+					<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.appearance.initials" ng-maxlength="2" maxlength="2" />
+				</li>
+				<li class="form-row md-whiteframe md-whiteframe-z1">
+					<md-select style="margin: 0;" ng-model="vm.appearance.colour" aria-label="Colour">
+						<md-option ng-repeat="colour in ::vm.colours track by colour.value" ng-value="::colour.value">
+							<div class="layout-row layout-align-start-center">
+								<span style="display: inline-block; border-radius: 50%; height: 24px; width: 24px; margin-right: 12px; background-color: {{ ::colour.value }}"></span>
+								<span ng-bind="::colour.name"></span>
+							</div>
+						</md-option>
+					</md-select>
+				</li>
+				<li class="form-row md-whiteframe md-whiteframe-z1 content-block">
+					<a href="#" class="with-edit-icon" ng-hide="vm.chooseImage" ng-click="vm.chooseImage = true">
+						<md-icon class="edit-icon" md-svg-src="assets/images/icons/photo-library.svg"></md-icon>
+						<img ng-src="{{ vm.appearance.banner_image }}" alt="" width="100%" />
+					</a>
+					<md-radio-group ng-model="vm.appearance.banner_image" ng-change="vm.chooseImage = false" ng-show="vm.chooseImage">
+						<md-radio-button class="md-primary" ng-repeat="banner in ::vm.banners track by banner" ng-value="::banner" ng-click="vm.chooseImage = false" aria-label="{{ ::banner }}">
+							<img ng-src="{{ ::banner }}" alt="" width="100%" />
+						</md-radio-button>
+					</md-radio-group>
+				</li>
+				<li class="form-row">
+					<p style="margin: 0">If you'd like to use your own logo or banner image, please <a href="mailto:help@orderable.co">email us</a> and we can sort something out</p>
+				</li>
+				<li class="form-row form-row--with-cta">
+					<md-button type="submit" class="md-primary md-raised">Save</md-button>
+				</li>
+			</ul>
+		</form>
+	</div>
+</main>
