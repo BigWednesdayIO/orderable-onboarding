@@ -19,6 +19,8 @@ function APIService (baseAPI) {
 	this.customers = baseAPI + 'customers';
 
 	this.memberships = 'mocks/memberships.json';
+
+	this.storeUrl = 'https://demo.orderable.co';
 }
 
 angular
