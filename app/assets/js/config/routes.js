@@ -127,6 +127,12 @@ function RoutingConfig ($stateProvider, $urlRouterProvider, $locationProvider, $
 			resolve: PaymentMethodController.resolve,
 			templateUrl: 'views/payment-method.html'
 		})
+		.state('delivery-options', {
+			url: '/account/delivery-options/',
+			controller: 'DeliveryOptionsController as vm',
+			resolve: DeliveryOptionsController.resolve,
+			templateUrl: 'views/delivery-options.html'
+		})
 		.state('about', {
 			url: '/account/about/',
 			controller: 'AboutController as vm',
