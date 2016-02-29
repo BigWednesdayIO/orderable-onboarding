@@ -1,4 +1,4 @@
-function AccountController (externalLinks, supplierInfo, paymentMethods) {
+function AccountController (externalLinks, supplierInfo, paymentMethods, deliveryDayNames) {
 	var vm = this;
 
 	vm.supplier = supplierInfo;
@@ -6,21 +6,17 @@ function AccountController (externalLinks, supplierInfo, paymentMethods) {
 	vm.paymentMethods = paymentMethods;
 
 	vm.externals = externalLinks;
+
+	vm.deliveryDays = supplierInfo.delivery_days.map(function(day) {
+		return deliveryDayNames[day].substring(0, 3);
+	}).join(', ');
 }
 
 AccountController.resolve = /* @ngInject */ {
 	supplierInfo: function(supplierService) {
 		return supplierService
 			.getInfo()
-			.then(function(info) {
-				if (typeof info.delivery_lead_time === 'undefined') {
-					info.delivery_lead_time = 1;
-				}
-				if (typeof info.delivery_charge === 'undefined') {
-					info.delivery_charge = 0;
-				}
-				return info;
-			});
+			.then(supplierService.defaultDeliveryOptions);
 	},
 	paymentMethods: function(supplierService) {
 		return supplierService

@@ -40,6 +40,15 @@
 			</div>
 		</section>
 
+		<section class="form-row md-whiteframe md-whiteframe-z1" style="padding: 12px">
+			<h2 class="md-subhead" style="margin-top: 4px">What says do you deliver?</h2>
+			<div>
+				<md-checkbox class="md-primary" ng-repeat="day in [1,2,3,4,5,6,0]" ng-model="vm.deliveryDays[day]">
+					<span ng-bind="::vm.deliveryDayNames[day]"></span>
+				</md-checkbox>
+			</div>
+		</section>
+
 		<div class="form-row form-row--with-cta">
 			<md-button type="submit" class="md-primary md-raised">Save</md-button>
 		</div>

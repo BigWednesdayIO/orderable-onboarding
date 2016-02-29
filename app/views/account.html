@@ -77,6 +77,18 @@
 						</div>
 					</md-button>
 				</li>
+				<li class="layout-column">
+					<md-button class="md-no-style payment-method" ng-href="account/delivery-options/">
+						<div class="layout-row layout-align-start-center">
+							<md-icon class="disc-icon payment-method__icon" md-svg-src="assets/images/icons/date-range.svg"></md-icon>
+							<div class="payment-method__text flex">
+								<h3 class="md-subhead payment-method__name">Delivery days</h3>
+								<p class="payment-method__status" ng-bind="::vm.deliveryDays"></p>
+							</div>
+							<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						</div>
+					</md-button>
+				</li>
 			</ul>
 		</div>
 

@@ -1,4 +1,4 @@
-function DeliveryOptionsController ($state, supplierService, supplierInfo, _) {
+function DeliveryOptionsController ($state, supplierService, supplierInfo, deliveryDayNames, _) {
 	var vm = this;
 
 	function toPence (value) {
@@ -38,9 +38,35 @@ function DeliveryOptionsController ($state, supplierService, supplierInfo, _) {
 		7: 'the following Monday'
 	};
 
+	vm.deliveryDayNames = deliveryDayNames;
+
+	vm.deliveryDays = supplierInfo.delivery_days.reduce(function(ref, day) {
+		ref[day] = true;
+		return ref;
+	}, {
+		0: false,
+		1: false,
+		2: false,
+		3: false,
+		4: false,
+		5: false,
+		6: false
+	});
+
 	vm.updateDeliveryOptions = function() {
-		var info = _.pick(vm.info, ['delivery_charge', 'delivery_lead_time']);
+		var info = _.pick(vm.info, ['delivery_charge', 'delivery_lead_time', 'delivery_days']);
 		info.delivery_charge = vm.chargeForDelivery ? vm.deliveryCharge : 0;
+		info.delivery_days = _(vm.deliveryDays)
+			.map(function(selected, day) {
+				return {
+					day: day,
+					selected: selected
+				};
+			})
+			.filter('selected')
+			.map('day')
+			.sort()
+			.value();
 
 		supplierService
 			.updateInfo(info)
@@ -54,15 +80,7 @@ DeliveryOptionsController.resolve = /* @ngInject */ {
 	supplierInfo: function(supplierService) {
 		return supplierService
 			.getInfo()
-			.then(function(info) {
-				if (typeof info.delivery_lead_time === 'undefined') {
-					info.delivery_lead_time = 1;
-				}
-				if (typeof info.delivery_charge === 'undefined') {
-					info.delivery_charge = 0;
-				}
-				return info;
-			});
+			.then(supplierService.defaultDeliveryOptions);
 	}	
 };
 
