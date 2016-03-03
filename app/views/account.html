@@ -46,6 +46,53 @@
 		</div>
 
 		<div class="md-whiteframe md-whiteframe-z1 content-block">
+			<h2 class="md-caption">Delivery options</h2>
+			<ul class="unstyled-list">
+				<li class="layout-column">
+					<md-button class="md-no-style payment-method" ng-href="account/delivery-options/">
+						<div class="layout-row layout-align-start-center">
+							<md-icon class="disc-icon payment-method__icon" md-svg-src="assets/images/icons/currency-gbp.svg"></md-icon>
+							<div class="payment-method__text flex">
+								<h3 class="md-subhead payment-method__name">Delivery charge</h3>
+								<p class="payment-method__status">
+									<span ng-if="::vm.supplier.delivery_charge === 0">FREE</span>
+									<span ng-if="::vm.supplier.delivery_charge > 0" ng-bind="::vm.supplier.delivery_charge | currency: '£'"></span>
+								</p>
+							</div>
+							<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						</div>
+					</md-button>
+				</li>
+				<li class="layout-column">
+					<md-button class="md-no-style payment-method" ng-href="account/delivery-options/">
+						<div class="layout-row layout-align-start-center">
+							<md-icon class="disc-icon payment-method__icon" md-svg-src="assets/images/icons/timetable.svg"></md-icon>
+							<div class="payment-method__text flex">
+								<h3 class="md-subhead payment-method__name">Lead time</h3>
+								<p class="payment-method__status">
+									<span ng-bind="::vm.supplier.delivery_lead_time"></span> day<span ng-if="::vm.supplier.delivery_lead_time > 1">s</span>
+								</p>
+							</div>
+							<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						</div>
+					</md-button>
+				</li>
+				<li class="layout-column">
+					<md-button class="md-no-style payment-method" ng-href="account/delivery-options/">
+						<div class="layout-row layout-align-start-center">
+							<md-icon class="disc-icon payment-method__icon" md-svg-src="assets/images/icons/date-range.svg"></md-icon>
+							<div class="payment-method__text flex">
+								<h3 class="md-subhead payment-method__name">Delivery days</h3>
+								<p class="payment-method__status" ng-bind="::vm.deliveryDays"></p>
+							</div>
+							<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						</div>
+					</md-button>
+				</li>
+			</ul>
+		</div>
+
+		<div class="md-whiteframe md-whiteframe-z1 content-block">
 			<md-button class="md-icon-button" style="float: right; margin: 0" ng-href="account/about/" aria-label="Edit"><md-icon md-svg-src="assets/images/icons/edit.svg"></md-icon></md-button>
 			<h2 class="md-caption">About your business</h2>
 			<p ng-bind="::vm.supplier.about"></p>

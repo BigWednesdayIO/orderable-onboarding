@@ -205,6 +205,20 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 				return methods[index];
 			});
 	};
+
+	service.defaultDeliveryOptions = function(info) {
+		if (typeof info.delivery_lead_time === 'undefined') {
+			info.delivery_lead_time = 1;
+		}
+		if (typeof info.delivery_charge === 'undefined') {
+			info.delivery_charge = 0;
+		}
+		if (typeof info.delivery_days === 'undefined') {
+			// Monday - Saturday
+			info.delivery_days = [1, 2, 3, 4, 5, 6];
+		}
+		return info;
+	};
 }
 
 angular
