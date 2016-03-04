@@ -46,6 +46,36 @@
 		</div>
 
 		<div class="md-whiteframe md-whiteframe-z1 content-block">
+			<h2 class="md-caption">How you receive orders</h2>
+			<ul class="unstyled-list">
+				<li class="layout-column">
+					<md-button class="md-no-style payment-method" ng-href="account/order-method/">
+						<div class="layout-row layout-align-start-center">
+							<md-icon class="disc-icon payment-method__icon" md-svg-src="assets/images/icons/email.svg"></md-icon>
+							<div class="payment-method__text flex">
+								<h3 class="md-subhead payment-method__name">By email</h3>
+								<p class="payment-method__status" ng-bind="vm.supplier.orders_email || vm.supplier.email"></p>
+							</div>
+							<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						</div>
+					</md-button>
+				</li>
+				<li class="layout-column">
+					<md-button class="md-no-style payment-method" ng-href="account/order-method/">
+						<div class="layout-row layout-align-start-center">
+							<md-icon class="disc-icon payment-method__icon" ng-class="{'disc-icon--disabled': !vm.supplier.orders_sms}" md-svg-src="assets/images/icons/textsms.svg"></md-icon>
+							<div class="payment-method__text flex">
+								<h3 class="md-subhead payment-method__name">Text/SMS notifications</h3>
+								<p class="payment-method__status" ng-class="{'payment-method__status--disabled': !vm.supplier.orders_sms}" ng-bind="vm.supplier.orders_sms || 'Disabled'"></p>
+							</div>
+							<md-icon md-svg-src="assets/images/icons/chevron-right.svg" class="payment-method__arrow"></md-icon>
+						</div>
+					</md-button>
+				</li>
+			</ul>
+		</div>
+
+		<div class="md-whiteframe md-whiteframe-z1 content-block">
 			<h2 class="md-caption">Delivery options</h2>
 			<ul class="unstyled-list">
 				<li class="layout-column">
