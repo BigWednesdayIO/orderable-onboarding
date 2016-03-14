@@ -34,9 +34,9 @@
 					</md-select>
 				</li>
 				<li class="form-row md-whiteframe md-whiteframe-z1 content-block">
-					<a href="#" class="with-edit-icon" ng-hide="vm.chooseImage" ng-click="vm.chooseImage = true">
+					<a href="#" class="with-edit-icon" ng-hide="vm.chooseImage" ng-click="vm.chooseImage = true" style="border: 0 none;">
 						<md-icon class="edit-icon" md-svg-src="assets/images/icons/photo-library.svg"></md-icon>
-						<img ng-src="{{ vm.appearance.banner_image }}" alt="" width="100%" />
+						<img ng-src="{{ vm.appearance.banner_image }}" alt="" width="100%" style="min-height: 50px;" />
 					</a>
 					<md-radio-group ng-model="vm.appearance.banner_image" ng-change="vm.chooseImage = false" ng-show="vm.chooseImage">
 						<md-radio-button class="md-primary" ng-repeat="banner in ::vm.banners track by banner" ng-value="::banner" ng-click="vm.chooseImage = false" aria-label="{{ ::banner }}">
