@@ -22,8 +22,7 @@ PriceTiersController.resolve = /* @ngInject */ {
 	},
 	priceTiers: function() {
 		return [
-			'1',
-			'free'
+			'16.3'
 		];
 	}
 };
