@@ -28,6 +28,18 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 		return data;
 	}
 
+	function formatProduct (data) {
+		data = angular.copy(data);
+
+		Object.keys(data).forEach(function(key) {
+			if (data[key] === '') {
+				delete data[key];
+			}
+		});
+
+		return data;
+	}
+
 	service.getProducts = function() {
 		var id = authenticationService.getSessionInfo().id;
 
@@ -57,6 +69,8 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 		var supplier_id = authenticationService.getSessionInfo().id;
 		var product_id;
 
+		productData = formatProduct(productData);
+
 		return $http({
 			method: 'POST',
 			url: API.products,
@@ -72,11 +86,10 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 			});
 	};
 
-	service.updateProduct = function(product) {
-		var product_id = product.id;
+	service.updateProduct = function(rawProduct) {
+		var product_id = rawProduct.id;
+		var product = _.omit(formatProduct(rawProduct), ['id', '_metadata']);
 		var i;
-		delete product.id;
-		delete product._metadata;
 
 		i = product.category_id.lastIndexOf('.');
 		if (i > -1) {
@@ -94,11 +107,10 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 		});
 	};
 
-	service.updateSupplierProduct = function(supplierProduct) {
+	service.updateSupplierProduct = function(rawSupplierProduct) {
 		var supplier_id = authenticationService.getSessionInfo().id;
-		var id = supplierProduct.id;
-		delete supplierProduct.id;
-		delete supplierProduct._metadata;
+		var id = rawSupplierProduct.id;
+		var supplierProduct = _.omit(formatProduct(rawSupplierProduct), ['id', '_metadata']);
 
 		return $http({
 			method: 'PUT',
