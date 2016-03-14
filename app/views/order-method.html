@@ -1,0 +1,50 @@
+<header>
+	<div class="content-wrap">
+		<div class="layout-row">
+			<md-button class="md-icon-button" aria-label="Back" browser-back>
+				<md-icon md-svg-src="assets/images/icons/arrow-back.svg"></md-icon>
+			</md-button>
+			<h1 class="md-headline">How you receive orders</h1>
+		</div>
+	</div>
+</header>
+<main>
+	<form name="vm.orderMethodForm" class="content-wrap layout-column" ng-submit="vm.updateOrderMethod()">
+		<section class="form-row md-whiteframe md-whiteframe-z1" style="padding: 12px">
+			<p>No matter how you choose to get notified of new orders, you can always find them in the <a href="orders/">Orders</a> section.</p>
+		</section>
+
+		<section class="form-row md-whiteframe md-whiteframe-z1" style="padding: 12px">
+			<h2 class="md-subhead" style="margin: 4px 0">Where should we email orders?</h2>
+			<md-radio-group ng-model="vm.customOrderEmail">
+				<md-radio-button class="md-primary" ng-value="false"><span ng-bind="::vm.supplier.email"></span></md-radio-button>
+				<md-radio-button class="md-primary" ng-value="true">Somewhere else</md-radio-button>
+			</md-radio-group>
+			<div class="layout-column" ng-show="vm.customOrderEmail">
+				<md-input-container style="padding: 2px">
+					<label>Orders email</label>
+					<input type="email" ng-model="vm.supplier.orders_email" />
+				</md-input-container>
+			</div>
+		</section>
+
+		<section class="form-row md-whiteframe md-whiteframe-z1" style="padding: 12px">
+			<h2 class="md-subhead" style="margin: 4px 0">Would you like to receive SMS notifications of new orders?</h2>
+			<md-radio-group ng-model="vm.textNotifications">
+				<md-radio-button class="md-primary" ng-value="false"><strong>No</strong> thanks</md-radio-button>
+				<md-radio-button class="md-primary" ng-value="true"><strong>Yes</strong> please</md-radio-button>
+			</md-radio-group>
+			<div class="layout-column" ng-show="vm.textNotifications">
+				<md-input-container style="padding: 2px">
+					<label>Mobile number</label>
+					<input type="tel" ng-model="vm.supplier.orders_textsms" />
+				</md-input-container>
+				<p>SMS notifications will not contain the full order details, those can be received by email, or found in the  <a href="orders/">Orders</a> section.</p>
+			</div>
+		</section>
+
+		<div class="form-row form-row--with-cta">
+			<md-button type="submit" class="md-primary md-raised">Save</md-button>
+		</div>
+	</form>
+</main>
