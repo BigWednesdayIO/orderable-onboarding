@@ -1,4 +1,4 @@
-function ProductController ($state, productService, productCategory) {
+function ProductController ($timeout, $location, $state, productService, productCategory) {
 	var vm = this;
 
 	vm.firstTime = $state.params.first;
@@ -17,15 +17,19 @@ function ProductController ($state, productService, productCategory) {
 		return productService
 			.addProduct(vm.product, vm.supplierProduct)
 			.then(function(supplierProduct) {
-				if (!$state.params.category) {
-					$state.go('product-category', {
-						id: supplierProduct.id
-					});
-					return;
-				}
-				$state.go('review-product', {
-					id: supplierProduct.id
-				});
+				var productUrl = '/products/' + supplierProduct.id + '/';
+
+				$location
+					.path(productUrl)
+					.replace();
+
+				$timeout(function() {
+					if (!$state.params.category) {
+						$location.path(productUrl + 'category/');
+						return;
+					}
+					$location.path(productUrl + 'review/');
+				}, 0);
 			});
 	};
 }

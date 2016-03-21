@@ -14,8 +14,17 @@ function EditProductController ($state, $q, productService, productData, supplie
 			productService
 				.updateSupplierProduct(vm.supplierProduct)
 		])
-			.then(function(product) {
-				$state.go('products');
+			.then(function(responses) {
+				var product = responses[0];
+				var supplierProduct = responses[1];
+
+				if (product.category_id && product.category_id !== ' ') {
+					$state.go('products');
+				} else {
+					$state.go('product-category', {
+						id: supplierProduct.id
+					});
+				}
 			});
 	};
 
