@@ -1,4 +1,4 @@
-function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
+function ProductService ($http, $q, $mdDialog, API, displayError, authenticationService, _) {
 	var service = this;
 
 	function enrichProductData (data) {
@@ -46,14 +46,16 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 		return $http({
 			method: 'GET',
 			url: API.suppliers + '/' + id + '/linked_products?expand[]=product&hitsPerPage=50'
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.getProduct = function(id) {
 		return $http({
 			method: 'GET',
 			url: API.products + '/' + id
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.getSupplierProduct = function(id, expand) {
@@ -62,7 +64,8 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 		return $http({
 			method: 'GET',
 			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id + (expand ? '?expand[]=product' : '')
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.addProduct = function(productData, supplierProduct) {
@@ -83,7 +86,8 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 					url: API.suppliers + '/' + supplier_id + '/linked_products',
 					data: formatSupplierProduct(supplierProduct)
 				});
-			});
+			})
+			.catch(displayError);
 	};
 
 	service.updateProduct = function(rawProduct) {
@@ -104,7 +108,8 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 			method: 'PUT',
 			url: API.products + '/' + product_id,
 			data: product
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.updateSupplierProduct = function(rawSupplierProduct) {
@@ -116,7 +121,8 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 			method: 'PUT',
 			url: API.suppliers + '/' + supplier_id + '/linked_products/' + id,
 			data: formatSupplierProduct(supplierProduct)
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.deleteProduct = function($event, supplierProduct, product) {
@@ -142,7 +148,8 @@ function ProductService ($http, $q, $mdDialog, API, authenticationService, _) {
 					method: 'DELETE',
 					url: API.products + '/' + product.id
 				});
-			});
+			})
+			.catch(displayError);
 	};
 }
 

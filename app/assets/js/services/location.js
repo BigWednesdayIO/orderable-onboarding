@@ -1,4 +1,4 @@
-function LocationService ($http, API) {
+function LocationService ($http, API, displayError) {
 	var service = this;
 
 	service.search = function(query) {
@@ -14,7 +14,8 @@ function LocationService ($http, API) {
 		})
 			.then(function(response) {
 				return response.hits;
-			});
+			})
+			.catch(displayError);
 	};
 }
 

@@ -1,4 +1,4 @@
-function SupplierService ($http, $q, API, authenticationService, browserStorage, _) {
+function SupplierService ($http, $q, API, displayError, authenticationService, browserStorage, _) {
 	var service = this;
 
 	function getSupplierId () {
@@ -28,7 +28,8 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 						email: details.email,
 						password: details.password
 					});
-			});
+			})
+			.catch(displayError);
 	};
 
 	service.getInfo = function() {
@@ -146,7 +147,8 @@ function SupplierService ($http, $q, API, authenticationService, browserStorage,
 					url: depotsUrl + '/' + deliveryInfo.id,
 					data: newDeliveryInfo
 				});
-			});
+			})
+			.catch(displayError);
 	};
 
 	service.getPaymentMethods = function() {
