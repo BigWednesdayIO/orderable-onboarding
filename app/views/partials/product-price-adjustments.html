@@ -18,20 +18,16 @@
 					(<span ng-bind="::linkProduct.price | currency: '£'"></span>)
 				</del>
 			</td>
-			<td class="numeric merge-start price-adjustment">
+			<td class="numeric merge-start">
 				<input
-					id="price-adjustment-{{$index}}"
-					class="price-adjustment__field"
 					type="tel"
 					min="0"
 					ng-model="vm.priceAdjustments[linkProduct.id].amount"
 					ng-change="vm.calculateAdjustedPrice($index)"
 					ng-blur="vm.maskInput(linkProduct.id)"
 					placeholder="{{ vm.adjustmentPlaceholder(linkProduct) }}"
+					style="width: 42px;"
 					aria-label="{{ ::linkProduct.product.name }} adjustment amount" />
-				<label for="price-adjustment-{{$index}}" class="price-adjustment__button">
-					<md-icon md-svg-src="assets/images/icons/edit.svg"></md-icon>
-				</label>
 			</td>
 			<td class="merge-end">
 				<!-- <md-select ng-model="vm.priceAdjustments[linkProduct.id].type" ng-change="vm.calculateAdjustedPrice($index)" aria-label="{{ ::linkProduct.product.name }} adjustment type">

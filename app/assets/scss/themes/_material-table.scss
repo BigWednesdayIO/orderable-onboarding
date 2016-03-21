@@ -145,25 +145,3 @@
 		}
 	}
 }
-
-.price-adjustment {
-	&__field {
-		width: 42px;
-	}
-
-	&__button {
-		display: inline-block;
-		vertical-align: text-bottom;
-		cursor: pointer;
-
-		> md-icon {
-			height: 18px;
-			width: 18px;
-			transition: color $transition;
-		}
-	}
-
-	&__field:focus + &__button > md-icon {
-		@extend .weak;
-	}
-}
