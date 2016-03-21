@@ -43,19 +43,19 @@ function SetupStepsService ($sce, $q, productService, supplierService) {
 					});
 				}
 
-				if (atLeastOneEnabled(paymentMethods)) {
-					completed.push({
-						name: 'You\'re all ready to take payments',
-						description: 'Payment methods can added or removed from <a href="account/">your account</a> at any time'
-					});
-				} else {
-					pending.push({
-						name: 'Set up a payment method',
-						description: 'Orderable uses <a href="https://stripe.com/gb" target="_blank">Stripe</a> to securely handle payments for you. To get paid you\'ll need to set up an account',
-						action: 'account/',
-						icon: 'payment'
-					});
-				}
+				// if (atLeastOneEnabled(paymentMethods)) {
+				// 	completed.push({
+				// 		name: 'You\'re all ready to take payments',
+				// 		description: 'Payment methods can added or removed from <a href="account/">your account</a> at any time'
+				// 	});
+				// } else {
+				// 	pending.push({
+				// 		name: 'Set up a payment method',
+				// 		description: 'Orderable uses <a href="https://stripe.com/gb" target="_blank">Stripe</a> to securely handle payments for you. To get paid you\'ll need to set up an account',
+				// 		action: 'account/',
+				// 		icon: 'payment'
+				// 	});
+				// }
 
 				return {
 					pending: pending.map(safeDescription),
