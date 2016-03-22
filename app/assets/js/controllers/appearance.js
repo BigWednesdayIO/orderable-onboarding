@@ -8,7 +8,8 @@ function AppearanceController ($state, appearanceService, supplierService, suppl
 	vm.appearance = {
 		initials: supplierInfo.initials || appearanceService.pickInitials(supplierInfo),
 		colour: supplierInfo.colour || appearanceService.pickAtRandom(colours).value,
-		banner_image: supplierInfo.banner_image || appearanceService.pickAtRandom(banners)
+		banner_image: supplierInfo.banner_image || appearanceService.pickAtRandom(banners),
+		logo: supplierInfo.logo
 	};
 
 	vm.saveAppearance = function() {
