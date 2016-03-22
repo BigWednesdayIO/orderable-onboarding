@@ -9,7 +9,8 @@ function OrderMethodController ($state, supplierService, supplierInfo) {
 
 	vm.updateOrderMethod = function() {
 		var info = {
-			orders_email: (vm.customOrderEmail ? vm.supplier.orders_email : '')
+			orders_email: (vm.customOrderEmail ? vm.supplier.orders_email : ''),
+			orders_textsms: (vm.textNotifications ? vm.supplier.orders_textsms : '')
 		};
 
 		supplierService
