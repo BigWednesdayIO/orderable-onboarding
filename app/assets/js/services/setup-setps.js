@@ -12,6 +12,19 @@ function SetupStepsService ($sce, $q, productService, supplierService) {
 		})
 	}
 
+	function deliveryOptionsSetup (supplierInfo) {
+		var deliveryOptions = [
+			'delivery_charge',
+			'delivery_lead_time',
+			'delivery_days'
+		]
+
+		// False if any of the delivery options are undefined
+		return !deliveryOptions.some(function(attr) {
+			return typeof supplierInfo[attr] === 'undefined';
+		});
+	}
+
 	service.getSetupSteps = function() {
 		return $q.all([
 			supplierService
@@ -56,6 +69,20 @@ function SetupStepsService ($sce, $q, productService, supplierService) {
 				// 		icon: 'payment'
 				// 	});
 				// }
+
+				if (deliveryOptionsSetup(supplierInfo)) {
+					completed.push({
+						name: 'Delivery options setup',
+						description: 'Accurate delivery times and charges can now be displayed to your customers, before they order'
+					});
+				} else {
+					pending.push({
+						name: 'Set delivery options',
+						description: 'By entering your delivery days, charges and lead times, Orderable can help to manage your customers expectations',
+						action: 'account/delivery-options/',
+						icon: 'timetable'
+					});
+				}
 
 				return {
 					pending: pending.map(safeDescription),
