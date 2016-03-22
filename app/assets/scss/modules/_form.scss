@@ -109,6 +109,7 @@ textarea {
 
 	&__field {
 		flex: 1 1;
+		width: 100%; // Net setting one doesn't let it shrink somehow
 		padding-left: .25em;
 		-moz-appearance: textfield;
 

@@ -1,4 +1,4 @@
-function BasicValidationInterceptor ($q, $log, browserStorage) {
+function BasicValidationInterceptor ($q, $log, API, browserStorage) {
 	function handleResponseError (response) {
 		var error = (response.data && typeof response.data === 'object') ? response.data : {};
 
@@ -10,7 +10,7 @@ function BasicValidationInterceptor ($q, $log, browserStorage) {
 			error.message = 'An unknown error occurred';
 		}
 
-		if (error.status === 401) {
+		if (error.status === 401 && (response.config || {}).url !== API.suppliers + '/authenticate') {
 			browserStorage.clear();
 			window.location = '/';
 		} else {

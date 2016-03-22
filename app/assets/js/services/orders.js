@@ -1,4 +1,4 @@
-function OrdersService ($http, $q, API, authenticationService, _) {
+function OrdersService ($http, $q, API, displayError, authenticationService, _) {
 	var service = this;
 
 	service.getOrders = function() {
@@ -8,7 +8,8 @@ function OrdersService ($http, $q, API, authenticationService, _) {
 			params: {
 				supplier_id: authenticationService.getSessionInfo().id
 			}
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.getOrder = function(id) {
@@ -29,7 +30,8 @@ function OrdersService ($http, $q, API, authenticationService, _) {
 		})
 			.then(function() {
 				return status;	
-			});
+			})
+			.catch(displayError);
 	};
 }
 

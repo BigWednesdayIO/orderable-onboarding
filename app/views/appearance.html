@@ -19,11 +19,13 @@
 						<h2 class="supplier-listing__name md-title" ng-bind="vm.supplier.name"></h2>
 					</div>
 				</li>
-
-				<li class="form-row">
+				<li class="form-row" ng-show="::vm.appearance.logo">
+					<p>You are currently using a custom logo, if you would like to change it, or instead use a colour and initials, please <a href="mailto:help@orderable.co">email us</a>.</p>
+				</li>
+				<li class="form-row" ng-hide="::vm.appearance.logo">
 					<input class="md-whiteframe md-whiteframe-z1" ng-model="vm.appearance.initials" ng-maxlength="2" maxlength="2" />
 				</li>
-				<li class="form-row md-whiteframe md-whiteframe-z1">
+				<li class="form-row md-whiteframe md-whiteframe-z1" ng-hide="::vm.appearance.logo">
 					<md-select style="margin: 0;" ng-model="vm.appearance.colour" aria-label="Colour">
 						<md-option ng-repeat="colour in ::vm.colours track by colour.value" ng-value="::colour.value">
 							<div class="layout-row layout-align-start-center">

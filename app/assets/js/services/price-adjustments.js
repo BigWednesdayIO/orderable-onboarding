@@ -1,4 +1,4 @@
-function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, authenticationService, priceAdjustmentTypes, _) {
+function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, displayError, authenticationService, priceAdjustmentTypes, _) {
 	var service = this;
 
 	function toPence (value) {
@@ -84,7 +84,8 @@ function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, au
 				method: 'POST',
 				url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments',
 				data: adjustment
-			});
+			})
+				.catch(displayError);
 		}
 
 		function updateAdjustment (productId, adjustment) {
@@ -97,14 +98,16 @@ function PriceAdjustmentsService ($filter, $mdDialog, $state, $http, $q, API, au
 				method: 'PUT',
 				url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments/' + adjustment.id,
 				data: adjustmentData
-			});
+			})
+				.catch(displayError);
 		}
 
 		function removeAdjustment (productId, adjustment) {
 			return $http({
 				method: 'DELETE',
 				url: API.suppliers + '/' + supplierId + '/linked_products/' + productId + '/price_adjustments/' + adjustment.id
-			});
+			})
+				.catch(displayError);
 		}
 
 		promises = _.mapValues(priceAdjustments, function(newAdjustment, productId) {

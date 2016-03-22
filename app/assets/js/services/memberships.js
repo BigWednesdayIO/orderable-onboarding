@@ -1,11 +1,12 @@
-function MembershipsService ($http, $q, API, priceAdjustmentTypes, _) {
+function MembershipsService ($http, $q, API, displayError, priceAdjustmentTypes, _) {
 	var service = this;
 
 	service.getMemberships = function() {
 		return $http({
 			method: 'GET',
 			url: API.memberships
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.getMembershipById = function(id) {
@@ -27,7 +28,8 @@ function MembershipsService ($http, $q, API, priceAdjustmentTypes, _) {
 			method: 'PUT',
 			url: API.customers + '/' + membership.customer_id + '/memberships/' + membership.id,
 			data: data
-		});
+		})
+			.catch(displayError);
 	};
 
 	service.bootstrapMembershipAdjustment = function(productId) {
@@ -58,7 +60,8 @@ function MembershipsService ($http, $q, API, priceAdjustmentTypes, _) {
 				method: 'POST',
 				url: adjustmentsUrl,
 				data: adjustment
-			});
+			})
+				.catch(displayError);
 		}
 
 		function updateAdjustment (url, adjustment) {
@@ -71,14 +74,16 @@ function MembershipsService ($http, $q, API, priceAdjustmentTypes, _) {
 				method: 'PUT',
 				url: adjustmentsUrl + '/' + adjustment.id,
 				data: adjustmentData
-			});
+			})
+				.catch(displayError);
 		}
 
 		function removeAdjustment (url, adjustment) {
 			return $http({
 				method: 'DELETE',
 				url: adjustmentsUrl  + '/' + adjustment.id
-			});
+			})
+				.catch(displayError);
 		}
 
 		promises = _.mapValues(priceAdjustments, function(newAdjustment) {

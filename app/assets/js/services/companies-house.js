@@ -1,4 +1,4 @@
-function CompaniesHouseService ($http) {
+function CompaniesHouseService ($http, displayError) {
 	var service = this;
 
 	service.search = function(query) {
@@ -16,7 +16,8 @@ function CompaniesHouseService ($http) {
 				return response.items.filter(function(company) {
 					return company.company_status === 'active';
 				});
-			});
+			})
+			.catch(displayError);
 	}
 }
 

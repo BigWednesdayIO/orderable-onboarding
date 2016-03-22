@@ -1,4 +1,4 @@
-function CategoriesService ($http, $q, API, _) {
+function CategoriesService ($http, $q, API, displayError, _) {
 	var service = this;
 
 	function getCategories () {
@@ -6,7 +6,7 @@ function CategoriesService ($http, $q, API, _) {
 			url: API.categories,
 			method: 'GET',
 			cache: true
-		})
+		});
 	}
 
 	function getIdsFromChain (idChain) {
@@ -108,7 +108,8 @@ function CategoriesService ($http, $q, API, _) {
 				};
 
 				return categories.values[0].value;
-			});
+			})
+			.catch(displayError);
 	};
 }
 

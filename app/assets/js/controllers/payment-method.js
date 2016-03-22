@@ -1,4 +1,4 @@
-function PaymentMethodController (supplierService, paymentMethod, supplierInfo) {
+function PaymentMethodController ($mdToast, supplierService, paymentMethod, supplierInfo) {
 	var vm = this;
 
 	vm.paymentMethod = paymentMethod;
@@ -7,12 +7,24 @@ function PaymentMethodController (supplierService, paymentMethod, supplierInfo) 
 
 	vm.toggleEnabled = function() {
 		supplierService
-			.enablePaymentMethod(vm.paymentMethod.id, vm.paymentMethod.enabled);
+			.enablePaymentMethod(vm.paymentMethod.id, vm.paymentMethod.enabled)
+			.then(function() {
+				$mdToast.show(
+					$mdToast.simple()
+						.content('Payment method updated')
+				);
+			});
 	};
 
 	vm.saveChanges = function() {
 		supplierService
-			.updatePaymentMethod(vm.paymentMethod);
+			.updatePaymentMethod(vm.paymentMethod)
+			.then(function() {
+				$mdToast.show(
+					$mdToast.simple()
+						.content('Payment method updated')
+				);
+			});
 	};
 
 	vm.creditOptions = [

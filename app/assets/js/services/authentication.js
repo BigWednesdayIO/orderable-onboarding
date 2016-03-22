@@ -1,4 +1,4 @@
-function AuthenticationService ($rootScope, $http, $q, API, browserStorage) {
+function AuthenticationService ($rootScope, $http, $q, API, displayError, browserStorage) {
 	var service = this;
 	var session = {};
 
@@ -28,7 +28,8 @@ function AuthenticationService ($rootScope, $http, $q, API, browserStorage) {
 			url: API.suppliers + '/authenticate',
 			data: credentials
 		})
-			.then(storeSessionInfo);
+			.then(storeSessionInfo)
+			.catch(displayError);
 	};
 
 	service.signOut = function() {
